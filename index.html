@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MTKUNIT - بيع حسابات تيك توك</title>
+  <style>
+    body {
+      background-color: #0d1117;
+      color: #c9d1d9;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 1rem;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    header h1 {
+      color: #58a6ff;
+      margin: 0;
+      font-weight: bold;
+    }
+    .accounts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .account-card {
+      background-color: #161b22;
+      border-radius: 10px;
+      padding: 1rem;
+      width: 280px;
+      box-shadow: 0 0 10px #238636;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .account-card h2 {
+      color: #58a6ff;
+      margin: 0.5rem 0;
+      font-weight: bold;
+    }
+    .account-card p {
+      margin: 0.5rem 0;
+      text-align: center;
+    }
+    .account-card img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .price {
+      color: #2ea043;
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+    }
+    .btn-contact {
+      background-color: #238636;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-contact:hover {
+      background-color: #2ea043;
+    }
+    .payment-methods {
+      margin-top: 3rem;
+      text-align: center;
+      font-weight: bold;
+      color: #58a6ff;
+    }
+
+    /* قسم آراء العملاء */
+    .reviews {
+      margin-top: 3rem;
+      overflow: hidden;
+      background: #161b22;
+      padding: 1rem 0;
+      border-radius: 8px;
+    }
+    .reviews-container {
+      display: flex;
+      gap: 2rem;
+      animation: scrollReviews 20s linear infinite;
+    }
+    .review {
+      flex: 0 0 300px;
+      background: #238636;
+      color: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #2ea043;
+      font-size: 1rem;
+      text-align: center;
+    }
+    @keyframes scrollReviews {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* خانة كتابة رأي */
+    .add-review {
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .add-review input {
+      padding: 0.5rem;
+      width: 80%;
+      max-width: 300px;
+      border-radius: 6px;
+      border: none;
+    }
+    .add-review button {
+      padding: 0.5rem 1rem;
+      margin-top: 0.5rem;
+      background-color: #238636;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    /* متجاوب */
+    @media (max-width: 600px) {
+      .accounts {
+        flex-direction: column;
+        align-items: center;
+      }
+      .account-card {
+        width: 90%;
+      }
+      .reviews-container {
+        animation-duration: 30s;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MTKUNIT</h1>
+    <p>بيع حسابات تيك توك عالية الجودة</p>
+  </header>
+
+  <section class="accounts">
+    <div class="account-card">
+      <h2>حساب MTK-0001</h2>
+      <img src="https://i.postimg.cc/Th8rpCtV/IMG-20250606-WA0005.jpg" alt="صورة حساب MTK-0001" />
+      <p>حساب عالي الجودة مع متابعين كثيرين</p>
+      <p class="price">1200 جنيه</p>
+      <a href="https://wa.me/201013381602" target="_blank" class="btn-contact">تواصل عبر واتساب</a>
+    </div>
+    <div class="account-card">
+      <h2>حساب MTK-0002</h2>
+      <p>حساب عالي الجودة مع متابعين كثيرين</p>
+      <p class="price">1100 جنيه</p>
+      <a href="https://wa.me/201013381602" target="_blank" class="btn-contact">تواصل عبر واتساب</a>
+    </div>
+  </section>
+
+  <section class="payment-methods">
+    <h3>طرق الدفع:</h3>
+    <p>فودافون كاش - انستا باي - باينانس</p>
+  </section>
+
+  <section class="reviews">
+    <h3 style="text-align:center; color:#58a6ff; margin-bottom: 1rem;">آراء العملاء</h3>
+    <div class="reviews-container">
+      <div class="review">"الخدمة كانت ممتازة! الحساب سريع ومضمون." - أحمد</div>
+      <div class="review">"التعامل سهل والرد سريع، أنصح جداً." - سارة</div>
+      <div class="review">"جودة الحسابات عالية جداً والأسعار مناسبة." - محمد</div>
+      <div class="review">"شكراً لكم، الموقع ساعدني أطور مشروعي." - ليلى</div>
+    </div>
+  </section>
+
+  <section class="add-review">
+    <h3 style="color: #58a6ff;">شاركنا رأيك</h3>
+    <form id="reviewForm">
+      <input type="text" id="reviewInput" placeholder="اكتب رأيك هنا..." required />
+      <br />
+      <button type="submit">إرسال</button>
+    </form>
+  </section>
+
+  <script>
+    const form = document.getElementById('reviewForm');
+    const input = document.getElementById('reviewInput');
+    const container = document.querySelector('.reviews-container');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const newReview = document.createElement('div');
+      newReview.className = 'review';
+      newReview.textContent = "${input.value}" - زائر;
+
+      container.appendChild(newReview); // تضيف الرأي الجديد
+      input.value = ''; // تفضي الخانة
+    });
+  </script>
+</body>
+</html>
