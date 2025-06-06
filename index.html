@@ -84,22 +84,20 @@
       background: #161b22;
       padding: 1rem 0;
       border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      touch-action: pan-y;
     }
     .reviews-container {
       display: flex;
-      gap: 2rem;
-      white-space: nowrap;
+      gap: 1rem;
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE 10+ */
       scroll-behavior: smooth;
-    }
-    .reviews-container::-webkit-scrollbar {
-      display: none; /* Chrome, Safari */
+      padding: 0 1rem;
+      -webkit-overflow-scrolling: touch;
     }
     .review {
-      flex: 0 0 300px;
+      flex: 0 0 280px;
       background: #238636;
       color: white;
       padding: 1rem;
@@ -108,6 +106,12 @@
       font-size: 1rem;
       text-align: center;
       user-select: none;
+      cursor: grab;
+      transition: transform 0.2s ease;
+    }
+    .review:active {
+      cursor: grabbing;
+      transform: scale(1.05);
     }
 
     /* خانة كتابة رأي */
@@ -173,56 +177,74 @@
 
   <section class="reviews">
     <h3 style="text-align:center; color:#58a6ff; margin-bottom: 1rem;">آراء العملاء</h3>
-    <div class="reviews-container" id="reviewsContainer">
-      <div class="review">"الخدمة كانت ممتازة! الحساب سريع ومضمون." - أحمد</div>
-      <div class="review">"التعامل سهل والرد سريع، أنصح جداً." - سارة</div>
-      <div class="review">"جودة الحسابات عالية جداً والأسعار مناسبة." - محمد</div>
-      <div class="review">"شكراً لكم، الموقع ساعدني أطور مشروعي." - ليلى</div>
+    <div class="reviews-container" id="reviewsContainer" tabindex="0" aria-label="آراء العملاء">
+      <!-- الآراء ستظهر هنا -->
     </div>
   </section>
 
   <section class="add-review">
     <h3 style="color: #58a6ff;">شاركنا رأيك</h3>
     <form id="reviewForm">
-      <input type="text" id="reviewInput" placeholder="اكتب رأيك هنا..." required />
+      <input type="text" id="reviewInput" placeholder="اكتب رأيك هنا..." required autocomplete="off" />
       <br />
       <button type="submit">إرسال</button>
     </form>
   </section>
 
   <script>
+    // بيانات الآراء الافتراضية
+    const defaultReviews = [
+      '"الخدمة كانت ممتازة! الحساب سريع ومضمون." - أحمد',
+      '"التعامل سهل والرد سريع، أنصح جداً." - سارة',
+      '"جودة الحسابات عالية جداً والأسعار مناسبة." - محمد',
+      '"شكراً لكم، الموقع ساعدني أطور مشروعي." - ليلى'
+    ];
+
+    const reviewsKey = 'mtkunitReviews';
+    const reviewsContainer = document.getElementById('reviewsContainer');
     const form = document.getElementById('reviewForm');
     const input = document.getElementById('reviewInput');
-    const container = document.getElementById('reviewsContainer');
 
-    // تحميل الآراء من localStorage عند تحميل الصفحة
-    window.addEventListener('DOMContentLoaded', () => {
-      const savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
-      savedReviews.forEach(text => {
-        const reviewDiv = document.createElement('div');
-        reviewDiv.className = 'review';
-        reviewDiv.textContent = text;
-        container.appendChild(reviewDiv);
+    // تحميل الآراء من localStorage أو استخدم الافتراضية
+    function loadReviews() {
+      let saved = localStorage.getItem(reviewsKey);
+      let reviews = saved ? JSON.parse(saved) : defaultReviews;
+      reviewsContainer.innerHTML = '';
+      reviews.forEach(text => {
+        const div = document.createElement('div');
+        div.className = 'review';
+        div.textContent = text;
+        reviewsContainer.appendChild(div);
       });
-    });
+    }
 
-    form.addEventListener('submit', function (e) {
+    // حفظ الآراء في localStorage
+    function saveReviews() {
+      const reviews = [];
+      reviewsContainer.querySelectorAll('.review').forEach(div => {
+        reviews.push(div.textContent);
+      });
+      localStorage.setItem(reviewsKey, JSON.stringify(reviews));
+    }
+
+    // إضافة رأي جديد
+    form.addEventListener('submit', function(e) {
       e.preventDefault();
-
-      const reviewText = `"${input.value}" - زائر`;
-      const newReview = document.createElement('div');
-      newReview.className = 'review';
-      newReview.textContent = reviewText;
-
-      container.appendChild(newReview);
-
-      // حفظ الآراء في localStorage
-      let savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
-      savedReviews.push(reviewText);
-      localStorage.setItem('reviews', JSON.stringify(savedReviews));
-
+      const val = input.value.trim();
+      if (!val) return;
+      const newReview = `"${val}" - زائر`;
+      const div = document.createElement('div');
+      div.className = 'review';
+      div.textContent = newReview;
+      reviewsContainer.appendChild(div);
+      saveReviews();
       input.value = '';
+      // نزّل شريط التمرير تلقائيًا لآخر رأي
+      reviewsContainer.scrollTo({ left: reviewsContainer.scrollWidth, behavior: 'smooth' });
     });
+
+    // تحميل الآراء عند بداية التشغيل
+    loadReviews();
   </script>
 </body>
 </html>
