@@ -203,10 +203,10 @@
 
       const newReview = document.createElement('div');
       newReview.className = 'review';
-      newReview.textContent = "${input.value}" - زائر;
+      newReview.textContent = `"${input.value}" - زائر`;
 
-      container.appendChild(newReview); // تضيف الرأي الجديد
-      input.value = ''; // تفضي الخانة
+      container.appendChild(newReview);
+      input.value = '';
     });
   </script>
 </body>
