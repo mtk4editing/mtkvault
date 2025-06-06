@@ -81,7 +81,6 @@
     /* قسم آراء العملاء */
     .reviews {
       margin-top: 3rem;
-      overflow: hidden;
       background: #161b22;
       padding: 1rem 0;
       border-radius: 8px;
@@ -89,8 +88,15 @@
     .reviews-container {
       display: flex;
       gap: 2rem;
-      animation: scrollReviews 20s linear infinite;
       white-space: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE 10+ */
+      scroll-behavior: smooth;
+    }
+    .reviews-container::-webkit-scrollbar {
+      display: none; /* Chrome, Safari */
     }
     .review {
       flex: 0 0 300px;
@@ -101,14 +107,7 @@
       box-shadow: 0 0 10px #2ea043;
       font-size: 1rem;
       text-align: center;
-    }
-    @keyframes scrollReviews {
-      0% {
-        transform: translateX(100%);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
+      user-select: none;
     }
 
     /* خانة كتابة رأي */
@@ -141,10 +140,6 @@
       }
       .account-card {
         width: 90%;
-      }
-      /* سرعة الحركة أسرع جداً على الموبايل */
-      .reviews-container {
-        animation-duration: 8s !important;
       }
     }
   </style>
