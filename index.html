@@ -16,6 +16,7 @@
     header {
       text-align: center;
       margin-bottom: 2rem;
+      animation: glowText 3s ease-in-out infinite alternate;
     }
 
     header h1 {
@@ -25,11 +26,13 @@
       font-size: 2.5rem;
       margin: 0;
       font-weight: bold;
+      animation: pulse 2.5s ease-in-out infinite alternate;
     }
 
     header p {
       color: #8b949e;
       font-size: 1.1rem;
+      animation: glowText 4s ease-in-out infinite alternate;
     }
 
     .accounts {
@@ -50,22 +53,38 @@
       align-items: center;
       animation: fadeInUp 0.8s ease forwards;
       transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
     }
 
+    /* Glow animation on hover with a subtle pulse */
     .account-card:hover {
-      box-shadow: 0 0 20px #2ea043;
-      transform: scale(1.03);
+      box-shadow:
+        0 0 8px #2ea043,
+        0 0 20px #2ea043,
+        0 0 30px #58a6ff,
+        0 0 40px #2ea043;
+      transform: scale(1.05);
+      animation: pulseGlow 1.5s ease-in-out infinite alternate;
+      z-index: 10;
     }
 
     .account-card h2 {
       color: #58a6ff;
       margin: 0.5rem 0;
       font-weight: bold;
+      animation: glowText 4s ease-in-out infinite alternate;
     }
 
     .account-card p {
       margin: 0.5rem 0;
       text-align: center;
+      color: #c9d1d9cc;
+      transition: color 0.3s ease;
+    }
+
+    .account-card:hover p {
+      color: #e0f7e0;
     }
 
     .account-card img {
@@ -73,12 +92,21 @@
       border-radius: 8px;
       margin-bottom: 10px;
       cursor: pointer;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      box-shadow: 0 0 8px transparent;
+    }
+
+    /* Zoom effect on image hover */
+    .account-card img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px #58a6ff;
     }
 
     .price {
       color: #2ea043;
       font-weight: bold;
       font-size: 1.2rem;
+      animation: pulse 3s ease-in-out infinite alternate;
     }
 
     .btn-contact {
@@ -92,12 +120,17 @@
       text-decoration: none;
       display: inline-block;
       margin-top: 0.5rem;
-      transition: background 0.3s ease, transform 0.2s;
+      transition: background 0.3s ease, transform 0.2s, box-shadow 0.3s ease;
+      box-shadow: 0 0 5px #25d366;
+      animation: pulseGreen 3s ease-in-out infinite alternate;
     }
 
     .btn-contact:hover {
       background: linear-gradient(90deg, #128c7e, #25d366);
-      transform: scale(1.05);
+      transform: scale(1.1);
+      box-shadow:
+        0 0 10px #25d366,
+        0 0 20px #128c7e;
     }
 
     .payment-methods {
@@ -105,6 +138,7 @@
       text-align: center;
       font-weight: bold;
       color: #58a6ff;
+      animation: glowText 4s ease-in-out infinite alternate;
     }
 
     footer {
@@ -112,9 +146,10 @@
       margin-top: 3rem;
       font-size: 0.9rem;
       color: #444;
+      animation: fadeInUp 2s ease forwards;
     }
 
-    /* Animation */
+    /* Animations */
     @keyframes fadeInUp {
       from {
         opacity: 0;
@@ -123,6 +158,66 @@
       to {
         opacity: 1;
         transform: translateY(0);
+      }
+    }
+
+    @keyframes glowText {
+      0% {
+        text-shadow: 0 0 5px #58a6ff, 0 0 10px #2ea043;
+      }
+      50% {
+        text-shadow: 0 0 10px #2ea043, 0 0 20px #58a6ff;
+      }
+      100% {
+        text-shadow: 0 0 5px #58a6ff, 0 0 10px #2ea043;
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        color: #58a6ff;
+      }
+      50% {
+        color: #2ea043;
+      }
+      100% {
+        color: #58a6ff;
+      }
+    }
+
+    @keyframes pulseGreen {
+      0% {
+        box-shadow: 0 0 5px #25d366;
+      }
+      50% {
+        box-shadow: 0 0 15px #128c7e;
+      }
+      100% {
+        box-shadow: 0 0 5px #25d366;
+      }
+    }
+
+    @keyframes pulseGlow {
+      0% {
+        box-shadow:
+          0 0 8px #2ea043,
+          0 0 20px #2ea043,
+          0 0 30px #58a6ff,
+          0 0 40px #2ea043;
+      }
+      50% {
+        box-shadow:
+          0 0 12px #58a6ff,
+          0 0 25px #2ea043,
+          0 0 40px #2ea043,
+          0 0 50px #58a6ff;
+      }
+      100% {
+        box-shadow:
+          0 0 8px #2ea043,
+          0 0 20px #2ea043,
+          0 0 30px #58a6ff,
+          0 0 40px #2ea043;
       }
     }
 
@@ -147,20 +242,22 @@
   <section class="accounts">
     <div class="account-card">
       <h2>حساب MTK-0001</h2>
-      <a href="https://www.tiktok.com/@elostorra" target="_blank">
+      <a href="https://www.tiktok.com/@elostorra" target="_blank" rel="noopener noreferrer">
         <img src="https://i.postimg.cc/Th8rpCtV/IMG-20250606-WA0005.jpg" alt="صورة حساب MTK-0001" />
       </a>
       <p>📱 حساب عالي الجودة مع متابعين كثيرين</p>
       <p class="price">💰 29$</p>
-      <a href="https://wa.me/201013381602" target="_blank" class="btn-contact">+20 01013381602 تواصل عبر واتساب</a>
+      <a href="https://wa.me/201013381602" target="_blank" rel="noopener noreferrer" class="btn-contact">+20 01013381602 تواصل عبر واتساب</a>
     </div>
 
     <div class="account-card">
       <h2>حساب MTK-0002</h2>
-      <img src="https://i.postimg.cc/BvzDYHyP/IMG-20250606-WA0009.jpg" alt="صورة حساب MTK-0002" />
+      <a href="https://www.tiktok.com/@theosttoora" target="_blank" rel="noopener noreferrer">
+        <img src="https://i.postimg.cc/BvzDYHyP/IMG-20250606-WA0009.jpg" alt="صورة حساب MTK-0002" />
+      </a>
       <p>📱 حساب عالي الجودة مع متابعين كثيرين</p>
       <p class="price">💰 65$</p>
-      <a href="https://wa.me/201013381602" target="_blank" class="btn-contact">+20 01013381602 تواصل عبر واتساب</a>
+      <a href="https://wa.me/201013381602" target="_blank" rel="noopener noreferrer" class="btn-contact">+20 01013381602 تواصل عبر واتساب</a>
     </div>
 
     <div class="account-card">
@@ -168,13 +265,13 @@
       <img src="https://i.postimg.cc/L6wBZXM7/Whats-App-Image-2025-06-06-at-12-13-21-7f0cc5da.jpg" alt="صورة حساب MTK-0003" />
       <p>📱 حساب عالي الجودة مع متابعين كثيرين</p>
       <p class="price">💰 19$</p>
-      <a href="https://wa.me/201013381602" target="_blank" class="btn-contact">+20 01013381602 تواصل عبر واتساب</a>
+      <a href="https://wa.me/201013381602" target="_blank" rel="noopener noreferrer" class="btn-contact">+20 01013381602 تواصل عبر واتساب</a>
     </div>
   </section>
 
   <section class="payment-methods">
     <h3>💳 طرق الدفع:</h3>
-    <p>📲 فودافون كاش - 💸 انستا باي - 🔐 باينانس</p>
+    <p> فودافون كاش - 💸 انستا باي - 🔐 باينانس 📲</p>
   </section>
 
   <footer>
