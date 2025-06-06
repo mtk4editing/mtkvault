@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MTKUNIT - بيع حسابات تيك توك</title>
   <style>
-    /* نفس الستايل السابق */
     body {
       background-color: #0d1117;
       color: #c9d1d9;
@@ -143,8 +142,9 @@
       .account-card {
         width: 90%;
       }
+      /* سرعة الحركة أسرع جداً على الموبايل */
       .reviews-container {
-        animation-duration: 30s;
+        animation-duration: 8s !important;
       }
     }
   </style>
@@ -179,7 +179,10 @@
   <section class="reviews">
     <h3 style="text-align:center; color:#58a6ff; margin-bottom: 1rem;">آراء العملاء</h3>
     <div class="reviews-container" id="reviewsContainer">
-      <!-- الآراء تظهر هنا -->
+      <div class="review">"الخدمة كانت ممتازة! الحساب سريع ومضمون." - أحمد</div>
+      <div class="review">"التعامل سهل والرد سريع، أنصح جداً." - سارة</div>
+      <div class="review">"جودة الحسابات عالية جداً والأسعار مناسبة." - محمد</div>
+      <div class="review">"شكراً لكم، الموقع ساعدني أطور مشروعي." - ليلى</div>
     </div>
   </section>
 
@@ -197,46 +200,34 @@
     const input = document.getElementById('reviewInput');
     const container = document.getElementById('reviewsContainer');
 
-    // آرائنا الافتراضية عند أول تحميل، نستخدمها فقط لو localStorage فاضي
-    const defaultReviews = [
-      '"الخدمة كانت ممتازة! الحساب سريع ومضمون." - أحمد',
-      '"التعامل سهل والرد سريع، أنصح جداً." - سارة',
-      '"جودة الحسابات عالية جداً والأسعار مناسبة." - محمد',
-      '"شكراً لكم، الموقع ساعدني أطور مشروعي." - ليلى'
-    ];
-
-    // تحميل الآراء من localStorage أو من الافتراضي لو مفيش بيانات
-    function loadReviews() {
-      let savedReviews = JSON.parse(localStorage.getItem('userReviews'));
-      if (!savedReviews || savedReviews.length === 0) {
-        savedReviews = defaultReviews;
-        localStorage.setItem('userReviews', JSON.stringify(savedReviews));
-      }
-      container.innerHTML = '';
+    // تحميل الآراء من localStorage عند تحميل الصفحة
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
       savedReviews.forEach(text => {
-        const newReview = document.createElement('div');
-        newReview.className = 'review';
-        newReview.textContent = text;
-        container.appendChild(newReview);
+        const reviewDiv = document.createElement('div');
+        reviewDiv.className = 'review';
+        reviewDiv.textContent = text;
+        container.appendChild(reviewDiv);
       });
-    }
-
-    // حفظ رأي جديد وإعادة تحميل العرض
-    function saveReview(text) {
-      const savedReviews = JSON.parse(localStorage.getItem('userReviews')) || [];
-      savedReviews.push(text);
-      localStorage.setItem('userReviews', JSON.stringify(savedReviews));
-      loadReviews();
-    }
+    });
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+
       const reviewText = `"${input.value}" - زائر`;
-      saveReview(reviewText);
+      const newReview = document.createElement('div');
+      newReview.className = 'review';
+      newReview.textContent = reviewText;
+
+      container.appendChild(newReview);
+
+      // حفظ الآراء في localStorage
+      let savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
+      savedReviews.push(reviewText);
+      localStorage.setItem('reviews', JSON.stringify(savedReviews));
+
       input.value = '';
     });
-
-    loadReviews();
   </script>
 </body>
 </html>
