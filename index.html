@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MTKUNIT - بيع حسابات تيك توك</title>
   <style>
+    /* نفس الستايل السابق */
     body {
       background-color: #0d1117;
       color: #c9d1d9;
@@ -178,10 +179,7 @@
   <section class="reviews">
     <h3 style="text-align:center; color:#58a6ff; margin-bottom: 1rem;">آراء العملاء</h3>
     <div class="reviews-container" id="reviewsContainer">
-      <div class="review">"الخدمة كانت ممتازة! الحساب سريع ومضمون." - أحمد</div>
-      <div class="review">"التعامل سهل والرد سريع، أنصح جداً." - سارة</div>
-      <div class="review">"جودة الحسابات عالية جداً والأسعار مناسبة." - محمد</div>
-      <div class="review">"شكراً لكم، الموقع ساعدني أطور مشروعي." - ليلى</div>
+      <!-- الآراء تظهر هنا -->
     </div>
   </section>
 
@@ -199,9 +197,22 @@
     const input = document.getElementById('reviewInput');
     const container = document.getElementById('reviewsContainer');
 
-    // دالة لتحميل الآراء من localStorage وعرضها
+    // آرائنا الافتراضية عند أول تحميل، نستخدمها فقط لو localStorage فاضي
+    const defaultReviews = [
+      '"الخدمة كانت ممتازة! الحساب سريع ومضمون." - أحمد',
+      '"التعامل سهل والرد سريع، أنصح جداً." - سارة',
+      '"جودة الحسابات عالية جداً والأسعار مناسبة." - محمد',
+      '"شكراً لكم، الموقع ساعدني أطور مشروعي." - ليلى'
+    ];
+
+    // تحميل الآراء من localStorage أو من الافتراضي لو مفيش بيانات
     function loadReviews() {
-      const savedReviews = JSON.parse(localStorage.getItem('userReviews')) || [];
+      let savedReviews = JSON.parse(localStorage.getItem('userReviews'));
+      if (!savedReviews || savedReviews.length === 0) {
+        savedReviews = defaultReviews;
+        localStorage.setItem('userReviews', JSON.stringify(savedReviews));
+      }
+      container.innerHTML = '';
       savedReviews.forEach(text => {
         const newReview = document.createElement('div');
         newReview.className = 'review';
@@ -210,24 +221,18 @@
       });
     }
 
-    // دالة لحفظ الرأي الجديد في localStorage
+    // حفظ رأي جديد وإعادة تحميل العرض
     function saveReview(text) {
       const savedReviews = JSON.parse(localStorage.getItem('userReviews')) || [];
       savedReviews.push(text);
       localStorage.setItem('userReviews', JSON.stringify(savedReviews));
+      loadReviews();
     }
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-
       const reviewText = `"${input.value}" - زائر`;
-      const newReview = document.createElement('div');
-      newReview.className = 'review';
-      newReview.textContent = reviewText;
-
-      container.appendChild(newReview);
       saveReview(reviewText);
-
       input.value = '';
     });
 
