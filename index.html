@@ -50,6 +50,7 @@
       width: 100%;
       border-radius: 8px;
       margin-bottom: 10px;
+      cursor: pointer;
     }
     .price {
       color: #2ea043;
@@ -78,64 +79,6 @@
       color: #58a6ff;
     }
 
-    /* قسم آراء العملاء */
-    .reviews {
-      margin-top: 3rem;
-      background: #161b22;
-      padding: 1rem 0;
-      border-radius: 8px;
-      overflow: hidden;
-      position: relative;
-      touch-action: pan-y;
-    }
-    .reviews-container {
-      display: flex;
-      gap: 1rem;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      padding: 0 1rem;
-      -webkit-overflow-scrolling: touch;
-    }
-    .review {
-      flex: 0 0 280px;
-      background: #238636;
-      color: white;
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 0 10px #2ea043;
-      font-size: 1rem;
-      text-align: center;
-      user-select: none;
-      cursor: grab;
-      transition: transform 0.2s ease;
-    }
-    .review:active {
-      cursor: grabbing;
-      transform: scale(1.05);
-    }
-
-    /* خانة كتابة رأي */
-    .add-review {
-      margin-top: 2rem;
-      text-align: center;
-    }
-    .add-review input {
-      padding: 0.5rem;
-      width: 80%;
-      max-width: 300px;
-      border-radius: 6px;
-      border: none;
-    }
-    .add-review button {
-      padding: 0.5rem 1rem;
-      margin-top: 0.5rem;
-      background-color: #238636;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
     /* متجاوب */
     @media (max-width: 600px) {
       .accounts {
@@ -157,7 +100,9 @@
   <section class="accounts">
     <div class="account-card">
       <h2>حساب MTK-0001</h2>
-      <img src="https://i.postimg.cc/Th8rpCtV/IMG-20250606-WA0005.jpg" alt="صورة حساب MTK-0001" />
+      <a href="https://www.tiktok.com/@elostorra" target="_blank">
+        <img src="https://i.postimg.cc/Th8rpCtV/IMG-20250606-WA0005.jpg" alt="صورة حساب MTK-0001" />
+      </a>
       <p>حساب عالي الجودة مع متابعين كثيرين</p>
       <p class="price">1200 جنيه</p>
       <a href="https://wa.me/201013381602" target="_blank" class="btn-contact">تواصل عبر واتساب</a>
@@ -174,77 +119,5 @@
     <h3>طرق الدفع:</h3>
     <p>فودافون كاش - انستا باي - باينانس</p>
   </section>
-
-  <section class="reviews">
-    <h3 style="text-align:center; color:#58a6ff; margin-bottom: 1rem;">آراء العملاء</h3>
-    <div class="reviews-container" id="reviewsContainer" tabindex="0" aria-label="آراء العملاء">
-      <!-- الآراء ستظهر هنا -->
-    </div>
-  </section>
-
-  <section class="add-review">
-    <h3 style="color: #58a6ff;">شاركنا رأيك</h3>
-    <form id="reviewForm">
-      <input type="text" id="reviewInput" placeholder="اكتب رأيك هنا..." required autocomplete="off" />
-      <br />
-      <button type="submit">إرسال</button>
-    </form>
-  </section>
-
-  <script>
-    // بيانات الآراء الافتراضية
-    const defaultReviews = [
-      '"الخدمة كانت ممتازة! الحساب سريع ومضمون." - أحمد',
-      '"التعامل سهل والرد سريع، أنصح جداً." - سارة',
-      '"جودة الحسابات عالية جداً والأسعار مناسبة." - محمد',
-      '"شكراً لكم، الموقع ساعدني أطور مشروعي." - ليلى'
-    ];
-
-    const reviewsKey = 'mtkunitReviews';
-    const reviewsContainer = document.getElementById('reviewsContainer');
-    const form = document.getElementById('reviewForm');
-    const input = document.getElementById('reviewInput');
-
-    // تحميل الآراء من localStorage أو استخدم الافتراضية
-    function loadReviews() {
-      let saved = localStorage.getItem(reviewsKey);
-      let reviews = saved ? JSON.parse(saved) : defaultReviews;
-      reviewsContainer.innerHTML = '';
-      reviews.forEach(text => {
-        const div = document.createElement('div');
-        div.className = 'review';
-        div.textContent = text;
-        reviewsContainer.appendChild(div);
-      });
-    }
-
-    // حفظ الآراء في localStorage
-    function saveReviews() {
-      const reviews = [];
-      reviewsContainer.querySelectorAll('.review').forEach(div => {
-        reviews.push(div.textContent);
-      });
-      localStorage.setItem(reviewsKey, JSON.stringify(reviews));
-    }
-
-    // إضافة رأي جديد
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const val = input.value.trim();
-      if (!val) return;
-      const newReview = `"${val}" - زائر`;
-      const div = document.createElement('div');
-      div.className = 'review';
-      div.textContent = newReview;
-      reviewsContainer.appendChild(div);
-      saveReviews();
-      input.value = '';
-      // نزّل شريط التمرير تلقائيًا لآخر رأي
-      reviewsContainer.scrollTo({ left: reviewsContainer.scrollWidth, behavior: 'smooth' });
-    });
-
-    // تحميل الآراء عند بداية التشغيل
-    loadReviews();
-  </script>
 </body>
 </html>
