@@ -5,151 +5,219 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MTKUNIT - بيع حسابات تيك توك</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
     body {
       background: radial-gradient(circle at top, #0d1117, #0b0f15);
       color: #c9d1d9;
-      font-family: Arial, sans-serif;
+      font-family: 'Cairo', Arial, sans-serif;
       margin: 0;
       padding: 1rem;
+      overflow-x: hidden;
+    }
+
+    /* حركة الخلفية خفيفة */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -20%;
+      left: -20%;
+      width: 140%;
+      height: 140%;
+      background: radial-gradient(circle at center, #2ea04355, transparent 70%);
+      filter: blur(120px);
+      animation: pulseBG 10s ease-in-out infinite alternate;
+      z-index: -1;
+    }
+
+    @keyframes pulseBG {
+      0% {
+        transform: scale(1) translate(0, 0);
+        opacity: 0.6;
+      }
+      100% {
+        transform: scale(1.2) translate(20px, -20px);
+        opacity: 0.4;
+      }
     }
 
     header {
       text-align: center;
       margin-bottom: 2rem;
-      animation: glowText 3s ease-in-out infinite alternate;
     }
 
     header h1 {
       background: linear-gradient(90deg, #58a6ff, #2ea043);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      font-size: 2.5rem;
+      font-size: 3rem;
       margin: 0;
-      font-weight: bold;
-      animation: pulse 2.5s ease-in-out infinite alternate;
+      font-weight: 900;
+      text-transform: uppercase;
+      animation: glowText 2.5s ease-in-out infinite alternate;
+      letter-spacing: 2px;
+    }
+
+    @keyframes glowText {
+      0% {
+        text-shadow: 0 0 5px #58a6ff, 0 0 10px #2ea043;
+      }
+      100% {
+        text-shadow: 0 0 15px #2ea043, 0 0 30px #58a6ff;
+      }
     }
 
     header p {
       color: #8b949e;
-      font-size: 1.1rem;
-      animation: glowText 4s ease-in-out infinite alternate;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-top: 0.3rem;
+      letter-spacing: 1px;
     }
 
     .accounts {
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 1.5rem;
       justify-content: center;
     }
 
     .account-card {
       background-color: #161b22;
-      border-radius: 10px;
-      padding: 1rem;
-      width: 280px;
-      box-shadow: 0 0 10px #238636;
+      border-radius: 15px;
+      padding: 1.3rem 1.5rem;
+      width: 300px;
+      box-shadow: 0 0 15px #238636;
       display: flex;
       flex-direction: column;
       align-items: center;
-      animation: fadeInUp 0.8s ease forwards;
-      transition: transform 0.3s, box-shadow 0.3s;
+      animation: fadeInUp 1s ease forwards;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      cursor: pointer;
       position: relative;
       overflow: hidden;
     }
 
-    /* Glow animation on hover with a subtle pulse */
+    /* توهج متكرر للبطاقة */
+    .account-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, #58a6ff, #2ea043, #58a6ff, #2ea043);
+      background-size: 400% 400%;
+      filter: blur(20px);
+      opacity: 0.3;
+      animation: shine 5s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+      border-radius: 15px;
+    }
+
+    @keyframes shine {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 400% 50%;
+      }
+    }
+
     .account-card:hover {
-      box-shadow:
-        0 0 8px #2ea043,
-        0 0 20px #2ea043,
-        0 0 30px #58a6ff,
-        0 0 40px #2ea043;
-      transform: scale(1.05);
-      animation: pulseGlow 1.5s ease-in-out infinite alternate;
+      box-shadow: 0 0 30px #2ea043, 0 0 40px #58a6ff;
+      transform: scale(1.07) translateY(-10px);
       z-index: 10;
     }
 
     .account-card h2 {
       color: #58a6ff;
-      margin: 0.5rem 0;
-      font-weight: bold;
-      animation: glowText 4s ease-in-out infinite alternate;
+      margin: 0.6rem 0;
+      font-weight: 800;
+      position: relative;
+      z-index: 2;
+      text-shadow: 0 0 10px #58a6ff;
+      letter-spacing: 1.5px;
+      user-select: none;
     }
 
     .account-card p {
       margin: 0.5rem 0;
       text-align: center;
-      color: #c9d1d9cc;
-      transition: color 0.3s ease;
-    }
-
-    .account-card:hover p {
-      color: #e0f7e0;
+      position: relative;
+      z-index: 2;
     }
 
     .account-card img {
       width: 100%;
-      border-radius: 8px;
+      border-radius: 12px;
       margin-bottom: 10px;
       cursor: pointer;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      box-shadow: 0 0 8px transparent;
+      position: relative;
+      z-index: 2;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
     }
 
-    /* Zoom effect on image hover */
     .account-card img:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 20px #58a6ff;
+      transform: scale(1.1) rotate(3deg);
+      box-shadow: 0 0 25px #2ea043;
     }
 
     .price {
       color: #2ea043;
-      font-weight: bold;
-      font-size: 1.2rem;
-      animation: pulse 3s ease-in-out infinite alternate;
+      font-weight: 900;
+      font-size: 1.4rem;
+      text-shadow: 0 0 10px #2ea043;
+      position: relative;
+      z-index: 2;
     }
 
     .btn-contact {
       background: linear-gradient(90deg, #25d366, #128c7e);
       color: white;
       border: none;
-      padding: 0.6rem 1rem;
-      border-radius: 6px;
+      padding: 0.75rem 1.2rem;
+      border-radius: 8px;
       cursor: pointer;
-      font-weight: bold;
+      font-weight: 700;
       text-decoration: none;
       display: inline-block;
-      margin-top: 0.5rem;
-      transition: background 0.3s ease, transform 0.2s, box-shadow 0.3s ease;
-      box-shadow: 0 0 5px #25d366;
-      animation: pulseGreen 3s ease-in-out infinite alternate;
+      margin-top: 0.8rem;
+      transition: background 0.4s ease, transform 0.25s ease;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 4px 8px #128c7e80;
+      user-select: none;
     }
 
     .btn-contact:hover {
       background: linear-gradient(90deg, #128c7e, #25d366);
-      transform: scale(1.1);
-      box-shadow:
-        0 0 10px #25d366,
-        0 0 20px #128c7e;
+      transform: scale(1.12);
+      box-shadow: 0 6px 15px #25d366cc;
     }
 
     .payment-methods {
-      margin-top: 3rem;
+      margin-top: 4rem;
       text-align: center;
-      font-weight: bold;
+      font-weight: 800;
       color: #58a6ff;
-      animation: glowText 4s ease-in-out infinite alternate;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+      text-shadow: 0 0 8px #58a6ffaa;
+      user-select: none;
     }
 
     footer {
       text-align: center;
       margin-top: 3rem;
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: #444;
-      animation: fadeInUp 2s ease forwards;
+      font-weight: 600;
+      user-select: none;
     }
 
-    /* Animations */
+    /* Animation fadeInUp */
     @keyframes fadeInUp {
       from {
         opacity: 0;
@@ -161,66 +229,6 @@
       }
     }
 
-    @keyframes glowText {
-      0% {
-        text-shadow: 0 0 5px #58a6ff, 0 0 10px #2ea043;
-      }
-      50% {
-        text-shadow: 0 0 10px #2ea043, 0 0 20px #58a6ff;
-      }
-      100% {
-        text-shadow: 0 0 5px #58a6ff, 0 0 10px #2ea043;
-      }
-    }
-
-    @keyframes pulse {
-      0% {
-        color: #58a6ff;
-      }
-      50% {
-        color: #2ea043;
-      }
-      100% {
-        color: #58a6ff;
-      }
-    }
-
-    @keyframes pulseGreen {
-      0% {
-        box-shadow: 0 0 5px #25d366;
-      }
-      50% {
-        box-shadow: 0 0 15px #128c7e;
-      }
-      100% {
-        box-shadow: 0 0 5px #25d366;
-      }
-    }
-
-    @keyframes pulseGlow {
-      0% {
-        box-shadow:
-          0 0 8px #2ea043,
-          0 0 20px #2ea043,
-          0 0 30px #58a6ff,
-          0 0 40px #2ea043;
-      }
-      50% {
-        box-shadow:
-          0 0 12px #58a6ff,
-          0 0 25px #2ea043,
-          0 0 40px #2ea043,
-          0 0 50px #58a6ff;
-      }
-      100% {
-        box-shadow:
-          0 0 8px #2ea043,
-          0 0 20px #2ea043,
-          0 0 30px #58a6ff,
-          0 0 40px #2ea043;
-      }
-    }
-
     /* Responsive */
     @media (max-width: 600px) {
       .accounts {
@@ -229,6 +237,12 @@
       }
       .account-card {
         width: 90%;
+      }
+      header h1 {
+        font-size: 2.5rem;
+      }
+      .payment-methods {
+        font-size: 1.1rem;
       }
     }
   </style>
@@ -271,7 +285,7 @@
 
   <section class="payment-methods">
     <h3>💳 طرق الدفع:</h3>
-    <p> فودافون كاش - 💸 انستا باي - 🔐 باينانس 📲</p>
+    <p>فودافون كاش - 💸 انستا باي - 🔐 باينانس 📲</p>
   </section>
 
   <footer>
