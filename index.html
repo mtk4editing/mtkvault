@@ -90,6 +90,7 @@
       display: flex;
       gap: 2rem;
       animation: scrollReviews 20s linear infinite;
+      white-space: nowrap;
     }
     .review {
       flex: 0 0 300px;
@@ -176,7 +177,7 @@
 
   <section class="reviews">
     <h3 style="text-align:center; color:#58a6ff; margin-bottom: 1rem;">آراء العملاء</h3>
-    <div class="reviews-container">
+    <div class="reviews-container" id="reviewsContainer">
       <div class="review">"الخدمة كانت ممتازة! الحساب سريع ومضمون." - أحمد</div>
       <div class="review">"التعامل سهل والرد سريع، أنصح جداً." - سارة</div>
       <div class="review">"جودة الحسابات عالية جداً والأسعار مناسبة." - محمد</div>
@@ -196,25 +197,41 @@
   <script>
     const form = document.getElementById('reviewForm');
     const input = document.getElementById('reviewInput');
-    const container = document.querySelector('.reviews-container');
+    const container = document.getElementById('reviewsContainer');
+
+    // دالة لتحميل الآراء من localStorage وعرضها
+    function loadReviews() {
+      const savedReviews = JSON.parse(localStorage.getItem('userReviews')) || [];
+      savedReviews.forEach(text => {
+        const newReview = document.createElement('div');
+        newReview.className = 'review';
+        newReview.textContent = text;
+        container.appendChild(newReview);
+      });
+    }
+
+    // دالة لحفظ الرأي الجديد في localStorage
+    function saveReview(text) {
+      const savedReviews = JSON.parse(localStorage.getItem('userReviews')) || [];
+      savedReviews.push(text);
+      localStorage.setItem('userReviews', JSON.stringify(savedReviews));
+    }
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
+      const reviewText = `"${input.value}" - زائر`;
       const newReview = document.createElement('div');
       newReview.className = 'review';
-      newReview.textContent = `"${input.value}" - زائر`;
+      newReview.textContent = reviewText;
 
-      // إضافة التعليق في بداية الحاوية
-      container.insertBefore(newReview, container.firstChild);
+      container.appendChild(newReview);
+      saveReview(reviewText);
+
       input.value = '';
-
-      // إيقاف الأنيميشن مؤقتاً 5 ثواني
-      container.style.animationPlayState = 'paused';
-      setTimeout(() => {
-        container.style.animationPlayState = 'running';
-      }, 5000);
     });
+
+    loadReviews();
   </script>
 </body>
 </html>
