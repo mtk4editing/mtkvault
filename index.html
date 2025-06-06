@@ -205,8 +205,15 @@
       newReview.className = 'review';
       newReview.textContent = `"${input.value}" - زائر`;
 
-      container.appendChild(newReview);
+      // إضافة التعليق في بداية الحاوية
+      container.insertBefore(newReview, container.firstChild);
       input.value = '';
+
+      // إيقاف الأنيميشن مؤقتاً 5 ثواني
+      container.style.animationPlayState = 'paused';
+      setTimeout(() => {
+        container.style.animationPlayState = 'running';
+      }, 5000);
     });
   </script>
 </body>
