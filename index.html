@@ -58,19 +58,6 @@
       font-weight: bold;
     }
 
-    .logo-icon {
-      font-size: 1.8rem;
-      background: linear-gradient(135deg,#ec4899,#8b5cf6);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .logo-text {
-      background: linear-gradient(135deg,#ec4899,#8b5cf6);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
     /* GENERAL */
     .section { padding: 80px 0; }
     .section-title {
@@ -100,6 +87,8 @@
       padding: 25px;
       border-radius: var(--radius-md);
       transition: .3s;
+      position: relative;
+      overflow: hidden;
     }
     .card:hover { transform: translateY(-4px); }
 
@@ -155,8 +144,7 @@
   <nav class="navbar">
     <div class="container nav-inner">
       <div class="logo">
-        <div class="logo-icon">👑</div>
-        <div class="logo-text">الأسطورة | The Ostora</div>
+        <!-- تم إزالة 👑 و "الأسطورة | The Ostora" -->
       </div>
     </div>
   </nav>
@@ -302,7 +290,20 @@
 
       <div class="grid grid-3">
 
+        <!-- الباقة الأساسية -->
         <div class="card" style="text-align:center;">
+
+          <img 
+            src="https://i.postimg.cc/7PVjj2GJ/albaqt-alasasyt.jpg" 
+            alt="الباقة الأساسية" 
+            style="
+              width:100%;
+              border-radius:16px;
+              margin-bottom:15px;
+              border:2px solid rgba(139, 92, 246, 0.4);
+            "
+          >
+
           <h3>الباقة الأساسية</h3>
           <div style="font-size:2rem;margin:10px 0;">1000 ج.م</div>
           <ul style="line-height:2;margin-bottom:20px;color:var(--text-secondary);">
@@ -315,8 +316,22 @@
              class="btn btn-outline" target="_blank">اطلب الآن</a>
         </div>
 
+        <!-- الباقة المميزة -->
         <div class="card" style="text-align:center;border:2px solid var(--color-primary);transform:scale(1.05);">
+
+          <img 
+            src="https://i.postimg.cc/JhSkQxCd/albaqt-almmyzt.jpg" 
+            alt="الباقة المميزة" 
+            style="
+              width:100%;
+              border-radius:16px;
+              margin-bottom:15px;
+              border:2px solid rgba(139, 92, 246, 0.5);
+            "
+          >
+
           <div class="badge">الأكثر طلبًا</div>
+
           <h3>الباقة المميزة</h3>
           <div style="font-size:2rem;margin:10px 0;">1500 ج.م</div>
 
@@ -328,6 +343,7 @@
 
           <a href="https://wa.me/201013381602?text=عايز%20اشتري%20الباقة%20المميزة"
              class="btn btn-primary" target="_blank">اطلب الآن</a>
+
         </div>
 
       </div>
