@@ -1,121 +1,315 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>الأسطورة - بيع حسابات تيك توك | TikTok Accounts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>كورس احترافي - تكبير صفحات تيك توك ويوتيوب وبيعها شهريًا</title>
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+    :root {
+      --color-primary: #8b5cf6;
+      --color-secondary: #ec4899;
+      --color-accent: #3b82f6;
+      --color-success: #10b981;
+      --text-primary: #f9fafb;
+      --text-secondary: #9ca3af;
+      --bg-primary: #050510;
+      --bg-card: rgba(15, 23, 42, 0.8);
+      --border-color: rgba(148, 163, 184, 0.25);
+      --radius-md: 16px;
+      --radius-full: 9999px;
+    }
 
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: radial-gradient(circle at top, #0d1117, #0b0f15);
-      color: #c9d1d9;
-      font-family: 'Cairo', Arial, sans-serif;
-      margin: 0;
-      padding: 1rem;
-      overflow-x: hidden;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;
+      direction: rtl;
     }
-
-    body::before {
-      content: '';
-      position: fixed;
-      top: -20%;
-      left: -20%;
-      width: 140%;
-      height: 140%;
-      background: radial-gradient(circle at center, #2ea04355, transparent 70%);
-      filter: blur(120px);
-      animation: pulseBG 10s ease-in-out infinite alternate;
-      z-index: -1;
-    }
-
-    @keyframes pulseBG {
-      0% { transform: scale(1) translate(0, 0); opacity: 0.6; }
-      100% { transform: scale(1.2) translate(20px, -20px); opacity: 0.4; }
-    }
-
-    header {
+    .container { max-width: 1200px; margin: auto; padding: 20px; }
+    .section { padding: 60px 0; }
+    .section-title {
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 30px;
+      font-size: 2rem;
+      position: relative;
+    }
+    .section-title::after{
+      content:"";
+      position:absolute;
+      bottom:-8px;
+      right:50%;
+      transform:translateX(50%);
+      width:80px;height:3px;
+      border-radius:999px;
+      background:linear-gradient(90deg,#ec4899,#8b5cf6);
+    }
+    .grid{display:grid;gap:20px;}
+    .grid-2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr));}
+    .grid-3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}
+
+    .card{
+      background:var(--bg-card);
+      border:1px solid var(--border-color);
+      border-radius:var(--radius-md);
+      padding:25px;
+      transition:.3s;
+    }
+    .card:hover{transform:translateY(-4px);}
+    .badge{
+      background:linear-gradient(135deg,#ec4899,#8b5cf6);
+      padding:6px 14px;
+      border-radius:var(--radius-full);
+      display:inline-block;
+      color:#fff;
+      font-weight:bold;
+      margin-bottom:15px;
+      font-size:.85rem;
     }
 
-    header h1 {
-      background: linear-gradient(90deg, #58a6ff, #2ea043);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-size: 3rem;
-      margin: 0;
-      font-weight: 900;
-      text-transform: uppercase;
-      animation: glowText 2.5s ease-in-out infinite alternate;
-      letter-spacing: 2px;
+    .btn{
+      display:inline-block;
+      padding:12px 32px;
+      border-radius:var(--radius-full);
+      cursor:pointer;
+      font-weight:600;
+      border:none;
+      text-decoration:none;
+      text-align:center;
+      font-size:.95rem;
     }
+    .btn-primary{
+      background:linear-gradient(135deg,#ec4899,#8b5cf6);
+      color:#fff;
+    }
+    .btn-primary:hover{opacity:.92;}
+    .btn-outline{
+      border:2px solid var(--color-primary);
+      color:var(--color-primary);
+      background:transparent;
+    }
+    .btn-outline:hover{background:var(--color-primary);color:#fff;}
 
-    @keyframes glowText {
-      0% { text-shadow: 0 0 5px #58a6ff, 0 0 10px #2ea043; }
-      100% { text-shadow: 0 0 15px #2ea043, 0 0 30px #58a6ff; }
+    .faq-box{
+      background:var(--bg-card);
+      padding:20px;
+      border-radius:var(--radius-md);
+      border:1px solid var(--border-color);
+      cursor:pointer;
+      transition:.3s;
     }
-
-    header p {
-      color: #8b949e;
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-top: 0.3rem;
-      letter-spacing: 1px;
-    }
-
-    .accounts {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: center;
-    }
-
-    .payment-methods {
-      margin-top: 4rem;
-      text-align: center;
-      font-weight: 800;
-      color: #58a6ff;
-      font-size: 1.3rem;
-      letter-spacing: 1px;
-      text-shadow: 0 0 8px #58a6ffaa;
-      user-select: none;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 3rem;
-      font-size: 1rem;
-      color: #444;
-      font-weight: 600;
-      user-select: none;
-    }
-
-    @media (max-width: 600px) {
-      .accounts { flex-direction: column; align-items: center; }
-      header h1 { font-size: 2.5rem; }
-      .payment-methods { font-size: 1.1rem; }
-    }
+    .faq-box:hover{background:rgba(139,92,246,.12);}
+    .faq-question{font-weight:bold;margin-bottom:8px;font-size:1.05rem;}
+    .faq-answer{color:var(--text-secondary);line-height:1.8;display:none;font-size:.9rem;}
   </style>
 </head>
+
 <body>
-  <header>
-    <h1>الأسطورة</h1>
-    <p>💎 بيع حسابات تيك توك عالية الجودة<br><span style="color:#8b949e;font-size:0.9em;">High-quality TikTok account sales</span></p>
-  </header>
 
-  <section class="accounts">
-    <!-- لا توجد حسابات متاحة حاليًا -->
-    <p style="color:#999; font-size:1.2rem; font-weight:bold; text-align:center;">🚫 لا توجد حسابات متاحة حالياً<br><span style="font-size:0.9em; color:#666;">No accounts available at the moment</span></p>
+  <!-- HERO -->
+  <section id="home" class="section">
+    <div class="container grid grid-2">
+      <div>
+        <div class="badge">🔥 كورس عملي 100%</div>
+        <h1 style="font-size:2.4rem;margin-bottom:20px;">
+          <span style="background:linear-gradient(135deg,#ec4899,#8b5cf6);-webkit-background-clip:text;color:transparent;">
+            ابدأ مشروعك الرقمي
+          </span><br>
+          تكبير وبيع صفحات السوشيال ميديا
+        </h1>
+
+        <p style="color:var(--text-secondary);margin-bottom:20px;">
+          اتعلّم إزاي تكبّر صفحات تيك توك ويوتيوب من الصفر وتبيعها كل شهر بدخل ثابت.
+          <br><br>
+          ⚠️ <strong>هتحتاج لاب توب أو كمبيوتر</strong> — النسخة الحالية من الكورس مبنية على الشغل من الكمبيوتر.
+          <br>
+          📱 جاري العمل على نسخة كاملة للموبايل قريبًا.
+        </p>
+
+        <a
+          class="btn btn-primary"
+          href="https://wa.me/201013381602?text=مرحبًا%20،%20عايز%20أشتري%20كورس%20تكبير%20الصفحات"
+          target="_blank"
+          rel="noopener"
+        >
+          اشترِ الكورس الآن عبر واتساب
+        </a>
+      </div>
+
+      <div>
+        <div class="card">
+          <h3 style="text-align:center;margin-bottom:15px;">ماذا ستتعلم جوّه الكورس؟</h3>
+          <ul style="line-height:2;font-size:.95rem;">
+            <li>🎯 اختيار النيتش المناسب.</li>
+            <li>🎬 صناعة محتوى جذاب يعلّي الريتش.</li>
+            <li>📈 استراتيجيات تكبير سريعة.</li>
+            <li>💰 طرق بيع الصفحات والتفاوض.</li>
+            <li>🛡️ حماية الحسابات من السرقة.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="payment-methods">
-    <h3>💳 طرق الدفع:<br><span style="font-weight:normal;font-size:0.85em;">Payment Methods</span></h3>
-    <p>فودافون كاش - 💸 انستا باي - 🔐 باينانس 📲<br><span style="font-size:0.85em;">Vodafone Cash - InstaPay - Binance</span></p>
+  <!-- FEATURES -->
+  <section id="features" class="section">
+    <div class="container">
+      <h2 class="section-title">مميزات الكورس</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="badge">🎓</div>
+          <h3>محتوى عملي</h3>
+          <p style="color:var(--text-secondary);font-size:.9rem;">
+            خطوات فعلية مطبّقة على صفحات حقيقية.
+          </p>
+        </div>
+        <div class="card">
+          <div class="badge">📱</div>
+          <h3>نسخة موبايل قريبًا</h3>
+          <p style="color:var(--text-secondary);font-size:.9rem;">
+            تحديث شامل للشرح مخصوص للموبايل.
+          </p>
+        </div>
+        <div class="card">
+          <div class="badge">🔄</div>
+          <h3>تحديثات مستمرة</h3>
+          <p style="color:var(--text-secondary);font-size:.9rem;">
+            متوافق دائمًا مع تريندات المنصات.
+          </p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <footer>
-    تم التصميم بواسطة الأسطورة © 2025<br><span style="font-size:0.85em;">Designed by الأسطورة © 2025</span>
-  </footer>
+  <!-- CURRICULUM -->
+  <section id="curriculum" class="section">
+    <div class="container">
+      <h2 class="section-title">محتويات الكورس</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>الوحدة 1: الأساسيات</h3>
+          <p style="color:var(--text-secondary);font-size:.9rem;">
+            فهم السوق، اختيار النيتش، تجهيز الحسابات.
+          </p>
+        </div>
+        <div class="card">
+          <h3>الوحدة 2: المحتوى</h3>
+          <p style="color:var(--text-secondary);font-size:.9rem;">
+            كتابة سكريبت وأديت احترافي للموبايل والكمبيوتر.
+          </p>
+        </div>
+        <div class="card">
+          <h3>الوحدة 3: النمو</h3>
+          <p style="color:var(--text-secondary);font-size:.9rem;">
+            خطة نشر، تحليل الأرقام، اختيار الفيديوهات الطائرة.
+          </p>
+        </div>
+        <div class="card">
+          <h3>الوحدة 4: البيع</h3>
+          <p style="color:var(--text-secondary);font-size:.9rem;">
+            تسعير الصفحات، إيجاد المشترين، تسليم آمن.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="section">
+    <div class="container">
+      <h2 class="section-title">اختر باقتك</h2>
+
+      <div class="grid grid-3">
+
+        <!-- BASIC -->
+        <div class="card text-center">
+          <h3>الباقة الأساسية</h3>
+          <div style="font-size:2rem;margin:10px 0 15px;">1000 ج.م</div>
+          <ul style="line-height:2;margin-bottom:20px;font-size:.9rem;">
+            <li>✔ الوصول للكورس كامل.</li>
+            <li>✔ ملفات مساعدة.</li>
+            <li>❌ بدون دعم شخصي.</li>
+          </ul>
+          <a
+            class="btn btn-outline"
+            href="https://wa.me/201013381602?text=مرحبًا%20،%20عايز%20أشتري%20الباقة%20الأساسية%20من%20الكورس"
+            target="_blank"
+          >
+            اطلب الباقة عبر واتساب
+          </a>
+        </div>
+
+        <!-- PREMIUM -->
+        <div class="card text-center" style="transform:scale(1.05);border:2px solid var(--color-primary);">
+          <div class="badge">الأكثر طلبًا</div>
+          <h3>الباقة المميزة</h3>
+          <div style="font-size:2rem;margin:10px 0 15px;">1500 ج.م</div>
+          <ul style="line-height:2;margin-bottom:20px;font-size:.9rem;">
+            <li>✔ دعم شخصي لمدة شهر.</li>
+            <li>✔ متابعة أداء الصفحة.</li>
+            <li>✔ خطة جاهزة للنمو السريع.</li>
+          </ul>
+          <a
+            class="btn btn-primary"
+            href="https://wa.me/201013381602?text=مرحبًا%20،%20عايز%20أشتري%20الباقة%20المميزة%20من%20الكورس"
+            target="_blank"
+          >
+            اطلب الباقة المميزة عبر واتساب
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <div class="container">
+      <h2 class="section-title">الأسئلة الشائعة</h2>
+
+      <div class="grid grid-2">
+
+        <div class="faq-box" onclick="toggleFAQ(this)">
+          <div class="faq-question">هل محتاج خبرة؟</div>
+          <div class="faq-answer">
+            لا، الكورس مناسب للمبتدئين والمحترفين.
+          </div>
+        </div>
+
+        <div class="faq-box" onclick="toggleFAQ(this)">
+          <div class="faq-question">هل لازم أظهر بوشّي؟</div>
+          <div class="faq-answer">
+            إطلاقًا! الشغل كله بدون ظهور.
+          </div>
+        </div>
+
+        <div class="faq-box" onclick="toggleFAQ(this)">
+          <div class="faq-question">هل لازم كمبيوتر؟</div>
+          <div class="faq-answer">
+            نعم، النسخة الحالية مبنية على الكمبيوتر.
+          </div>
+        </div>
+
+        <div class="faq-box" onclick="toggleFAQ(this)">
+          <div class="faq-question">هل في ضمان؟</div>
+          <div class="faq-answer">
+            تقدر تتفق على الضمان عبر واتساب قبل الشراء.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function toggleFAQ(el){
+      const ans = el.querySelector(".faq-answer");
+      const isOpen = ans.style.display === "block";
+      document.querySelectorAll(".faq-answer").forEach(a => a.style.display="none");
+      ans.style.display = isOpen ? "none" : "block";
+    }
+  </script>
+
 </body>
 </html>
