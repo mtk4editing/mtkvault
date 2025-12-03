@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>كورس احترافي - تكبير صفحات تيك توك ويوتيوب وبيعها شهريًا</title>
+  <title>كورس الأسطورة - تكبير صفحات تيك توك ويوتيوب وبيعها شهريًا</title>
 
   <style>
     :root {
@@ -26,93 +26,149 @@
       color: var(--text-primary);
       font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;
       direction: rtl;
+      line-height: 1.8;
     }
+
     .container { max-width: 1200px; margin: auto; padding: 20px; }
-    .section { padding: 60px 0; }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: rgba(5,5,16,0.85);
+      backdrop-filter: blur(12px);
+      padding: 15px 0;
+      z-index: 999;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+
+    .logo-icon {
+      font-size: 1.8rem;
+      background: linear-gradient(135deg,#ec4899,#8b5cf6);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .logo-text {
+      background: linear-gradient(135deg,#ec4899,#8b5cf6);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    /* GENERAL */
+    .section { padding: 80px 0; }
     .section-title {
       text-align: center;
-      margin-bottom: 30px;
       font-size: 2rem;
+      margin-bottom: 30px;
       position: relative;
     }
-    .section-title::after{
+    .section-title::after {
       content:"";
       position:absolute;
       bottom:-8px;
       right:50%;
       transform:translateX(50%);
       width:80px;height:3px;
-      border-radius:999px;
       background:linear-gradient(90deg,#ec4899,#8b5cf6);
-    }
-    .grid{display:grid;gap:20px;}
-    .grid-2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr));}
-    .grid-3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}
-
-    .card{
-      background:var(--bg-card);
-      border:1px solid var(--border-color);
-      border-radius:var(--radius-md);
-      padding:25px;
-      transition:.3s;
-    }
-    .card:hover{transform:translateY(-4px);}
-    .badge{
-      background:linear-gradient(135deg,#ec4899,#8b5cf6);
-      padding:6px 14px;
-      border-radius:var(--radius-full);
-      display:inline-block;
-      color:#fff;
-      font-weight:bold;
-      margin-bottom:15px;
-      font-size:.85rem;
+      border-radius:999px;
     }
 
-    .btn{
-      display:inline-block;
-      padding:12px 32px;
-      border-radius:var(--radius-full);
-      cursor:pointer;
-      font-weight:600;
-      border:none;
-      text-decoration:none;
-      text-align:center;
-      font-size:.95rem;
-    }
-    .btn-primary{
-      background:linear-gradient(135deg,#ec4899,#8b5cf6);
-      color:#fff;
-    }
-    .btn-primary:hover{opacity:.92;}
-    .btn-outline{
-      border:2px solid var(--color-primary);
-      color:var(--color-primary);
-      background:transparent;
-    }
-    .btn-outline:hover{background:var(--color-primary);color:#fff;}
+    .grid { display: grid; gap: 20px; }
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
 
-    .faq-box{
-      background:var(--bg-card);
-      padding:20px;
-      border-radius:var(--radius-md);
-      border:1px solid var(--border-color);
-      cursor:pointer;
-      transition:.3s;
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 25px;
+      border-radius: var(--radius-md);
+      transition: .3s;
     }
-    .faq-box:hover{background:rgba(139,92,246,.12);}
-    .faq-question{font-weight:bold;margin-bottom:8px;font-size:1.05rem;}
-    .faq-answer{color:var(--text-secondary);line-height:1.8;display:none;font-size:.9rem;}
+    .card:hover { transform: translateY(-4px); }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg,#ec4899,#8b5cf6);
+      color: #fff;
+      font-size: .85rem;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg,#ec4899,#8b5cf6);
+      color: #fff;
+    }
+    .btn-outline {
+      border: 2px solid var(--color-primary);
+      color: var(--color-primary);
+      background: transparent;
+    }
+
+    /* FAQ */
+    .faq-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      cursor: pointer;
+      transition: .3s;
+    }
+    .faq-box:hover { background: rgba(139,92,246,0.12); }
+
+    .faq-question { font-weight: bold; font-size: 1.1rem; }
+    .faq-answer { display: none; color: var(--text-secondary); margin-top: 10px; }
+
   </style>
 </head>
 
 <body>
 
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <div class="logo">
+        <div class="logo-icon">👑</div>
+        <div class="logo-text">الأسطورة | The Ostora</div>
+      </div>
+    </div>
+  </nav>
+
   <!-- HERO -->
-  <section id="home" class="section">
+  <section id="home" class="section" style="padding-top:120px;">
     <div class="container grid grid-2">
+      
       <div>
         <div class="badge">🔥 كورس عملي 100%</div>
-        <h1 style="font-size:2.4rem;margin-bottom:20px;">
+
+        <h1 style="font-size:2.4rem;line-height:1.4;margin-bottom:20px;">
           <span style="background:linear-gradient(135deg,#ec4899,#8b5cf6);-webkit-background-clip:text;color:transparent;">
             ابدأ مشروعك الرقمي
           </span><br>
@@ -120,35 +176,30 @@
         </h1>
 
         <p style="color:var(--text-secondary);margin-bottom:20px;">
-          اتعلّم إزاي تكبّر صفحات تيك توك ويوتيوب من الصفر وتبيعها كل شهر بدخل ثابت.
+          تعلم كيف تكبّر صفحات تيك توك ويوتيوب من الصفر وتبيعها كل شهر بدخل ثابت.
           <br><br>
-          ⚠️ <strong>هتحتاج لاب توب أو كمبيوتر</strong> — النسخة الحالية من الكورس مبنية على الشغل من الكمبيوتر.
-          <br>
-          📱 جاري العمل على نسخة كاملة للموبايل قريبًا.
+          ⚠️ <strong>الكورس الحالي يعتمد على لاب توب / كمبيوتر.</strong><br>
+          📱 نسخة الموبايل في الطريق!
         </p>
 
-        <a
-          class="btn btn-primary"
-          href="https://wa.me/201013381602?text=مرحبًا%20،%20عايز%20أشتري%20كورس%20تكبير%20الصفحات"
-          target="_blank"
-          rel="noopener"
-        >
-          اشترِ الكورس الآن عبر واتساب
-        </a>
+        <a class="btn btn-primary"
+          href="https://wa.me/201013381602?text=مرحبًا%20،%20أريد%20شراء%20كورس%20الأسطورة"
+          target="_blank">اشترِ الكورس الآن عبر واتساب</a>
       </div>
 
       <div>
         <div class="card">
-          <h3 style="text-align:center;margin-bottom:15px;">ماذا ستتعلم جوّه الكورس؟</h3>
-          <ul style="line-height:2;font-size:.95rem;">
-            <li>🎯 اختيار النيتش المناسب.</li>
-            <li>🎬 صناعة محتوى جذاب يعلّي الريتش.</li>
-            <li>📈 استراتيجيات تكبير سريعة.</li>
-            <li>💰 طرق بيع الصفحات والتفاوض.</li>
-            <li>🛡️ حماية الحسابات من السرقة.</li>
+          <h3 style="text-align:center;margin-bottom:15px;">ماذا ستتعلم؟</h3>
+          <ul style="font-size:.95rem;line-height:2;">
+            <li>🎯 اختيار <strong>نوع المحتوى</strong> الصحيح.</li>
+            <li>🎬 صناعة فيديوهات قصيرة جذابة.</li>
+            <li>📈 أسرار تكبير الحسابات بسرعة.</li>
+            <li>💰 تجهيز الحساب للبيع والتعامل مع العملاء.</li>
+            <li>🛡️ حماية الحساب من الإغلاق أو السرقة.</li>
           </ul>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -156,28 +207,33 @@
   <section id="features" class="section">
     <div class="container">
       <h2 class="section-title">مميزات الكورس</h2>
+
       <div class="grid grid-3">
+
         <div class="card">
           <div class="badge">🎓</div>
-          <h3>محتوى عملي</h3>
-          <p style="color:var(--text-secondary);font-size:.9rem;">
-            خطوات فعلية مطبّقة على صفحات حقيقية.
+          <h3>شرح عملي</h3>
+          <p style="color:var(--text-secondary);">
+            خطوات واضحة مطبّقة على صفحات حقيقية.
           </p>
         </div>
+
         <div class="card">
-          <div class="badge">📱</div>
-          <h3>نسخة موبايل قريبًا</h3>
-          <p style="color:var(--text-secondary);font-size:.9rem;">
-            تحديث شامل للشرح مخصوص للموبايل.
+          <div class="badge">🖥️</div>
+          <h3>يعتمد على الكمبيوتر</h3>
+          <p style="color:var(--text-secondary);">
+            نسخة الهاتف سيتم إصدارها قريبًا.
           </p>
         </div>
+
         <div class="card">
           <div class="badge">🔄</div>
           <h3>تحديثات مستمرة</h3>
-          <p style="color:var(--text-secondary);font-size:.9rem;">
-            متوافق دائمًا مع تريندات المنصات.
+          <p style="color:var(--text-secondary);">
+            تحديثات شاملة حسب تغييرات المنصات والتريندات.
           </p>
         </div>
+
       </div>
     </div>
   </section>
@@ -186,31 +242,55 @@
   <section id="curriculum" class="section">
     <div class="container">
       <h2 class="section-title">محتويات الكورس</h2>
+
       <div class="grid grid-2">
+
         <div class="card">
-          <h3>الوحدة 1: الأساسيات</h3>
-          <p style="color:var(--text-secondary);font-size:.9rem;">
-            فهم السوق، اختيار النيتش، تجهيز الحسابات.
+          <h3>الوحدة 1: تثبيت البرامج المطلوبة</h3>
+          <p style="color:var(--text-secondary);">
+            - شرح البرامج الأساسية.<br>
+            - التثبيت + الإعدادات الصحيحة.<br>
+            - تحسين أداء الجهاز للمونتاج.
           </p>
         </div>
+
         <div class="card">
-          <h3>الوحدة 2: المحتوى</h3>
-          <p style="color:var(--text-secondary);font-size:.9rem;">
-            كتابة سكريبت وأديت احترافي للموبايل والكمبيوتر.
+          <h3>الوحدة 2: ازاي نجيب فكرة فيديو قوية</h3>
+          <p style="color:var(--text-secondary);">
+            - اختيار نوع المحتوى المناسب.<br>
+            - استخراج أفكار من التريندات.<br>
+            - تحليل المنافسين.
           </p>
         </div>
+
         <div class="card">
-          <h3>الوحدة 3: النمو</h3>
-          <p style="color:var(--text-secondary);font-size:.9rem;">
-            خطة نشر، تحليل الأرقام، اختيار الفيديوهات الطائرة.
+          <h3>الوحدة 3: مصادر اللقطات (مسلسلات + أفلام)</h3>
+          <p style="color:var(--text-secondary);">
+            - مواقع تحميل عالية الجودة.<br>
+            - استخراج اللقطات بدقة.<br>
+            - تقليل مشاكل حقوق النشر.
           </p>
         </div>
+
         <div class="card">
-          <h3>الوحدة 4: البيع</h3>
-          <p style="color:var(--text-secondary);font-size:.9rem;">
-            تسعير الصفحات، إيجاد المشترين، تسليم آمن.
+          <h3>الوحدة 4: تنفيذ الأديت الاحترافي</h3>
+          <p style="color:var(--text-secondary);">
+            - قص وترتيب المشاهد.<br>
+            - الانتقالات + النصوص + التأثيرات.<br>
+            - تثبيت الألوان وتصدير الفيديو.
           </p>
         </div>
+
+        <div class="card">
+          <h3>الوحدة 5: رفع الفيديو + أفضل الهاشتاجات</h3>
+          <p style="color:var(--text-secondary);">
+            - ضبط المقاس والجودة لكل منصة.<br>
+            - كتابة Caption يشد.<br>
+            - أفضل هاشتاجات للتيك توك + اليوتيوب + الريلز.<br>
+            - أفضل أوقات النشر.
+          </p>
+        </div>
+
       </div>
     </div>
   </section>
@@ -218,45 +298,36 @@
   <!-- PRICING -->
   <section id="pricing" class="section">
     <div class="container">
-      <h2 class="section-title">اختر باقتك</h2>
+      <h2 class="section-title">الباقات المتاحة</h2>
 
       <div class="grid grid-3">
 
-        <!-- BASIC -->
-        <div class="card text-center">
+        <div class="card" style="text-align:center;">
           <h3>الباقة الأساسية</h3>
-          <div style="font-size:2rem;margin:10px 0 15px;">1000 ج.م</div>
-          <ul style="line-height:2;margin-bottom:20px;font-size:.9rem;">
-            <li>✔ الوصول للكورس كامل.</li>
-            <li>✔ ملفات مساعدة.</li>
-            <li>❌ بدون دعم شخصي.</li>
+          <div style="font-size:2rem;margin:10px 0;">1000 ج.م</div>
+          <ul style="line-height:2;margin-bottom:20px;color:var(--text-secondary);">
+            <li>✔ كل دروس الكورس</li>
+            <li>✔ ملفات مساعدة</li>
+            <li>❌ بدون دعم شخصي</li>
           </ul>
-          <a
-            class="btn btn-outline"
-            href="https://wa.me/201013381602?text=مرحبًا%20،%20عايز%20أشتري%20الباقة%20الأساسية%20من%20الكورس"
-            target="_blank"
-          >
-            اطلب الباقة عبر واتساب
-          </a>
+
+          <a href="https://wa.me/201013381602?text=عايز%20اشتري%20الباقة%20الأساسية"
+             class="btn btn-outline" target="_blank">اطلب الآن</a>
         </div>
 
-        <!-- PREMIUM -->
-        <div class="card text-center" style="transform:scale(1.05);border:2px solid var(--color-primary);">
+        <div class="card" style="text-align:center;border:2px solid var(--color-primary);transform:scale(1.05);">
           <div class="badge">الأكثر طلبًا</div>
           <h3>الباقة المميزة</h3>
-          <div style="font-size:2rem;margin:10px 0 15px;">1500 ج.م</div>
-          <ul style="line-height:2;margin-bottom:20px;font-size:.9rem;">
-            <li>✔ دعم شخصي لمدة شهر.</li>
-            <li>✔ متابعة أداء الصفحة.</li>
-            <li>✔ خطة جاهزة للنمو السريع.</li>
+          <div style="font-size:2rem;margin:10px 0;">1500 ج.م</div>
+
+          <ul style="line-height:2;margin-bottom:20px;color:var(--text-secondary);">
+            <li>✔ كل محتوى الكورس</li>
+            <li>✔ دعم شهر كامل</li>
+            <li>✔ مراجعة صفحات + خطة تطوير</li>
           </ul>
-          <a
-            class="btn btn-primary"
-            href="https://wa.me/201013381602?text=مرحبًا%20،%20عايز%20أشتري%20الباقة%20المميزة%20من%20الكورس"
-            target="_blank"
-          >
-            اطلب الباقة المميزة عبر واتساب
-          </a>
+
+          <a href="https://wa.me/201013381602?text=عايز%20اشتري%20الباقة%20المميزة"
+             class="btn btn-primary" target="_blank">اطلب الآن</a>
         </div>
 
       </div>
@@ -271,30 +342,30 @@
       <div class="grid grid-2">
 
         <div class="faq-box" onclick="toggleFAQ(this)">
-          <div class="faq-question">هل محتاج خبرة؟</div>
+          <div class="faq-question">هل لازم خبرة قبل ما أبدأ؟</div>
           <div class="faq-answer">
-            لا، الكورس مناسب للمبتدئين والمحترفين.
+            لأ، الكورس مناسب للمبتدئين 100%.
           </div>
         </div>
 
         <div class="faq-box" onclick="toggleFAQ(this)">
-          <div class="faq-question">هل لازم أظهر بوشّي؟</div>
+          <div class="faq-question">هل لازم أظهر بوشي؟</div>
           <div class="faq-answer">
-            إطلاقًا! الشغل كله بدون ظهور.
+            إطلاقًا، المحتوى بدون ظهور نهائي.
           </div>
         </div>
 
         <div class="faq-box" onclick="toggleFAQ(this)">
           <div class="faq-question">هل لازم كمبيوتر؟</div>
           <div class="faq-answer">
-            نعم، النسخة الحالية مبنية على الكمبيوتر.
+            أيوه، النسخة الحالية تعتمد على كمبيوتر — نسخة الموبايل قريبًا.
           </div>
         </div>
 
         <div class="faq-box" onclick="toggleFAQ(this)">
-          <div class="faq-question">هل في ضمان؟</div>
+          <div class="faq-question">إمتى أشوف نتائج؟</div>
           <div class="faq-answer">
-            تقدر تتفق على الضمان عبر واتساب قبل الشراء.
+            من 2–4 أسابيع حسب تطبيقك.
           </div>
         </div>
 
@@ -305,9 +376,9 @@
   <script>
     function toggleFAQ(el){
       const ans = el.querySelector(".faq-answer");
-      const isOpen = ans.style.display === "block";
-      document.querySelectorAll(".faq-answer").forEach(a => a.style.display="none");
-      ans.style.display = isOpen ? "none" : "block";
+      const open = ans.style.display === "block";
+      document.querySelectorAll(".faq-answer").forEach(a=>a.style.display="none");
+      ans.style.display = open ? "none" : "block";
     }
   </script>
 
