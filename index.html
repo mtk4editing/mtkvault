@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
   <!-- SEO Basics -->
+  <!-- SEO Basics -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="خدمة تجهيز فيديوهات احترافية لزيادة انتشار صفحات تيك توك ويوتيوب بدون تسليم الحساب. تحقيق انتشار أمن وموثوق." />
@@ -867,6 +868,34 @@
     padding-bottom: 100px;
   }
 }
+/* ===== Neon WhatsApp CTA ===== */
+.neon-whatsapp {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.neon-whatsapp i {
+  font-size: 1.4rem;
+}
+
+.wa-number {
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  text-shadow:
+    0 0 6px #25D366,
+    0 0 12px #25D366,
+    0 0 24px rgba(37, 211, 102, 0.8);
+}
+
+/* Mobile tweak */
+@media (max-width: 768px) {
+  .wa-number {
+    font-size: 0.95rem;
+  }
+}
+
 	</style>
 </head>
 
@@ -879,10 +908,10 @@
         <span>الأسطورة</span>
 <small style="font-size:0.9rem; opacity:.8;">Combo Reach</small>
       </div>
-      <a href="https://wa.me/201013381602" class="btn btn-primary cta-nav" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-        ابدأ الآن
-      </a>
+      <a href="https://wa.me/201013381602" class="btn btn-primary cta-nav neon-whatsapp" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+  <span class="wa-number">+20103381602</span>
+</a>
     </div>
   </header>
 
