@@ -1,560 +1,1159 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+  <!-- SEO Basics -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>كورس الأسطورة - تكبير صفحات تيك توك ويوتيوب وبيعها شهريًا</title>
+  <meta name="description" content="خدمة تجهيز فيديوهات احترافية لزيادة انتشار صفحات تيك توك ويوتيوب بدون تسليم الحساب. تحقيق انتشار أمن وموثوق." />
+  <meta name="keywords" content="تيك توك, يوتيوب, انتشار, فيديوهات, سوشيال ميديا, زيادة متابعين, فيديوهات جاهزة" />
+  <title>كومبو الانتشار | Combo Reach - فيديوهات جاهزة لانتشار آمن</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
+    /* =====================
+       ROOT & RESET
+    ====================== */
     :root {
-      --color-primary: #8b5cf6;
-      --color-secondary: #ec4899;
-      --color-accent: #3b82f6;
-      --color-success: #10b981;
-      --text-primary: #f9fafb;
-      --text-secondary: #9ca3af;
-      --bg-primary: #050510;
-      --bg-card: rgba(15, 23, 42, 0.8);
-      --border-color: rgba(148, 163, 184, 0.25);
-      --radius-md: 16px;
-      --radius-full: 9999px;
+      --primary: #8b5cf6;
+      --primary-dark: #7c3aed;
+      --secondary: #ec4899;
+      --secondary-dark: #db2777;
+      --accent: #06b6d4;
+      --bg: #050510;
+      --bg-light: #0f172a;
+      --card: rgba(15, 23, 42, 0.85);
+      --card-hover: rgba(15, 23, 42, 0.95);
+      --text: #f9fafb;
+      --text-light: #e2e8f0;
+      --muted: #94a3b8;
+      --border: rgba(148, 163, 184, 0.15);
+      --border-light: rgba(148, 163, 184, 0.1);
+      --radius: 20px;
+      --radius-sm: 12px;
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.4);
+      --gradient: linear-gradient(135deg, var(--secondary), var(--primary));
+      --gradient-hover: linear-gradient(135deg, var(--secondary-dark), var(--primary-dark));
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-	
-	html {
-  scroll-behavior: smooth;
-}
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;
-      direction: rtl;
-      line-height: 1.8;
-      user-select: none;
+      font-family: 'Cairo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
     }
 
-    .container { max-width: 1200px; margin: auto; padding: 20px; }
+    img {
+      max-width: 100%;
+      display: block;
+      border-radius: var(--radius-sm);
+    }
 
-    /* NAVBAR */
-    .navbar {
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul, ol {
+      list-style: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    /* =====================
+       TYPOGRAPHY
+    ====================== */
+    h1, h2, h3, h4 {
+      font-weight: 800;
+      line-height: 1.3;
+      color: var(--text-light);
+    }
+
+    h1 {
+      font-size: 3.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      position: relative;
+    }
+
+    h2:after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      right: 50%;
+      transform: translateX(50%);
+      width: 80px;
+      height: 4px;
+      background: var(--gradient);
+      border-radius: 2px;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    .lead {
+      font-size: 1.3rem;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    /* =====================
+       COMPONENTS
+    ====================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 36px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+      gap: 10px;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      color: white;
+      box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: var(--gradient-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(139, 92, 246, 0.4);
+    }
+
+    .btn-block {
+      width: 100%;
+      display: flex;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      background: var(--gradient);
+      color: white;
+      margin-bottom: 1.5rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: var(--transition);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(139, 92, 246, 0.3);
+      box-shadow: var(--shadow-lg);
+      background: var(--card-hover);
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-sm);
+      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+    }
+
+    /* =====================
+       NAVBAR
+    ====================== */
+    header {
       position: fixed;
       top: 0;
       right: 0;
       left: 0;
-      background: rgba(5,5,16,0.85);
-      backdrop-filter: blur(12px);
+      background: rgba(5, 5, 16, 0.95);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
       padding: 15px 0;
-      z-index: 999;
-      border-bottom: 1px solid var(--border-color);
     }
 
-    .nav-inner {
+    .nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .logo {
+      font-weight: 800;
+      font-size: 1.6rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-size: 1.4rem;
-      font-weight: bold;
+      gap: 10px;
     }
 
-    /* GENERAL */
-    .section { padding: 80px 0; }
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 30px;
-      position: relative;
-    }
-    .section-title::after {
-      content:"";
-      position:absolute;
-      bottom:-8px;
-      right:50%;
-      transform:translateX(50%);
-      width:80px;height:3px;
-      background:linear-gradient(90deg,#ec4899,#8b5cf6);
-      border-radius:999px;
+    .logo i {
+      font-size: 1.8rem;
     }
 
-    .grid { display: grid; gap: 20px; }
-    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .cta-nav {
+      padding: 12px 28px;
+      font-size: 1rem;
+    }
 
-    .card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      padding: 25px;
-      border-radius: var(--radius-md);
-      transition: .3s;
+    /* =====================
+       HERO SECTION
+    ====================== */
+    .hero {
+      padding: 180px 0 120px;
       position: relative;
       overflow: hidden;
     }
-    .card:hover { transform: translateY(-4px); }
 
-    .badge {
-      display: inline-block;
-      padding: 6px 14px;
-      border-radius: var(--radius-full);
-      background: linear-gradient(135deg,#ec4899,#8b5cf6);
-      color: #fff;
-      font-size: .85rem;
-      margin-bottom: 10px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 12px 30px;
-      border-radius: var(--radius-full);
-      font-weight: 600;
-      cursor: pointer;
-      text-align: center;
-      text-decoration: none;
-      transition: .3s;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg,#ec4899,#8b5cf6);
-      color: #fff;
-    }
-    .btn-outline {
-      border: 2px solid var(--color-primary);
-      color: var(--color-primary);
-      background: transparent;
-    }
-    .btn-primary:hover, .btn-outline:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+    .hero:before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+      z-index: -1;
     }
 
-    /* أرقام الهاتف تحت الأزرار */
-    .phone-number {
-      display: block;
-      margin-top: 15px;
-      font-family: 'Courier New', monospace;
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-content {
+      max-width: 600px;
+    }
+
+    .hero-subtitle {
       font-size: 1.2rem;
-      color: #3b82f6;
-      direction: ltr;
-      text-align: center;
-      padding: 8px;
-      background: rgba(59, 130, 246, 0.1);
-      border-radius: 8px;
-      border: 1px solid rgba(59, 130, 246, 0.3);
+      margin-bottom: 2rem;
+      color: var(--text-light);
     }
 
-    /* Discord Button */
-    .discord-section {
-      text-align: center;
-      margin-top: 60px;
-      padding: 30px;
-      background: linear-gradient(135deg, rgba(88, 101, 242, 0.1), rgba(88, 101, 242, 0.05));
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(88, 101, 242, 0.2);
+    .hero-features {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin: 2.5rem 0;
     }
-    
-    .discord-btn {
-      display: inline-flex;
+
+    .hero-feature {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-light);
+    }
+
+    .hero-feature i {
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+
+    .hero-image {
+      position: relative;
+    }
+
+    .hero-image .card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1;
+    }
+
+    .stat-text {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-top: 5px;
+    }
+
+    /* =====================
+       PROBLEM SOLUTION SECTION
+    ====================== */
+    .problem-solution {
+      background: var(--bg-light);
+      padding: 100px 0;
+    }
+
+    .ps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+
+    .ps-card {
+      text-align: center;
+      padding: 40px 30px;
+    }
+
+    .ps-card.problem {
+      border: 2px solid rgba(239, 68, 68, 0.2);
+    }
+
+    .ps-card.solution {
+      border: 2px solid rgba(34, 197, 94, 0.2);
+    }
+
+    .ps-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .problem .ps-icon {
+      color: #ef4444;
+    }
+
+    .solution .ps-icon {
+      color: #22c55e;
+    }
+
+    /* =====================
+       SERVICES / PACKAGES
+    ====================== */
+    .packages {
+      position: relative;
+    }
+
+    .package-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .package-card {
+      position: relative;
+    }
+
+    .package-popular {
+      border: 2px solid var(--primary);
+      position: relative;
+      transform: scale(1.05);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gradient);
+      color: white;
+      padding: 8px 25px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      z-index: 2;
+    }
+
+    .package-header {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .package-price {
+      font-size: 3rem;
+      font-weight: 800;
+      margin: 1rem 0;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .package-features {
+      flex-grow: 1;
+      margin-bottom: 2.5rem;
+    }
+
+    .package-feature {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 15px;
+      color: var(--text-light);
+    }
+
+    .package-feature i {
+      color: var(--primary);
+    }
+
+    /* =====================
+       SOCIAL PROOF
+    ====================== */
+    .social-proof {
+      background: var(--bg-light);
+      padding: 100px 0;
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .proof-card {
+      text-align: center;
+      padding: 30px;
+    }
+
+    .proof-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+    }
+
+    .proof-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: var(--text-light);
+    }
+
+    /* =====================
+       PORTFOLIO
+    ====================== */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 50px;
+    }
+
+    .portfolio-note {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 1.1rem;
+      color: var(--muted);
+      padding: 20px;
+      background: rgba(139, 92, 246, 0.05);
+      border-radius: var(--radius-sm);
+      border: 1px dashed var(--border);
+    }
+
+    /* =====================
+       WHY CHOOSE US
+    ====================== */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    /* =====================
+       FAQ
+    ====================== */
+    .faq-container {
+      max-width: 900px;
+      margin: 50px auto 0;
+    }
+
+    .faq-item {
+      margin-bottom: 15px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 22px 25px;
+      background: var(--card);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-light);
+      transition: var(--transition);
+    }
+
+    .faq-question:hover {
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .faq-icon {
+      transition: var(--transition);
+      color: var(--primary);
+    }
+
+    .faq-answer {
+      padding: 0 25px;
+      max-height: 0;
+      overflow: hidden;
+      transition: var(--transition);
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .faq-item.active .faq-answer {
+      padding: 25px;
+      max-height: 300px;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+    }
+
+    /* =====================
+       FINAL CTA
+    ====================== */
+    .final-cta {
+      text-align: center;
+      padding: 100px 0;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.05));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .final-cta:before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .final-cta .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-title {
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-subtitle {
+      font-size: 1.3rem;
+      color: var(--muted);
+      max-width: 700px;
+      margin: 0 auto 3rem;
+    }
+
+    .guarantee {
+      display: flex;
       align-items: center;
       justify-content: center;
+      gap: 15px;
+      margin-top: 2rem;
+      color: var(--text-light);
+      font-weight: 600;
+    }
+
+    .guarantee i {
+      color: #22c55e;
+      font-size: 1.5rem;
+    }
+
+    /* =====================
+       CONTACT / FOOTER
+    ====================== */
+    footer {
+      background: var(--bg-light);
+      padding: 80px 0 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer-logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .footer-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
       gap: 12px;
-      background: #5865F2;
-      color: white;
-      padding: 16px 32px;
-      border-radius: var(--radius-full);
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.1rem;
+      color: var(--muted);
+    }
+
+    .contact-item i {
+      color: var(--primary);
+      width: 20px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
       margin-top: 20px;
-      transition: .3s;
     }
-    
-    .discord-btn:hover {
-      background: #4752c4;
+
+    .social-link {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: var(--card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      transition: var(--transition);
+      border: 1px solid var(--border);
+    }
+
+    .social-link:hover {
+      background: var(--primary);
       transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(88, 101, 242, 0.4);
-    }
-    
-    .discord-icon {
-      width: 28px;
-      height: 28px;
-      filter: brightness(0) invert(1);
     }
 
-    /* FAQ */
-    .faq-box {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 18px;
-      cursor: pointer;
-      transition: .3s;
-    }
-    .faq-box:hover { background: rgba(139,92,246,0.12); }
-
-    .faq-question { font-weight: bold; font-size: 1.1rem; }
-    .faq-answer { display: none; color: var(--text-secondary); margin-top: 10px; }
-
-    /* Footer */
-    .footer {
+    .footer-bottom {
       text-align: center;
-      padding: 30px 0;
-      margin-top: 40px;
-      border-top: 1px solid var(--border-color);
-      color: var(--text-secondary);
-      font-size: 0.9rem;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.95rem;
     }
 
+    /* =====================
+       ANIMATIONS
+    ====================== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .delay-1 {
+      animation-delay: 0.2s;
+    }
+
+    .delay-2 {
+      animation-delay: 0.4s;
+    }
+
+    /* =====================
+       RESPONSIVE
+    ====================== */
+    @media (max-width: 1024px) {
+      h1 {
+        font-size: 2.8rem;
+      }
+      
+      h2 {
+        font-size: 2.2rem;
+      }
+      
+      .hero-grid {
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.4rem;
+      }
+      
+      h2 {
+        font-size: 2rem;
+      }
+      
+      .hero {
+        padding: 150px 0 80px;
+      }
+      
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .package-popular {
+        transform: none;
+      }
+      
+      section {
+        padding: 70px 0;
+      }
+      
+      .stats {
+        flex-direction: column;
+        gap: 25px;
+      }
+      
+      .cta-title {
+        font-size: 2.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      h2 {
+        font-size: 1.8rem;
+      }
+      
+      .btn {
+        padding: 14px 28px;
+        font-size: 1rem;
+      }
+      
+      .card {
+        padding: 25px;
+      }
+      
+      .package-price {
+        font-size: 2.5rem;
+      }
+    }
   </style>
 </head>
 
 <body>
-
-  <!-- NAVBAR -->
-  <nav class="navbar">
-    <div class="container nav-inner">
+  <!-- Header -->
+  <header>
+    <div class="container nav">
       <div class="logo">
-        👑 الأسطورة | The Ostora
+        <i class="fas fa-rocket"></i>
+        <span>الأسطورة</span>
+<small style="font-size:0.9rem; opacity:.8;">Combo Reach</small>
       </div>
+      <a href="https://wa.me/201013381602" class="btn btn-primary cta-nav" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        ابدأ الآن
+      </a>
     </div>
-  </nav>
+  </header>
 
-  <!-- HERO -->
-  <section id="home" class="section" style="padding-top:120px;">
-    <div class="container grid grid-2">
-      
-      <div>
-        <div class="badge">🔥 كورس عملي 100%</div>
-
-        <h1 style="font-size:2.4rem;line-height:1.4;margin-bottom:20px;">
-          <span style="background:linear-gradient(135deg,#ec4899,#8b5cf6);-webkit-background-clip:text;color:transparent;">
-            ابدأ مشروعك الرقمي
-          </span><br>
-          تكبير وبيع صفحات السوشيال ميديا
-        </h1>
-
-        <p style="color:var(--text-secondary);margin-bottom:20px;">
-          تعلم كيف تكبّر صفحات تيك توك ويوتيوب من الصفر وتبيعها كل شهر بدخل ثابت.
-          <br><br>
-          ⚠️ <strong>الكورس الحالي يعمل على الكمبيوتر — نسخة الموبايل قريبًا.</strong>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content fade-in">
+        <h1>انتشار آمن لحساباتك بدون تسليم أي بيانات</h1>
+        <p class="hero-subtitle">
+          نجهز لك فيديوهات احترافية مضمونة الانتشار + خطة نشر استراتيجية. 
+          تابعين حقيقيين، تفاعل عضوي، وأمان كامل لحسابك.
         </p>
-
-        <div style="margin-bottom: 15px;">
-          <a class="btn btn-primary" href="#pricing">
-  اطلب عبر الواتساب
-</a>
+        
+        <div class="hero-features">
+          <div class="hero-feature">
+            <i class="fas fa-shield-alt"></i>
+            <span>لا نطلب الوصول لحسابك أبدًا</span>
+          </div>
+          <div class="hero-feature">
+            <i class="fas fa-video"></i>
+            <span>فيديوهات جاهزة للنشر فوريًا</span>
+          </div>
+          <div class="hero-feature">
+            <i class="fas fa-chart-line"></i>
+            <span>زيادة المتابعين والتفاعل الحقيقي</span>
+          </div>
+          <div class="hero-feature">
+            <i class="fas fa-headset"></i>
+            <span>دعم فني متخصص على مدار الساعة</span>
+          </div>
+        </div>
+        
+        <div class="hero-buttons">
+          <a href="#pricing" class="btn btn-primary" style="margin-left: 15px;">
+            <i class="fas fa-gem"></i>
+            عرض الباقات
+          </a>
+          <a href="https://wa.me/201013381602" class="btn" style="background: rgba(255,255,255,0.1); border: 1px solid var(--border);">
+            <i class="fab fa-whatsapp"></i>
+            استشارة مجانية
+          </a>
+        </div>
+        
+        <div class="stats">
+          <div class="stat-item">
+            <div class="stat-number">+500</div>
+            <div class="stat-text">عميل راضي</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">10K+</div>
+            <div class="stat-text">فيديو منشور</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-text">أمان كامل</div>
+          </div>
         </div>
       </div>
-
-      <div>
-        <div class="card">
-          <h3 style="text-align:center;margin-bottom:15px;">ماذا ستتعلم؟</h3>
-          <ul style="font-size:.95rem;line-height:2;">
-            <li>🎯 اختيار <strong>نوع المحتوى</strong> الصحيح.</li>
-            <li>🎬 صناعة فيديوهات قصيرة جذابة.</li>
-            <li>📈 أسرار تكبير الحسابات بسرعة.</li>
-            <li>💰 تجهيز الحساب للبيع والتعامل مع العملاء.</li>
-            <li>🛡️ حماية الحساب من الإغلاق أو السرقة.</li>
-          </ul>
-        </div>
-      </div>
-
+	  <!-- بدل الصورة الحالية في hero-image -->
+<div class="hero-image fade-in delay-1">
+  <div class="card" style="background: var(--gradient); padding: 30px; text-align: center;">
+    <div style="font-size: 4rem; margin-bottom: 20px; opacity: 0.9;">
+      <i class="fas fa-lock"></i>
     </div>
-  </section>
-
-  <!-- FEATURES -->
-  <section id="features" class="section">
-    <div class="container">
-      <h2 class="section-title">مميزات الكورس</h2>
-
-      <div class="grid grid-3">
-
-        <div class="card">
-          <div class="badge">🎓</div>
-          <h3>شرح عملي</h3>
-          <p style="color:var(--text-secondary);">
-            خطوات واضحة مطبّقة على صفحات حقيقية.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="badge">🖥️</div>
-          <h3>يعتمد على الكمبيوتر</h3>
-          <p style="color:var(--text-secondary);">
-            نسخة الهاتف سيتم إصدارها قريبًا.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="badge">🔄</div>
-          <h3>تحديثات مستمرة</h3>
-          <p style="color:var(--text-secondary);">
-            تحديثات شاملة حسب تغييرات المنصات والتريندات.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- CURRICULUM -->
-  <section id="curriculum" class="section">
-    <div class="container">
-      <h2 class="section-title">محتويات الكورس</h2>
-
-      <div class="grid grid-2">
-
-        <div class="card">
-          <h3>الوحدة 1: تثبيت البرامج المطلوبة</h3>
-          <p style="color:var(--text-secondary);">
-            - شرح البرامج الأساسية.<br>
-            - التثبيت + الإعدادات الصحيحة.<br>
-            - تحسين أداء الجهاز للمونتاج.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>الوحدة 2: ازاي نجيب فكرة فيديو قوية</h3>
-          <p style="color:var(--text-secondary);">
-            - اختيار نوع المحتوى المناسب.<br>
-            - استخراج أفكار من التريندات.<br>
-            - تحليل المنافسين.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>الوحدة 3: مصادر اللقطات (مسلسلات + أفلام)</h3>
-          <p style="color:var(--text-secondary);">
-            - مواقع تحميل عالية الجودة.<br>
-            - استخراج اللقطات بدقة.<br>
-            - تقليل مشاكل حقوق النشر.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>الوحدة 4: تنفيذ الأديت الاحترافي</h3>
-          <p style="color:var(--text-secondary);">
-            - قص وترتيب المشاهد.<br>
-            - الانتقالات + النصوص + التأثيرات.<br>
-            - تثبيت الألوان وتصدير الفيديو.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>الوحدة 5: رفع الفيديو + أفضل الهاشتاجات</h3>
-          <p style="color:var(--text-secondary);">
-            - ضبط المقاس والجودة لكل منصة.<br>
-            - كتابة Caption يشد.<br>
-            - أفضل هاشتاجات للتيك توك + اليوتيوب + الريلز.<br>
-            - أفضل أوقات النشر.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section id="pricing" class="section">
-    <div class="container">
-      <h2 class="section-title">الباقات المتاحة</h2>
-
-      <div class="grid grid-3">
-
-        <!-- الباقة الأساسية -->
-        <div class="card" style="text-align:center;">
-
-          <img 
-            src="https://i.postimg.cc/zBm03RJH/albaqt-alasasyty.png" 
-            alt="الباقة الأساسية"
-            draggable="false"
-            oncontextmenu="return false;"
-            style="
-              width:100%;
-              border-radius:16px;
-              margin-bottom:15px;
-              border:2px solid rgba(139, 92, 246, 0.4);
-              pointer-events:none;
-            "
-          >
-
-          <h3>الباقة الأساسية</h3>
-          <div style="font-size:2rem;margin:10px 0;">1000 ج.م</div>
-          <ul style="line-height:2;margin-bottom:20px;color:var(--text-secondary);">
-            <li>✔ كل دروس الكورس</li>
-            <li>✔ ملفات مساعدة</li>
-            <li>❌ بدون دعم شخصي</li>
-          </ul>
-
-          <a href="https://wa.me/201013381602?text=عايز%20اشتري%20الباقة%20الأساسية"
-             class="btn btn-outline" target="_blank">اطلب الآن</a>
-          
-        </div>
-
-        <!-- الباقة المميزة -->
-        <div class="card" style="text-align:center;border:2px solid var(--color-primary);transform:scale(1.05);">
-
-          <img 
-            src="https://i.postimg.cc/JhSkQxCd/albaqt-almmyzt.jpg"
-            alt="الباقة المميزة"
-            draggable="false"
-            oncontextmenu="return false;"
-            style="
-              width:100%;
-              border-radius:16px;
-              margin-bottom:15px;
-              border:2px solid rgba(139, 92, 246, 0.5);
-              pointer-events:none;
-            "
-          >
-
-          <div class="badge">الأكثر طلبًا</div>
-
-          <h3>الباقة المميزة</h3>
-          <div style="font-size:2rem;margin:10px 0;">1500 ج.م</div>
-
-          <ul style="line-height:2;margin-bottom:20px;color:var(--text-secondary);">
-            <li>✔ كل محتوى الكورس</li>
-            <li>✔ دعم شهر كامل</li>
-            <li>✔ مراجعة صفحات + خطة تطوير</li>
-          </ul>
-
-          <a href="https://wa.me/201013381602?text=عايز%20اشتري%20الباقة%20المميزة"
-             class="btn btn-primary" target="_blank">اطلب الآن</a>
-          
-
-        </div>
-		<!-- الباقة VIP -->
-<div class="card" style="text-align:center;
-background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(217,119,6,0.05));
-border:2px solid rgba(245,158,11,0.3);">
-
-  <img 
-    src="https://i.postimg.cc/7PVjj2GJ/albaqt-alasasyt.jpg"
-    alt="الباقة VIP"
-    draggable="false"
-    oncontextmenu="return false;"
-    style="
-      width:100%;
-      border-radius:16px;
-      margin-bottom:15px;
-      border:2px solid rgba(245, 158, 11, 0.4);
-      pointer-events:none;
-    "
-  >
-
-  <div class="badge" style="background:linear-gradient(135deg,#f59e0b,#d97706);">
-    VIP
+    <h3 style="color: white; margin-bottom: 10px;">أمان 100%</h3>
+    <p style="color: rgba(255,255,255,0.9); margin-bottom: 0;">
+      نحن نؤمن بخصوصيتك<br>لا نطلب حسابات عملائنا أبدًا
+    </p>
   </div>
-
-  <h3>الباقة VIP</h3>
-
-  <div style="font-size:2.2rem;margin:10px 0;color:#f59e0b;">
-    2500 ج.م
-  </div>
-
-  <div style="text-decoration:line-through;color:var(--text-secondary);margin-bottom:10px;">
-    3500 ج.م
-  </div>
-  
-  <ul style="line-height:2;margin-bottom:20px;color:var(--text-secondary);text-align:right;">
-    <li>✔ كل مميزات الباقة المميزة</li>
-    <li>✔ دعم شخصي 3 أشهر</li>
-    <li>✔ تدريب عملي مباشر (3 جلسات)</li>
-    <li>✔ مراجعة أسبوعية للحسابات</li>
-    <li>✔ مساعدة في أول عملية بيع</li>
-    <li>✔ إستراتيجيات متقدمة للتوسع</li>
-  </ul>
-
-  <a href="https://wa.me/201013381602?text=عايز%20اشتري%20الباقة%20VIP"
-     class="btn btn-outline" target="_blank">
-    اطلب الآن
-  </a>
-
-  
 </div>
-
-
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section id="faq" class="section">
+  <!-- Problem / Solution -->
+  <section class="problem-solution">
     <div class="container">
-      <h2 class="section-title">الأسئلة الشائعة</h2>
-
-      <div class="grid grid-2">
-
-        <div class="faq-box" onclick="toggleFAQ(this)">
-          <div class="faq-question">هل لازم خبرة قبل ما أبدأ؟</div>
-          <div class="faq-answer">
-            لأ، الكورس مناسب للمبتدئين 100%.
+      <h2>المشكلة والحل</h2>
+      <div class="ps-grid">
+        <div class="card ps-card problem fade-in">
+          <div class="ps-icon">
+            <i class="fas fa-exclamation-triangle"></i>
           </div>
+          <h3>المشاكل التي تواجهك</h3>
+          <ul style="text-align: right; padding-right: 20px;">
+            <li style="margin-bottom: 10px; color: var(--muted);">✓ مخاطر تسليم الحساب لجهات غير موثوقة</li>
+            <li style="margin-bottom: 10px; color: var(--muted);">✓ فيديوهات ضعيفة لا تصل للجمهور المستهدف</li>
+            <li style="margin-bottom: 10px; color: var(--muted);">✓ فقدان الوقت في تجربة استراتيجيات غير مجدية</li>
+            <li style="margin-bottom: 10px; color: var(--muted);">✓ انعدام الخصوصية والأمان الرقمي</li>
+            <li style="color: var(--muted);">✓ نتائج بطيئة ومتابعين وهميين</li>
+          </ul>
         </div>
-
-        <div class="faq-box" onclick="toggleFAQ(this)">
-          <div class="faq-question">هل لازم أظهر بوشي؟</div>
-          <div class="faq-answer">
-            إطلاقًا، المحتوى بدون ظهور نهائي.
+        
+        <div class="card ps-card solution fade-in delay-1">
+          <div class="ps-icon">
+            <i class="fas fa-check-circle"></i>
           </div>
+          <h3>الحل مع كومبو الانتشار</h3>
+          <ul style="text-align: right; padding-right: 20px;">
+            <li style="margin-bottom: 10px; color: var(--muted);">✓ لا نطلب حسابك أبدًا - أنت تتحكم بالكامل</li>
+            <li style="margin-bottom: 10px; color: var(--muted);">✓ فيديوهات محترفة مصممة للانتشار</li>
+            <li style="margin-bottom: 10px; color: var(--muted);">✓ خطة نشر استراتيجية مدروسة</li>
+            <li style="margin-bottom: 10px; color: var(--muted);">خصوصية 100% وأمان كامل لبياناتك</li>
+            <li style="color: var(--muted);">✓ نتائج حقيقية ومرئية من الأسبوع الأول</li>
+          </ul>
         </div>
-
-        <div class="faq-box" onclick="toggleFAQ(this)">
-          <div class="faq-question">هل لازم كمبيوتر؟</div>
-          <div class="faq-answer">
-            أيوه، النسخة الحالية تعتمد على كمبيوتر — نسخة الموبايل قريبًا.
-          </div>
-        </div>
-
-        <div class="faq-box" onclick="toggleFAQ(this)">
-          <div class="faq-question">إمتى أشوف نتائج؟</div>
-          <div class="faq-answer">
-            من 2–4 أسابيع حسب تطبيقك.
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
 
-  <!-- Discord Section -->
-  <section class="section">
+  <!-- Packages -->
+  <section id="pricing" class="packages">
     <div class="container">
-      <div class="discord-section">
-        <h2 style="margin-bottom: 10px;">انضم لمجتمعنا على ديسكورد</h2>
-        <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 20px;">
-          احصل على دعم مباشر، شارك تجربتك، تواصل مع باقي الطلاب، وكن أول من يعرف بالتحديثات الجديدة
-        </p>
-        <a href="https://discord.gg/9NyrkcHMkw" class="discord-btn" target="_blank">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/discord.svg" class="discord-icon" alt="Discord">
-          انضم لسيرفر الديسكورد
-        </a>
+      <h2>اختر الباقة المناسبة لك</h2>
+      <p class="lead" style="text-align: center; max-width: 800px; margin: 0 auto 30px;">
+        باقات مصممة خصيصًا لتناسب جميع الميزانيات مع ضمان أعلى جودة
+      </p>
+      
+      <div class="package-grid">
+        <!-- Starter -->
+        <div class="package-card fade-in">
+          <div class="card">
+            <div class="package-header">
+              <img src="https://i.postimg.cc/zBm03RJH/albaqt-alasasyty.png" alt="الباقة الأساسية" style="margin-bottom: 20px;">
+              <h3>Starter</h3>
+              <div class="package-price">1000 ج.م</div>
+              <p>البداية المثالية للانتشار</p>
+            </div>
+            
+            <div class="package-features">
+              <div class="package-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>6 فيديوهات احترافية جاهزة</span>
+              </div>
+              <div class="package-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>إرشادات النشر والتوقيت الأمثل</span>
+              </div>
+              <div class="package-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>هاشتاجات مصممة للانتشار</span>
+              </div>
+              <div class="package-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>دعم عبر الواتساب لمدة أسبوع</span>
+              </div>
+            </div>
+            
+            <a href="https://wa.me/201013381602?text=مرحبًا، أريد الاشتراك في باقة Starter" class="btn btn-block btn-primary">
+              <i class="fab fa-whatsapp"></i>
+              اطلب الباقة الآن
+            </a>
+          </div>
+        </div>
+        
+        <!-- Growth (Popular) -->
+        <div class="package-card fade-in delay-1">
+          <div class="popular-badge">الأكثر طلبًا</div>
+          <div class="card package-popular">
+            <div class="package-header">
+              <img src="https://i.postimg.cc/JhSkQxCd/albaqt-almmyzt.jpg" alt="الباقة المميزة" style="margin-bottom: 20px;">
+              <h3>Growth</h3>
+              <div class="package-price">1500 ج.م</div>
+              <p>الأفضل للنتائج السريعة</p>
+            </div>
+            
+            <div class="package-features">
+              <div class="package-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>15 فيديو احترافي عالي الجودة</span>
+              </div>
+              <div class="package-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>تحليل الجمهور المستهدف</span>
+              </div>
+              <div class="package-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>استراتيجية نشر متكاملة</span>
+              </div>
+              <div class="package-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>دعم لمدة شهر كامل</span>
+              </div>
+              <div class="package-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>تعديلات مجانية على الفيديوهات</span>
+              </div>
+            </div>
+            
+            <a href="https://wa.me/201013381602?text=مرحبًا، أريد الاشتراك في باقة Growth" class="btn btn-block btn-primary">
+              <i class="fas fa-bolt"></i>
+              ابدأ النمو الآن
+            </a>
+          </div>
+        </div>
+        
+        <!-- Dominator -->
+        <div class="package-card fade-in delay-2">
+          <div class="card">
+            <div class="package-header">
+              <img src="https://i.postimg.cc/7PVjj2GJ/albaqt-alasasyt.jpg" alt="الباقة المتطورة" style="margin-bottom: 20px;">
+              <h3>Dominator</h3>
+              <div class="package-price">2500 ج.م</div>
+              <p>الهيمنة على السوشيال ميديا</p>
+            </div>
+            
+            <div class="package-features">
+              <div class="package-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>30 فيديو محترف متنوع المحتوى</span>
+              </div>
+              <div class="package-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>خطة نشر شهرية كاملة</span>
+              </div>
+              <div class="package-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>جلسة استشارية متخصصة</span>
+              </div>
+              <div class="package-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>دعم مباشر على مدار الساعة</span>
+              </div>
+              <div class="package-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>تحليل أداء وتقارير شهرية</span>
+              </div>
+              <div class="package-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>أولوية في الخدمة والدعم</span>
+              </div>
+            </div>
+            
+            <a href="https://wa.me/201013381602?text=مرحبًا، أريد الاشتراك في باقة Dominator" class="btn btn-block btn-primary">
+              <i class="fas fa-crown"></i>
+              سيطر على السوق
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
+  <!-- Social Proof -->
+  <section class="social-proof">
     <div class="container">
-      <p>© 2023 كورس الأسطورة - جميع الحقوق محفوظة</p>
-      <p style="margin-top: 10px; font-size: 0.8rem;">للدعم والاستفسارات: 01013381602</p>
+      <h2>لماذا يثق بنا المئات</h2>
+      <div class="proof-grid">
+        <div class="card proof-card fade-in">
+          <div class="proof-icon">
+            <i class="fas fa-user-shield"></i>
+          </div>
+          <div class="proof-number">100%</div>
+          <h4>أمان كامل</h4>
+          <p>لا نطلب حسابات عملائنا أبدًا</p>
+        </div>
+        
+        <div class="card proof-card fade-in delay-1">
+          <div class="proof-icon">
+            <i class="fas fa-video"></i>
+          </div>
+          <div class="proof-number">10K+</div>
+          <h4>فيديو منشور</h4>
+          <p>فيديوهات حققت انتشارًا واسعًا</p>
+        </div>
+        
+        <div class="card proof-card fade-in delay-2">
+          <div class="proof-icon">
+            <i class="fas fa-smile"></i>
+          </div>
+          <div class="proof-number">98%</div>
+          <h4>رضا العملاء</h4>
+          <p>عملاء سعداء بنتائجنا</p>
+        </div>
+        
+        <div class="card proof-card fade-in">
+          <div class="proof-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="proof-number">24/7</div>
+          <h4>دعم فني</h4>
+          <p>دعم متاح على مدار الساعة</p>
+        </div>
+      </div>
     </div>
-  </footer>
+  </section>
 
-  <script>
-    function toggleFAQ(el){
-      const ans = el.querySelector(".faq-answer");
-      const open = ans.style.display === "block";
-      document.querySelectorAll(".faq-answer").forEach(a=>a.style.display="none");
-      ans.style.display = open ? "none" : "block";
-    }
-  </script>
-
-</body>
-
-</html>
-
+<!-- Portfolio -->
+<section>
+  <div class="container">
+    <h2>كيفية العمل</h2>
+    <p class="lead" style="text-align: center; max-width: 700px; margin: 0 auto 20px;">
+      خطوات بسيطة لتحقيق انتشار حسابك بأمان كامل
+    </p>
+    
+    <div class="why-grid" style="margin-top: 30px;">
+      <div class="card fade-in">
+        <div class="feature-icon">
+          <i class="fas fa-clipboard-check"></i>
+        </div>
+        <h3>اختر الباقة</h3>
+        <p>اختر الباقة المناسبة لميزانيتك وأهدافك</p>
+      </div>
+      
+      <div class="card fade-in delay-1">
+        <div class="feature-icon">
+          <i class="fas fa-video"></i>
+        </div>
+        <h3>استلم الفيديوهات</h3>
+        <p>تصلك الفيديوهات جاهزة خلال 24-48 ساعة</p>
+      </div>
+      
+      <div class="card fade-in delay-2">
+        <div class="feature-icon">
+          <i class="fas fa-upload"></i>
+        </div>
+        <h3>انشر بنفسك</h3>
+        <p>نرشدك للتوقيت والهاشتاجات الأمثل للنشر</p>
+      </div>
+      
+      <div class="card fade-in">
+        <div class="feature-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h3>شاهد النتائج</h3>
+        <p>زيادة حقيقية في المتابعين والتفاعل</p>
+      </div>
+    </div>
+  </div>
+</section>
