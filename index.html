@@ -218,17 +218,14 @@
        NAVBAR
     ====================== */
     header {
-      position: fixed;
-      top: 0;
-      right: 0;
-      left: 0;
-      background: rgba(5, 5, 16, 0.95);
-      backdrop-filter: blur(15px);
-      border-bottom: 1px solid var(--border);
-      z-index: 1000;
-      padding: 15px 0;
-    }
-
+  position: sticky;
+  top: 0;
+  background: rgba(5, 5, 16, 0.95);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+  padding: 8px 0;
+}
     .nav {
       display: flex;
       justify-content: space-between;
@@ -260,7 +257,7 @@
        HERO SECTION
     ====================== */
     .hero {
-      padding: 180px 0 120px;
+      padding: 120px 0 100px;
       position: relative;
       overflow: hidden;
     }
@@ -791,20 +788,6 @@
   .logo small {
     font-size: 0.75rem;
   }
-
-  /* ===== CTA FIXED BUTTON ===== */
-  .cta-nav {
-    padding: 12px 18px;
-    font-size: 0.95rem;
-    position: fixed;
-    bottom: 15px;
-    left: 15px;
-    right: 15px;
-    z-index: 2000;
-    border-radius: 50px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-  }
-
   /* ===== HERO ===== */
   .hero {
     padding: 120px 0 70px;
@@ -869,6 +852,26 @@
   }
 }
 /* ===== Neon WhatsApp CTA ===== */
+/* ===== Floating WhatsApp Button ===== */
+.floating-whatsapp {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1500;
+}
+
+@media (max-width: 768px) {
+  .floating-whatsapp {
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    justify-content: center;
+  }
+
+  body {
+    padding-bottom: 110px;
+  }
+}
 .neon-whatsapp {
   display: flex;
   align-items: center;
@@ -915,6 +918,21 @@ img {
 
 <body>
   <!-- Header -->
+  <header>
+  <div class="container nav">
+    <div class="logo">
+      <i class="fas fa-rocket"></i>
+      <span>الأسطورة</span>
+      <small style="font-size:0.9rem; opacity:.8;">Combo Reach</small>
+    </div>
+  </div>
+</header>
+<a href="https://wa.me/201013381602"
+   class="btn btn-primary neon-whatsapp floating-whatsapp"
+   target="_blank">
+  <i class="fab fa-whatsapp"></i>
+  <span class="wa-number">+20 1013 381 602</span>
+</a>
   <!-- Hero Section -->
   <section class="hero">
     <div class="container hero-grid">
