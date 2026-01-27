@@ -16,69 +16,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-  /* تأثير توهج إضافي للفوانيس */
-.ramadan-lantern:hover {
-  animation: glow 1s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-  from { filter: drop-shadow(0 0 12px rgba(191,161,74,0.8)); }
-  to { filter: drop-shadow(0 0 20px rgba(191,161,74,1)); }
-}
-  .lantern-wrapper {
+  .ramadan-bg span {
   position: fixed;
-  top: -300px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999;
-  animation: dropDown 2s ease-out forwards;
-}
-
-.rope {
-  width: 3px;
-  height: 220px;
-  background: linear-gradient(#ccc, #777);
-  margin: 0 auto;
-}
-
-.lantern {
-  width: 120px;
-  display: block;
-  margin: 0 auto;
-  transform-origin: top center;
-  animation: swing 3s ease-in-out infinite;
-}
-
-/* نزول الفانوس */
-@keyframes dropDown {
-  to {
-    top: 0;
-  }
-}
-
-/* حركة التأرجح */
-@keyframes swing {
-  0%   { transform: rotate(0deg); }
-  25%  { transform: rotate(5deg); }
-  50%  { transform: rotate(0deg); }
-  75%  { transform: rotate(-5deg); }
-  100% { transform: rotate(0deg); }
-}
-@keyframes crazyFloat {
-  0% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-25px) rotate(15deg); }
-  100% { transform: translateY(0) rotate(0deg); }
-}
-
-.ramadan-bg span {
-  position: fixed;
+  font-size: 22px;
+  opacity: 0.15;
   z-index: 0;
   animation:
-    crazyFloat 5s infinite ease-in-out,
-    twinkle 2s infinite ease-in-out;
-    twinkle 2s infinite ease-in-out;
-  font-size: 24px;
-  opacity: 0.35;
+    floatStar 6s infinite ease-in-out,
+    twinkle 3s infinite ease-in-out;
 }
 .ramadan-bg span:nth-child(1) { top: 15%; right: 10%; }
 .ramadan-bg span:nth-child(2) { top: 40%; left: 8%; }
@@ -96,29 +41,47 @@
   50% { opacity: 0.35; }
   100% { opacity: 0.1; }
 }
+
+.ramadan-bg span {
+  animation:
+    floatStar 6s infinite ease-in-out,
+    twinkle 3s infinite ease-in-out;
+}
   .lantern-left {
   left: 30px;
 }
-.ramadan-lantern {
-  position: absolute;
-  top: 20px;
-  font-size: 2.8rem;
-  animation: swing 2.5s ease-in-out infinite;
-  filter: drop-shadow(0 0 12px rgba(191,161,74,0.8));
-  z-index: 5;
-}
 
-.l1 { left: 5%; animation-delay: 0s; }
-.l2 { left: 20%; animation-delay: 0.5s; }
-.l3 { left: 50%; animation-delay: 1s; }
-.l4 { left: 75%; animation-delay: 1.5s; }
-.l5 { left: 90%; animation-delay: 2s; }
+.lantern-right {
+  right: 30px;
+  left: auto;
+  animation-delay: 1.5s;
+}
+  .ramadan-lantern {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  font-size: 2.2rem;
+  animation: swing 3s ease-in-out infinite;
+  opacity: 0.85;
+}
 
 @keyframes swing {
   0% { transform: rotate(0deg); }
   50% { transform: rotate(8deg); }
   100% { transform: rotate(0deg); }
 }
+  .ramadan-bg span {
+  position: fixed;
+  font-size: 22px;
+  opacity: 0.15;
+  animation: floatStar 6s infinite ease-in-out;
+  z-index: 0;
+}
+
+.ramadan-bg span:nth-child(5) { top: 10%; left: 50%; animation-delay: 1.5s; }
+.ramadan-bg span:nth-child(6) { top: 55%; right: 5%; animation-delay: 2.5s; }
+.ramadan-bg span:nth-child(7) { top: 25%; left: 75%; animation-delay: 0.7s; }
+.ramadan-bg span:nth-child(8) { top: 80%; right: 40%; animation-delay: 3.5s; }
 @keyframes floatStar {
   0% { transform: translateY(0); }
   50% { transform: translateY(-15px); }
@@ -860,11 +823,11 @@ header {
       h1 {
         font-size: 2.8rem;
       }
-      
+
       h2 {
         font-size: 2.2rem;
       }
-      
+
       .hero-grid {
         gap: 40px;
       }
@@ -873,20 +836,20 @@ header {
       h1 {
         font-size: 2rem;
       }
-      
+
       h2 {
         font-size: 1.8rem;
       }
-      
+
       .btn {
         padding: 14px 28px;
         font-size: 1rem;
       }
-      
+
       .card {
         padding: 25px;
       }
-      
+
       .package-price {
         font-size: 2.5rem;
       }
@@ -1038,20 +1001,15 @@ img {
 </head>
 
 <body>
-<div class="lantern-wrapper">
-  <div class="rope"></div>
-  <img src="fanous.png" alt="فانوس رمضان" class="lantern">
-</div>
-<script>
-  window.onload = () => {
-    document.querySelector('.lantern-wrapper').style.animationPlayState = 'running';
-  };
-</script>
-
 <div class="ramadan-bg">
-  <span>⭐</span><span>✨</span><span>⭐</span><span>✨</span>
-  <span>⭐</span><span>✨</span><span>⭐</span><span>✨</span>
-  <span>⭐</span><span>✨</span><span>⭐</span><span>✨</span>
+  <span>🌙</span>
+  <span>⭐</span>
+  <span>⭐</span>
+  <span>⭐</span>
+  <span>⭐</span>
+  <span>⭐</span>
+  <span>✨</span>
+  <span>✨</span>
 </div>
   <!-- Header -->
   <header>
@@ -1074,11 +1032,8 @@ img {
 </a>
   <!-- Hero Section -->
   <section class="hero">
-<div class="ramadan-lantern l1">🏮</div>
-<div class="ramadan-lantern l2">🏮</div>
-<div class="ramadan-lantern l3">🏮</div>
-<div class="ramadan-lantern l4">🏮</div>
-<div class="ramadan-lantern l5">🏮</div>
+<div class="ramadan-lantern lantern-left">🏮</div>
+<div class="ramadan-lantern lantern-right">🏮</div>
     <div class="container hero-grid">
       <div class="hero-content fade-in">
         <h1>انتشار آمن لحساباتك بدون تسليم أي بيانات</h1>
@@ -1086,7 +1041,7 @@ img {
           نجهز لك فيديوهات احترافية مضمونة الانتشار + خطة نشر استراتيجية. 
           تابعين حقيقيين، تفاعل عضوي، وأمان كامل لحسابك.
         </p>
-        
+
         <div class="hero-features">
           <div class="hero-feature">
             <i class="fas fa-shield-alt"></i>
@@ -1105,7 +1060,7 @@ img {
             <span>دعم فني متخصص على مدار الساعة</span>
           </div>
         </div>
-        
+
         <div class="hero-buttons">
           <a href="#pricing" class="btn btn-primary">
             <i class="fas fa-gem"></i>
@@ -1116,7 +1071,7 @@ img {
             استشارة مجانية
           </a>
         </div>
-        
+
         <div class="stats">
           <div class="stat-item">
             <div class="stat-number">+500</div>
@@ -1168,7 +1123,7 @@ img {
             <li style="color: var(--muted);">✓ نتائج بطيئة ومتابعين وهميين</li>
           </ul>
         </div>
-        
+
         <div class="card ps-card solution fade-in delay-1">
           <div class="ps-icon">
             <i class="fas fa-check-circle"></i>
@@ -1193,7 +1148,7 @@ img {
       <p class="lead" style="text-align: center; max-width: 800px; margin: 0 auto 30px;">
         باقات مصممة خصيصًا لتناسب جميع الميزانيات مع ضمان أعلى جودة
       </p>
-      
+
       <div class="package-grid">
         <!-- Starter -->
         <div class="package-card fade-in">
@@ -1204,7 +1159,7 @@ img {
               <div class="package-price">1000 ج.م</div>
               <p>البداية المثالية للانتشار</p>
             </div>
-            
+
             <div class="package-features">
               <div class="package-feature">
                 <i class="fas fa-check-circle"></i>
@@ -1223,14 +1178,14 @@ img {
                 <span>دعم عبر الواتساب لمدة أسبوع</span>
               </div>
             </div>
-            
+
             <a href="https://wa.me/201013381602?text=مرحبًا، أريد الاشتراك في باقة Starter" class="btn btn-block btn-primary">
               <i class="fab fa-whatsapp"></i>
               اطلب الباقة الآن
             </a>
           </div>
         </div>
-        
+
         <!-- Growth (Popular) -->
         <div class="package-card fade-in delay-1">
           <div class="popular-badge">الأكثر طلبًا</div>
@@ -1241,7 +1196,7 @@ img {
               <div class="package-price">1500 ج.م</div>
               <p>الأفضل للنتائج السريعة</p>
             </div>
-            
+
             <div class="package-features">
               <div class="package-feature">
                 <i class="fas fa-check-circle"></i>
@@ -1264,14 +1219,14 @@ img {
                 <span>تعديلات مجانية على الفيديوهات</span>
               </div>
             </div>
-            
+
             <a href="https://wa.me/201013381602?text=مرحبًا، أريد الاشتراك في باقة Growth" class="btn btn-block btn-primary">
               <i class="fas fa-bolt"></i>
               ابدأ النمو الآن
             </a>
           </div>
         </div>
-        
+
         <!-- Dominator -->
         <div class="package-card fade-in delay-2">
           <div class="card">
@@ -1281,7 +1236,7 @@ img {
               <div class="package-price">2500 ج.م</div>
               <p>الهيمنة على السوشيال ميديا</p>
             </div>
-            
+
             <div class="package-features">
               <div class="package-feature">
                 <i class="fas fa-check-circle"></i>
@@ -1308,7 +1263,7 @@ img {
                 <span>أولوية في الخدمة والدعم</span>
               </div>
             </div>
-            
+
             <a href="https://wa.me/201013381602?text=مرحبًا، أريد الاشتراك في باقة Dominator" class="btn btn-block btn-primary">
               <i class="fas fa-crown"></i>
               سيطر على السوق
@@ -1332,7 +1287,7 @@ img {
           <h4>أمان كامل</h4>
           <p>لا نطلب حسابات عملائنا أبدًا</p>
         </div>
-        
+
         <div class="card proof-card fade-in delay-1">
           <div class="proof-icon">
             <i class="fas fa-video"></i>
@@ -1341,7 +1296,7 @@ img {
           <h4>فيديو منشور</h4>
           <p>فيديوهات حققت انتشارًا واسعًا</p>
         </div>
-        
+
         <div class="card proof-card fade-in delay-2">
           <div class="proof-icon">
             <i class="fas fa-smile"></i>
@@ -1350,7 +1305,7 @@ img {
           <h4>رضا العملاء</h4>
           <p>عملاء سعداء بنتائجنا</p>
         </div>
-        
+
         <div class="card proof-card fade-in">
           <div class="proof-icon">
             <i class="fas fa-clock"></i>
@@ -1370,7 +1325,7 @@ img {
     <p class="lead" style="text-align: center; max-width: 700px; margin: 0 auto 20px;">
       خطوات بسيطة لتحقيق انتشار حسابك بأمان كامل
     </p>
-    
+
     <div class="why-grid" style="margin-top: 30px;">
       <div class="card fade-in">
         <div class="feature-icon">
@@ -1379,7 +1334,7 @@ img {
         <h3>اختر الباقة</h3>
         <p>اختر الباقة المناسبة لميزانيتك وأهدافك</p>
       </div>
-      
+
       <div class="card fade-in delay-1">
         <div class="feature-icon">
           <i class="fas fa-video"></i>
@@ -1387,7 +1342,7 @@ img {
         <h3>استلم الفيديوهات</h3>
         <p>تصلك الفيديوهات جاهزة خلال 24-48 ساعة</p>
       </div>
-      
+
       <div class="card fade-in delay-2">
         <div class="feature-icon">
           <i class="fas fa-upload"></i>
@@ -1395,7 +1350,7 @@ img {
         <h3>انشر بنفسك</h3>
         <p>نرشدك للتوقيت والهاشتاجات الأمثل للنشر</p>
       </div>
-      
+
       <div class="card fade-in">
         <div class="feature-icon">
           <i class="fas fa-chart-line"></i>
@@ -1405,7 +1360,3 @@ img {
       </div>
     </div>
   </div>
-</section>
-
-
-
