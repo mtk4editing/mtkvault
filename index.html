@@ -16,14 +16,69 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-  .ramadan-bg span {
+  /* تأثير توهج إضافي للفوانيس */
+.ramadan-lantern:hover {
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { filter: drop-shadow(0 0 12px rgba(191,161,74,0.8)); }
+  to { filter: drop-shadow(0 0 20px rgba(191,161,74,1)); }
+}
+  .lantern-wrapper {
   position: fixed;
-  font-size: 22px;
-  opacity: 0.15;
+  top: -300px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  animation: dropDown 2s ease-out forwards;
+}
+
+.rope {
+  width: 3px;
+  height: 220px;
+  background: linear-gradient(#ccc, #777);
+  margin: 0 auto;
+}
+
+.lantern {
+  width: 120px;
+  display: block;
+  margin: 0 auto;
+  transform-origin: top center;
+  animation: swing 3s ease-in-out infinite;
+}
+
+/* نزول الفانوس */
+@keyframes dropDown {
+  to {
+    top: 0;
+  }
+}
+
+/* حركة التأرجح */
+@keyframes swing {
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(5deg); }
+  50%  { transform: rotate(0deg); }
+  75%  { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes crazyFloat {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-25px) rotate(15deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+.ramadan-bg span {
+  position: fixed;
   z-index: 0;
   animation:
-    floatStar 6s infinite ease-in-out,
-    twinkle 3s infinite ease-in-out;
+    crazyFloat 5s infinite ease-in-out,
+    twinkle 2s infinite ease-in-out;
+    twinkle 2s infinite ease-in-out;
+  font-size: 24px;
+  opacity: 0.35;
 }
 .ramadan-bg span:nth-child(1) { top: 15%; right: 10%; }
 .ramadan-bg span:nth-child(2) { top: 40%; left: 8%; }
@@ -44,20 +99,20 @@
   .lantern-left {
   left: 30px;
 }
-
-.lantern-right {
-  right: 30px;
-  left: auto;
-  animation-delay: 1.5s;
-}
-  .ramadan-lantern {
+.ramadan-lantern {
   position: absolute;
-  top: 30px;
-  left: 30px;
-  font-size: 2.2rem;
-  animation: swing 3s ease-in-out infinite;
-  opacity: 0.85;
+  top: 20px;
+  font-size: 2.8rem;
+  animation: swing 2.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 12px rgba(191,161,74,0.8));
+  z-index: 5;
 }
+
+.l1 { left: 5%; animation-delay: 0s; }
+.l2 { left: 20%; animation-delay: 0.5s; }
+.l3 { left: 50%; animation-delay: 1s; }
+.l4 { left: 75%; animation-delay: 1.5s; }
+.l5 { left: 90%; animation-delay: 2s; }
 
 @keyframes swing {
   0% { transform: rotate(0deg); }
@@ -983,15 +1038,20 @@ img {
 </head>
 
 <body>
+<div class="lantern-wrapper">
+  <div class="rope"></div>
+  <img src="fanous.png" alt="فانوس رمضان" class="lantern">
+</div>
+<script>
+  window.onload = () => {
+    document.querySelector('.lantern-wrapper').style.animationPlayState = 'running';
+  };
+</script>
+
 <div class="ramadan-bg">
-  <span>🌙</span>
-  <span>⭐</span>
-  <span>⭐</span>
-  <span>⭐</span>
-  <span>⭐</span>
-  <span>⭐</span>
-  <span>✨</span>
-  <span>✨</span>
+  <span>⭐</span><span>✨</span><span>⭐</span><span>✨</span>
+  <span>⭐</span><span>✨</span><span>⭐</span><span>✨</span>
+  <span>⭐</span><span>✨</span><span>⭐</span><span>✨</span>
 </div>
   <!-- Header -->
   <header>
@@ -1014,8 +1074,11 @@ img {
 </a>
   <!-- Hero Section -->
   <section class="hero">
-<div class="ramadan-lantern lantern-left">🏮</div>
-<div class="ramadan-lantern lantern-right">🏮</div>
+<div class="ramadan-lantern l1">🏮</div>
+<div class="ramadan-lantern l2">🏮</div>
+<div class="ramadan-lantern l3">🏮</div>
+<div class="ramadan-lantern l4">🏮</div>
+<div class="ramadan-lantern l5">🏮</div>
     <div class="container hero-grid">
       <div class="hero-content fade-in">
         <h1>انتشار آمن لحساباتك بدون تسليم أي بيانات</h1>
@@ -1343,3 +1406,6 @@ img {
     </div>
   </div>
 </section>
+
+
+
