@@ -16,91 +16,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-  .ramadan-bg span {
-  position: fixed;
-  font-size: 22px;
-  opacity: 0.15;
-  z-index: 0;
-  animation:
-    floatStar 6s infinite ease-in-out,
-    twinkle 3s infinite ease-in-out;
-}
-.ramadan-bg span:nth-child(1) { top: 15%; right: 10%; }
-.ramadan-bg span:nth-child(2) { top: 40%; left: 8%; }
-.ramadan-bg span:nth-child(3) { top: 70%; right: 15%; }
-.ramadan-bg span:nth-child(4) { top: 85%; left: 20%; }
-.ramadan-bg span:nth-child(5) { top: 10%; left: 50%; }
-.ramadan-bg span:nth-child(6) { top: 55%; right: 5%; }
-.ramadan-bg span:nth-child(7) { top: 25%; left: 75%; }
-.ramadan-bg span:nth-child(8) { top: 80%; right: 40%; }
-.ramadan-bg {
-  pointer-events: none;
-}
-  @keyframes twinkle {
-  0% { opacity: 0.1; }
-  50% { opacity: 0.35; }
-  100% { opacity: 0.1; }
-}
-
-.ramadan-bg span {
-  animation:
-    floatStar 6s infinite ease-in-out,
-    twinkle 3s infinite ease-in-out;
-}
-  .lantern-left {
-  left: 30px;
-}
-
-.lantern-right {
-  right: 30px;
-  left: auto;
-  animation-delay: 1.5s;
-}
-  .ramadan-lantern {
-  position: absolute;
-  top: 30px;
-  left: 30px;
-  font-size: 2.2rem;
-  animation: swing 3s ease-in-out infinite;
-  opacity: 0.85;
-}
-
-@keyframes swing {
-  0% { transform: rotate(0deg); }
-  50% { transform: rotate(8deg); }
-  100% { transform: rotate(0deg); }
-}
-  .ramadan-bg span {
-  position: fixed;
-  font-size: 22px;
-  opacity: 0.15;
-  animation: floatStar 6s infinite ease-in-out;
-  z-index: 0;
-}
-
-.ramadan-bg span:nth-child(5) { top: 10%; left: 50%; animation-delay: 1.5s; }
-.ramadan-bg span:nth-child(6) { top: 55%; right: 5%; animation-delay: 2.5s; }
-.ramadan-bg span:nth-child(7) { top: 25%; left: 75%; animation-delay: 0.7s; }
-.ramadan-bg span:nth-child(8) { top: 80%; right: 40%; animation-delay: 3.5s; }
-@keyframes floatStar {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
-  100% { transform: translateY(0); }
-}
-  .ramadan-banner {
-  text-align: center;
-  padding: 10px 15px;
-  background: linear-gradient(135deg, #bfa14a, #8b5cf6);
-  color: #fff;
-  font-weight: 700;
-  font-size: 1rem;
-  letter-spacing: .3px;
-}
-    /* =====================
+  /* =====================
        ROOT & RESET
     ====================== */
 :root {
-  --primary: #bfa14a;          /* ذهبي رمضاني */
+  --primary: #6366f1;         
   --primary-dark: #a88c3a;
   --secondary: #8b5cf6;        /* بنفسجي هادي */
   --secondary-dark: #7c3aed;
@@ -1001,21 +921,8 @@ img {
 </head>
 
 <body>
-<div class="ramadan-bg">
-  <span>🌙</span>
-  <span>⭐</span>
-  <span>⭐</span>
-  <span>⭐</span>
-  <span>⭐</span>
-  <span>⭐</span>
-  <span>✨</span>
-  <span>✨</span>
-</div>
   <!-- Header -->
   <header>
-  <div class="ramadan-banner">
-  🌙 رمضان كريم — تقبل الله منا ومنكم
-</div>
   <div class="container nav">
     <div class="logo">
       <i class="fas fa-rocket"></i>
@@ -1032,8 +939,6 @@ img {
 </a>
   <!-- Hero Section -->
   <section class="hero">
-<div class="ramadan-lantern lantern-left">🏮</div>
-<div class="ramadan-lantern lantern-right">🏮</div>
     <div class="container hero-grid">
       <div class="hero-content fade-in">
         <h1>انتشار آمن لحساباتك بدون تسليم أي بيانات</h1>
