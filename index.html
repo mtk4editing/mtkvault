@@ -1,1007 +1,1136 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <!-- SEO Basics -->
-  <!-- SEO Basics -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="خدمة تجهيز فيديوهات احترافية لزيادة انتشار صفحات تيك توك ويوتيوب بدون تسليم الحساب. تحقيق انتشار أمن وموثوق." />
-  <meta name="keywords" content="تيك توك, يوتيوب, انتشار, فيديوهات, سوشيال ميديا, زيادة متابعين, فيديوهات جاهزة" />
+  <meta name="description" content="خدمة تجهيز فيديوهات احترافية لزيادة انتشار صفحات تيك توك ويوتيوب بدون تسليم الحساب." />
   <title>الأسطورة | انتشار آمن بمتابعين حقيقيين</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-  /* =====================
-       ROOT & RESET
-    ====================== */
     :root {
-      --primary: #8b5cf6;
-      --primary-dark: #7c3aed;
-      --secondary: #ec4899;
-      --secondary-dark: #db2777;
-      --accent: #06b6d4;
-      --bg: #050510;
-      --bg-light: #0f172a;
-      --card: rgba(15, 23, 42, 0.85);
-      --card-hover: rgba(15, 23, 42, 0.95);
-      --text: #f9fafb;
-      --text-light: #e2e8f0;
-      --muted: #94a3b8;
-      --border: rgba(148, 163, 184, 0.15);
-      --border-light: rgba(148, 163, 184, 0.1);
-      --radius: 20px;
-      --radius-sm: 12px;
-      --shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-      --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.4);
-      --gradient: linear-gradient(135deg, var(--secondary), var(--primary));
-      --gradient-hover: linear-gradient(135deg, var(--secondary-dark), var(--primary-dark));
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      --gold: #BFA14A;
+      --gold-light: #D4B96A;
+      --gold-pale: #E8D08A;
+      --gold-dim: rgba(191,161,74,0.15);
+      --black: #080808;
+      --surface: #0D0D0D;
+      --surface-2: #121212;
+      --surface-3: #171717;
+      --white: #F5F0E8;
+      --white-dim: rgba(245,240,232,0.7);
+      --white-faint: rgba(245,240,232,0.12);
+      --muted: rgba(245,240,232,0.45);
+      --border: rgba(191,161,74,0.2);
+      --border-faint: rgba(245,240,232,0.07);
+      --red: #E05252;
+      --green: #4CAF7D;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --radius-xs: 6px;
     }
 
-    html {
-      scroll-behavior: smooth;
+    *, *::before, *::after {
+      margin: 0; padding: 0; box-sizing: border-box;
     }
 
-body {
-  font-family: 'Cairo', sans-serif;
-background:
-  radial-gradient(circle at top right, rgba(191,161,74,0.15), transparent 55%),
-  radial-gradient(circle at bottom left, rgba(139,92,246,0.15), transparent 55%),
-  var(--bg);
-  color: var(--text);
-  line-height: 1.7;
-  overflow-x: hidden;
-}
+    html { scroll-behavior: smooth; }
 
-
-    img {
-      max-width: 100%;
-      display: block;
-      border-radius: var(--radius-sm);
+    body {
+      font-family: 'Tajawal', 'Cairo', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+      line-height: 1.75;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
+    /* ── NOISE TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
     }
 
-    ul, ol {
-      list-style: none;
-    }
-
+    /* ── CONTAINERS ── */
     .container {
       width: 100%;
-      max-width: 1280px;
+      max-width: 1240px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 28px;
     }
 
-    section {
-      padding: 100px 0;
+    section { padding: 110px 0; }
+
+    img {
+      max-width: 100%; display: block;
+      border-radius: var(--radius);
+      user-select: none; pointer-events: none;
+      -webkit-user-drag: none;
     }
 
-    /* =====================
-       TYPOGRAPHY
-    ====================== */
+    a { text-decoration: none; color: inherit; }
+    ul, ol { list-style: none; }
+
+    /* ── TYPOGRAPHY ── */
     h1, h2, h3, h4 {
-      font-weight: 800;
-      line-height: 1.3;
-      color: var(--text-light);
+      font-family: 'Cairo', sans-serif;
+      font-weight: 900;
+      line-height: 1.25;
+      color: var(--white);
     }
 
-    h1 {
-      font-size: 3.2rem;
+    h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); }
+    h3 { font-size: 1.5rem; }
+
+    p { color: var(--muted); font-size: 1.05rem; margin-bottom: 1.2rem; }
+
+    .text-gold {
+      background: linear-gradient(135deg, var(--gold-pale), var(--gold), #8B6914);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* ── SECTION HEADERS ── */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: var(--gold-dim);
+      border: 1px solid var(--border);
+      padding: 7px 16px;
+      border-radius: 50px;
       margin-bottom: 1.5rem;
     }
 
-    h2 {
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
+    .section-title {
       text-align: center;
-      position: relative;
+      margin-bottom: 4rem;
     }
 
-    h2:after {
+    .section-title h2 { margin-bottom: 0.75rem; }
+
+    .section-title::after {
       content: '';
-      position: absolute;
-      bottom: -15px;
-      right: 50%;
-      transform: translateX(50%);
-      width: 80px;
-      height: 4px;
-      background: var(--gradient);
-      border-radius: 2px;
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 1rem auto 0;
     }
 
-    h3 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-    }
-
-    p {
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-      font-size: 1.1rem;
-    }
-
-    .lead {
-      font-size: 1.3rem;
-      color: var(--text-light);
-      font-weight: 500;
-    }
-
-    /* =====================
-       COMPONENTS
-    ====================== */
+    /* ── BUTTONS ── */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 16px 36px;
+      gap: 10px;
+      padding: 15px 34px;
       border-radius: 50px;
+      font-family: 'Cairo', sans-serif;
       font-weight: 700;
-      font-size: 1.1rem;
-      transition: var(--transition);
+      font-size: 1rem;
       cursor: pointer;
       border: none;
-      gap: 10px;
-      text-align: center;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
     }
 
-    .btn-primary {
-      background: var(--gradient);
-      color: white;
-      box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+    .btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0);
+      transition: background 0.2s;
     }
 
-    .btn-primary:hover {
-      background: var(--gradient-hover);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(139, 92, 246, 0.4);
+    .btn:hover::after { background: rgba(255,255,255,0.06); }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold), #8B6914);
+      color: #0a0800;
+      font-weight: 900;
+      box-shadow: 0 0 0 1px rgba(191,161,74,0.4), 0 8px 28px rgba(191,161,74,0.25);
     }
 
-    .btn-block {
-      width: 100%;
-      display: flex;
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 0 1px rgba(191,161,74,0.6), 0 12px 36px rgba(191,161,74,0.35);
     }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 8px 18px;
-      border-radius: 50px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      background: var(--gradient);
-      color: white;
-      margin-bottom: 1.5rem;
+    .btn-ghost {
+      background: var(--white-faint);
+      color: var(--white);
+      border: 1px solid var(--border-faint);
+      backdrop-filter: blur(8px);
     }
 
+    .btn-ghost:hover {
+      transform: translateY(-2px);
+      background: rgba(245,240,232,0.15);
+      border-color: var(--border);
+    }
+
+    .btn-block { width: 100%; }
+
+    .btn-wa {
+      background: #1a3d27;
+      color: #4CAF7D;
+      border: 1px solid rgba(76,175,125,0.3);
+    }
+
+    .btn-wa:hover {
+      background: #1f4a2f;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(76,175,125,0.2);
+    }
+
+    /* ── CARD ── */
     .card {
-      background: var(--card);
-      border: 1px solid var(--border);
+      background: var(--surface-2);
+      border: 1px solid var(--border-faint);
       border-radius: var(--radius);
       padding: 32px;
-      transition: var(--transition);
+      transition: all 0.3s ease;
       height: 100%;
       display: flex;
       flex-direction: column;
+      position: relative;
+      overflow: hidden;
     }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 160px; height: 160px;
+      background: radial-gradient(circle, var(--gold-dim), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .card:hover::before { opacity: 1; }
 
     .card:hover {
-      transform: translateY(-10px);
-      border-color: rgba(139, 92, 246, 0.3);
-      box-shadow: var(--shadow-lg);
-      background: var(--card-hover);
+      border-color: var(--border);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     }
 
-    .feature-icon {
-      width: 60px;
-      height: 60px;
-      border-radius: var(--radius-sm);
-      background: var(--gradient);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-      font-size: 1.8rem;
+    /* ── HEADER ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8,8,8,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-faint);
     }
-
-    /* =====================
-       NAVBAR
-    ====================== */
-header {
-  position: static;
-  background: rgba(5, 5, 16, 0.95);
-  backdrop-filter: blur(15px);
-  border-bottom: 1px solid var(--border);
-  padding: 8px 0;
-}
 
     .nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 16px 0;
     }
 
     .logo {
-      font-weight: 800;
-      font-size: 1.6rem;
-      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--gold), #8B6914);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: #0a0800;
+    }
+
+    .logo-text {
+      font-family: 'Cairo', sans-serif;
+      font-weight: 900;
+      font-size: 1.4rem;
+      line-height: 1.1;
+    }
+
+    .logo-text .name {
+      background: linear-gradient(135deg, var(--gold-pale), var(--gold));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      display: flex;
-      align-items: center;
-      gap: 10px;
     }
 
-    .logo i {
-      font-size: 1.8rem;
+    .logo-text .sub {
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0.12em;
     }
 
-    .cta-nav {
-      padding: 12px 28px;
-      font-size: 1rem;
-    }
-
-    /* =====================
-       HERO SECTION
-    ====================== */
+    /* ── HERO ── */
     .hero {
-      padding: 120px 0 100px;
+      padding: 100px 0 80px;
       position: relative;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
       overflow: hidden;
     }
 
-    .hero:before {
-      content: '';
+    .hero-orb {
       position: absolute;
-      top: -200px;
-      right: -200px;
-      width: 800px;
-      height: 800px;
-      background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
-      z-index: -1;
+      border-radius: 50%;
+      filter: blur(80px);
+    }
+
+    .hero-orb-1 {
+      width: 600px; height: 600px;
+      top: -200px; right: -150px;
+      background: radial-gradient(circle, rgba(191,161,74,0.12), transparent 70%);
+    }
+
+    .hero-orb-2 {
+      width: 400px; height: 400px;
+      bottom: 0; left: -100px;
+      background: radial-gradient(circle, rgba(191,161,74,0.07), transparent 70%);
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 70px;
       align-items: center;
     }
 
-    .hero-content {
-      max-width: 600px;
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 1.5rem;
     }
 
-    .hero-subtitle {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      color: var(--text-light);
+    .hero-eyebrow-dot {
+      width: 8px; height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--green);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.85); }
+    }
+
+    .hero-eyebrow-text {
+      font-size: 0.85rem;
+      color: var(--white-dim);
+      letter-spacing: 0.05em;
+    }
+
+    .hero h1 { margin-bottom: 1.4rem; }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--white-dim);
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
     }
 
     .hero-features {
       display: flex;
       flex-direction: column;
-      gap: 15px;
-      margin: 2.5rem 0;
+      gap: 12px;
+      margin-bottom: 2.5rem;
     }
 
-    .hero-feature {
+    .hero-feat {
       display: flex;
       align-items: center;
       gap: 12px;
-      color: var(--text-light);
+      font-size: 0.95rem;
+      color: var(--white-dim);
     }
 
-    .hero-feature i {
-      color: var(--primary);
-      font-size: 1.2rem;
+    .hero-feat-dot {
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
     }
 
-    .hero-image {
-      position: relative;
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
     }
 
-    .hero-image .card {
+    .hero-stats {
+      display: flex;
+      gap: 0;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-faint);
+    }
+
+    .stat-item {
+      flex: 1;
+      padding: 0 20px;
+      text-align: center;
+      border-left: 1px solid var(--border-faint);
+    }
+
+    .stat-item:last-child { border-left: none; }
+
+    .stat-num {
+      font-family: 'Cairo', sans-serif;
+      font-weight: 900;
+      font-size: 2rem;
+      background: linear-gradient(135deg, var(--gold-pale), var(--gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* Hero visual panel */
+    .hero-panel {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px;
       position: relative;
       overflow: hidden;
     }
 
-    .stats {
+    .hero-panel::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(191,161,74,0.15), transparent 70%);
+      pointer-events: none;
+    }
+
+    .panel-icon {
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg, var(--gold), #6B4E0A);
+      border-radius: var(--radius);
       display: flex;
-      justify-content: space-between;
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border-light);
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--black);
+      margin-bottom: 1.5rem;
     }
 
-    .stat-item {
-      text-align: center;
+    .panel-title {
+      font-size: 1.6rem;
+      font-weight: 900;
+      margin-bottom: 0.75rem;
     }
 
-    .stat-number {
-      font-size: 2.2rem;
+    .panel-desc {
+      color: var(--white-dim);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .panel-badges {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .panel-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(245,240,232,0.04);
+      border: 1px solid var(--border-faint);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      font-size: 0.9rem;
+      color: var(--white-dim);
+    }
+
+    .panel-badge i { color: var(--gold); font-size: 1rem; }
+
+    /* ── PROBLEM / SOLUTION ── */
+    .ps-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border-faint);
+      border-bottom: 1px solid var(--border-faint);
+    }
+
+    .ps-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .ps-card {
+      padding: 40px 36px;
+    }
+
+    .ps-card.problem {
+      border-color: rgba(224,82,82,0.2);
+      background: rgba(224,82,82,0.03);
+    }
+
+    .ps-card.solution {
+      border-color: rgba(76,175,125,0.25);
+      background: rgba(76,175,125,0.03);
+    }
+
+    .ps-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 1.5rem;
+    }
+
+    .ps-icon-wrap {
+      width: 50px; height: 50px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+    }
+
+    .problem .ps-icon-wrap {
+      background: rgba(224,82,82,0.15);
+      color: var(--red);
+    }
+
+    .solution .ps-icon-wrap {
+      background: rgba(76,175,125,0.15);
+      color: var(--green);
+    }
+
+    .ps-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-faint);
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .ps-list li:last-child { border-bottom: none; }
+
+    .ps-list i { margin-top: 2px; flex-shrink: 0; }
+
+    .problem .ps-list i { color: var(--red); opacity: 0.7; }
+    .solution .ps-list i { color: var(--green); }
+
+    /* ── PACKAGES ── */
+    .packages { background: var(--black); }
+
+    .package-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .package-card { position: relative; }
+
+    .package-card.featured { margin-top: -16px; }
+
+    .package-card.featured .card {
+      border-color: var(--border);
+      background: var(--surface-2);
+      box-shadow: 0 0 0 1px var(--border), 0 30px 60px rgba(0,0,0,0.5);
+    }
+
+    .pkg-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: #0a0800;
+      padding: 6px 22px;
+      border-radius: 50px;
       font-weight: 800;
-      background: var(--gradient);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      z-index: 2;
+    }
+
+    .pkg-badge.red {
+      background: linear-gradient(135deg, #ff6b6b, var(--red));
+      color: white;
+    }
+
+    .pkg-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+      margin-bottom: 1.5rem;
+    }
+
+    .pkg-header { margin-bottom: 1.5rem; }
+
+    .pkg-name {
+      font-size: 1.3rem;
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+      color: var(--white);
+    }
+
+    .pkg-tagline { font-size: 0.88rem; color: var(--muted); margin-bottom: 1rem; }
+
+    .pkg-price-old {
+      font-size: 1rem;
+      color: var(--muted);
+      text-decoration: line-through;
+    }
+
+    .pkg-price-new {
+      font-size: 2.2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--gold-pale), var(--gold));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
       line-height: 1;
     }
 
-    .stat-text {
-      font-size: 0.95rem;
+    .pkg-price-unit {
+      font-size: 0.85rem;
       color: var(--muted);
-      margin-top: 5px;
+      font-weight: 400;
     }
 
-    /* =====================
-       PROBLEM SOLUTION SECTION
-    ====================== */
-    .problem-solution {
-      background: var(--bg-light);
-      padding: 100px 0;
+    .pkg-divider {
+      height: 1px;
+      background: var(--border-faint);
+      margin: 1.5rem 0;
     }
 
-    .ps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-    }
+    .pkg-features { flex-grow: 1; margin-bottom: 2rem; }
 
-    .ps-card {
-      text-align: center;
-      padding: 40px 30px;
-    }
-
-    .ps-card.problem {
-      border: 2px solid rgba(239, 68, 68, 0.2);
-    }
-
-    .ps-card.solution {
-      border: 2px solid rgba(34, 197, 94, 0.2);
-    }
-
-    .ps-icon {
-      font-size: 3rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .problem .ps-icon {
-      color: #ef4444;
-    }
-
-    .solution .ps-icon {
-      color: #22c55e;
-    }
-
-    /* =====================
-       SERVICES / PACKAGES
-    ====================== */
-    .packages {
-      position: relative;
-    }
-
-    .package-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-top: 50px;
-    }
-
-    .package-card {
-      position: relative;
-    }
-
-    .package-popular {
-      border: 2px solid var(--primary);
-      position: relative;
-      transform: scale(1.05);
-    }
-
-    .popular-badge {
-      position: absolute;
-      top: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--gradient);
-      color: white;
-      padding: 8px 25px;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      z-index: 2;
-    }
-
-    .package-header {
-      text-align: center;
-      margin-bottom: 2rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid var(--border-light);
-    }
-
-    .package-price {
-      font-size: 3rem;
-      font-weight: 800;
-      margin: 1rem 0;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .package-features {
-      flex-grow: 1;
-      margin-bottom: 2.5rem;
-    }
-
-    .package-feature {
+    .pkg-feat {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 15px;
-      color: var(--text-light);
+      gap: 10px;
+      padding: 8px 0;
+      font-size: 0.9rem;
+      color: var(--white-dim);
     }
 
-    .package-feature i {
-      color: var(--primary);
-    }
+    .pkg-feat i { color: var(--gold); font-size: 0.85rem; }
 
-    /* =====================
-       SOCIAL PROOF
-    ====================== */
-    .social-proof {
-      background: var(--bg-light);
-      padding: 100px 0;
-    }
+    /* ── SOCIAL PROOF ── */
+    .social-proof { background: var(--surface); }
 
     .proof-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin-top: 50px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
     }
 
     .proof-card {
       text-align: center;
-      padding: 30px;
+      padding: 36px 20px;
     }
 
-    .proof-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-      color: var(--primary);
-    }
-
-    .proof-number {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 10px;
-      color: var(--text-light);
-    }
-
-    /* =====================
-       PORTFOLIO
-    ====================== */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 25px;
-      margin-top: 50px;
-    }
-
-    .portfolio-note {
-      text-align: center;
-      margin-top: 30px;
-      font-size: 1.1rem;
-      color: var(--muted);
-      padding: 20px;
-      background: rgba(139, 92, 246, 0.05);
-      border-radius: var(--radius-sm);
-      border: 1px dashed var(--border);
-    }
-
-    /* =====================
-       WHY CHOOSE US
-    ====================== */
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin-top: 50px;
-    }
-
-    /* =====================
-       FAQ
-    ====================== */
-    .faq-container {
-      max-width: 900px;
-      margin: 50px auto 0;
-    }
-
-    .faq-item {
-      margin-bottom: 15px;
+    .proof-icon-wrap {
+      width: 56px; height: 56px;
+      background: var(--gold-dim);
       border: 1px solid var(--border);
       border-radius: var(--radius-sm);
-      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 1.3rem;
+      color: var(--gold);
     }
 
-    .faq-question {
-      padding: 22px 25px;
-      background: var(--card);
+    .proof-num {
+      font-family: 'Cairo', sans-serif;
+      font-weight: 900;
+      font-size: 2.2rem;
+      background: linear-gradient(135deg, var(--gold-pale), var(--gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 4px;
+    }
+
+    .proof-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .proof-desc { font-size: 0.85rem; color: var(--muted); margin: 0; }
+
+    /* ── HOW IT WORKS ── */
+    .how-it-works { background: var(--black); }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      position: relative;
+    }
+
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 40px;
+      right: 12.5%;
+      left: 12.5%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), var(--border), transparent);
+    }
+
+    .step-card {
+      text-align: center;
+      padding: 36px 24px;
+      position: relative;
+    }
+
+    .step-num {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin: 0 auto 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-icon {
+      font-size: 1.8rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      opacity: 0.8;
+    }
+
+    .step-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: var(--white);
+    }
+
+    .step-desc { font-size: 0.88rem; color: var(--muted); margin: 0; }
+
+    /* ── FAQ ── */
+    .faq { background: var(--surface); }
+
+    .faq-container { max-width: 860px; margin: 0 auto; }
+
+    .faq-item {
+      border: 1px solid var(--border-faint);
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .faq-item.active { border-color: var(--border); }
+
+    .faq-q {
+      padding: 20px 24px;
+      background: var(--surface-2);
       display: flex;
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
       font-weight: 600;
-      color: var(--text-light);
-      transition: var(--transition);
+      color: var(--white-dim);
+      font-size: 0.97rem;
+      transition: color 0.2s;
+      gap: 16px;
     }
 
-    .faq-question:hover {
-      background: rgba(15, 23, 42, 0.95);
+    .faq-item.active .faq-q { color: var(--white); }
+
+    .faq-toggle {
+      width: 28px; height: 28px;
+      background: var(--gold-dim);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xs);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 0.75rem;
+      flex-shrink: 0;
+      transition: all 0.25s;
     }
 
-    .faq-icon {
-      transition: var(--transition);
-      color: var(--primary);
+    .faq-item.active .faq-toggle {
+      background: var(--gold);
+      color: #0a0800;
+      transform: rotate(45deg);
     }
 
-    .faq-answer {
-      padding: 0 25px;
+    .faq-a {
+      padding: 0 24px;
       max-height: 0;
       overflow: hidden;
-      transition: var(--transition);
+      transition: all 0.3s ease;
       color: var(--muted);
+      font-size: 0.93rem;
       line-height: 1.8;
     }
 
-    .faq-item.active .faq-answer {
-      padding: 25px;
-      max-height: 300px;
-    }
+    .faq-item.active .faq-a { padding: 20px 24px; max-height: 300px; }
 
-    .faq-item.active .faq-icon {
-      transform: rotate(180deg);
-    }
-
-    /* =====================
-       FINAL CTA
-    ====================== */
+    /* ── FINAL CTA ── */
     .final-cta {
+      background: var(--black);
       text-align: center;
-      padding: 100px 0;
-      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.05));
       position: relative;
       overflow: hidden;
     }
 
-    .final-cta:before {
-      content: '';
+    .cta-glow {
       position: absolute;
-      top: -100px;
-      right: -100px;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
-      z-index: 0;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px; height: 400px;
+      background: radial-gradient(ellipse, rgba(191,161,74,0.1), transparent 70%);
+      pointer-events: none;
     }
 
-    .final-cta .container {
-      position: relative;
-      z-index: 1;
-    }
+    .cta-inner { position: relative; z-index: 1; }
 
-    .cta-title {
-      font-size: 2.8rem;
-      margin-bottom: 1.5rem;
-    }
+    .cta-h { font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 1.2rem; }
 
-    .cta-subtitle {
-      font-size: 1.3rem;
-      color: var(--muted);
-      max-width: 700px;
+    .cta-sub {
+      max-width: 680px;
       margin: 0 auto 3rem;
+      color: var(--white-dim);
+      font-size: 1.1rem;
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
     .guarantee {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 15px;
+      gap: 10px;
       margin-top: 2rem;
-      color: var(--text-light);
-      font-weight: 600;
+      color: var(--muted);
+      font-size: 0.9rem;
     }
 
-    .guarantee i {
-      color: #22c55e;
-      font-size: 1.5rem;
-    }
+    .guarantee i { color: var(--green); }
 
-    /* =====================
-       CONTACT / FOOTER
-    ====================== */
+    /* ── FOOTER ── */
     footer {
-      background: var(--bg-light);
-      padding: 80px 0 40px;
-      border-top: 1px solid var(--border);
+      background: var(--surface);
+      border-top: 1px solid var(--border-faint);
+      padding: 70px 0 40px;
     }
 
     .footer-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 40px;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 50px;
       margin-bottom: 50px;
     }
 
-    .footer-logo {
-      font-size: 1.8rem;
-      font-weight: 800;
+    .footer-logo-wrap { margin-bottom: 1.5rem; }
+
+    .footer-desc { font-size: 0.92rem; color: var(--muted); max-width: 300px; }
+
+    .footer-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 1.5rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .contact-link:hover { color: var(--gold); }
+    .contact-link i { color: var(--gold); width: 16px; }
+
+    .footer-heading {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
       margin-bottom: 1.5rem;
-      background: var(--gradient);
+    }
+
+    .footer-list li {
+      padding: 6px 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .socials {
+      display: flex;
+      gap: 10px;
+      margin-top: 0.5rem;
+    }
+
+    .social-btn {
+      width: 40px; height: 40px;
+      background: var(--surface-2);
+      border: 1px solid var(--border-faint);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+
+    .social-btn:hover {
+      background: var(--gold-dim);
+      border-color: var(--border);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 30px;
+      border-top: 1px solid var(--border-faint);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* ── FLOATING WA ── */
+    .floating-wa {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      background: #0f2418;
+      border: 1px solid rgba(76,175,125,0.35);
+      border-radius: 50px;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.25s;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+
+    .floating-wa:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(76,175,125,0.2);
+      border-color: rgba(76,175,125,0.5);
+    }
+
+    .floating-wa i {
+      font-size: 1.3rem;
+      color: #4CAF7D;
+    }
+
+    .wa-num {
+      background: linear-gradient(135deg, #6EE89A, #4CAF7D);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
 
-    .footer-contact {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--muted);
-    }
+    .fade-in { animation: fadeUp 0.75s ease forwards; }
+    .delay-1 { animation-delay: 0.15s; opacity: 0; }
+    .delay-2 { animation-delay: 0.3s; opacity: 0; }
+    .delay-3 { animation-delay: 0.45s; opacity: 0; }
 
-    .contact-item i {
-      color: var(--primary);
-      width: 20px;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 15px;
-      margin-top: 20px;
-    }
-
-    .social-link {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      background: var(--card);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text);
-      transition: var(--transition);
-      border: 1px solid var(--border);
-    }
-
-    .social-link:hover {
-      background: var(--primary);
-      transform: translateY(-3px);
-    }
-
-    .footer-bottom {
-      text-align: center;
-      padding-top: 40px;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    /* =====================
-       ANIMATIONS
-    ====================== */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .fade-in {
-      animation: fadeInUp 0.8s ease forwards;
-    }
-
-    .delay-1 {
-      animation-delay: 0.2s;
-    }
-
-    .delay-2 {
-      animation-delay: 0.4s;
-    }
-
-    /* =====================
-       RESPONSIVE
-    ====================== */
+    /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
-      h1 {
-        font-size: 2.8rem;
-      }
-
-      h2 {
-        font-size: 2.2rem;
-      }
-
-      .hero-grid {
-        gap: 40px;
-      }
+      .package-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+      .package-card.featured { margin-top: 0; }
+      .proof-grid { grid-template-columns: 1fr 1fr; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .steps-grid::before { display: none; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .ps-grid { grid-template-columns: 1fr; }
     }
+
+    @media (max-width: 768px) {
+      section { padding: 70px 0; }
+      .hero { padding: 60px 0 70px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-stats { flex-direction: column; gap: 20px; }
+      .stat-item { border: none; }
+      .hero-buttons { flex-direction: column; }
+      .hero-buttons .btn { width: 100%; }
+      .proof-grid { grid-template-columns: 1fr 1fr; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      body { padding-bottom: 90px; }
+      .floating-wa { left: 12px; right: 12px; justify-content: center; }
+    }
+
     @media (max-width: 480px) {
-      h1 {
-        font-size: 2rem;
-      }
-
-      h2 {
-        font-size: 1.8rem;
-      }
-
-      .btn {
-        padding: 14px 28px;
-        font-size: 1rem;
-      }
-
-      .card {
-        padding: 25px;
-      }
-
-      .package-price {
-        font-size: 2.5rem;
-      }
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.75rem; }
+      .proof-grid { grid-template-columns: 1fr 1fr; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .floating-wa { font-size: 0.88rem; padding: 12px 18px; }
     }
-	@media (max-width: 768px) {
-
-  /* ===== NAVBAR ===== */
-  .nav {
-    flex-direction: row;
-    gap: 10px;
-  }
-
-  .logo {
-    font-size: 1.3rem;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2px;
-  }
-
-  .logo small {
-    font-size: 0.75rem;
-  }
-  /* ===== HERO ===== */
-  .hero {
-    padding: 120px 0 70px;
-  }
-
-  .hero-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-    text-align: center;
-  }
-
-  .hero-content {
-    max-width: 100%;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1.05rem;
-  }
-
-  /* ===== HERO BUTTONS ===== */
-  .hero-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: stretch;
-  }
-
-  .hero-buttons a {
-    width: 100%;
-    justify-content: center;
-    margin: 0 !important;
-  }
-
-  /* ===== FEATURES ===== */
-  .hero-feature {
-    justify-content: center;
-    font-size: 0.95rem;
-  }
-
-  /* ===== STATS ===== */
-  .stats {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .stat-number {
-    font-size: 1.8rem;
-  }
-
-  /* ===== HERO CARD ===== */
-  .hero-image .card {
-    padding: 25px;
-  }
-
-  /* ===== SPACE FOR FIXED BUTTON ===== */
-  body {
-    padding-bottom: 100px;
-  }
-}
-/* ===== Neon WhatsApp CTA ===== */
-/* ===== Floating WhatsApp Button ===== */
-.floating-whatsapp {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  z-index: 1500;
-}
-
-@media (max-width: 768px) {
-  .floating-whatsapp {
-    left: 15px;
-    right: 15px;
-    bottom: 15px;
-    justify-content: center;
-  }
-
-  body {
-    padding-bottom: 110px;
-  }
-}
-.neon-whatsapp {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.neon-whatsapp i {
-  font-size: 1.4rem;
-}
-
-.wa-number {
-  font-weight: 800;
-  letter-spacing: 0.5px;
-  color: #ffffff;
-  text-shadow:
-    0 0 6px #25D366,
-    0 0 12px #25D366,
-    0 0 24px rgba(37, 211, 102, 0.8);
-}
-
-/* Mobile tweak */
-@media (max-width: 768px) {
-  .wa-number {
-    font-size: 0.95rem;
-  }
-}
-/* ===== Disable Image Drag & Select ===== */
-img {
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-  user-drag: none;
-
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-
-  pointer-events: none;
-}
-	</style>
+  </style>
 </head>
-
 <body>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/201013381602" class="floating-wa" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+    <span class="wa-num">201013381602+</span>
+  </a>
+
   <!-- Header -->
   <header>
-  <div class="container nav">
-    <div class="logo">
-      <i class="fas fa-rocket"></i>
-      <span>الأسطورة</span>
-      <small style="font-size:0.9rem; opacity:.8;">Combo Reach</small>
-    </div>
-  </div>
-</header>
-<a href="https://wa.me/201013381602"
-   class="btn btn-primary neon-whatsapp floating-whatsapp"
-   target="_blank">
-  <i class="fab fa-whatsapp"></i>
-  <span class="wa-number">201013381602+</span>
-</a>
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-content fade-in">
-        <h1>انتشار آمن لحساباتك بدون تسليم أي بيانات</h1>
-        <p class="hero-subtitle">
-          نجهز لك فيديوهات احترافية مضمونة الانتشار + خطة نشر استراتيجية. 
-          تابعين حقيقيين، تفاعل عضوي، وأمان كامل لحسابك.
-        </p>
-
-        <div class="hero-features">
-          <div class="hero-feature">
-            <i class="fas fa-shield-alt"></i>
-            <span>لا نطلب الوصول لحسابك أبدًا</span>
-          </div>
-          <div class="hero-feature">
-            <i class="fas fa-video"></i>
-            <span>فيديوهات جاهزة للنشر فوريًا</span>
-          </div>
-          <div class="hero-feature">
-            <i class="fas fa-chart-line"></i>
-            <span>زيادة المتابعين والتفاعل الحقيقي</span>
-          </div>
-          <div class="hero-feature">
-            <i class="fas fa-headset"></i>
-            <span>دعم فني متخصص على مدار الساعة</span>
-          </div>
-        </div>
-
-        <div class="hero-buttons">
-          <a href="#pricing" class="btn btn-primary">
-            <i class="fas fa-gem"></i>
-            عرض الباقات
-          </a>
-          <a href="https://wa.me/201013381602" class="btn" style="background: rgba(255,255,255,0.1); border: 1px solid var(--border);">
-            <i class="fab fa-whatsapp"></i>
-            استشارة مجانية
-          </a>
-        </div>
-
-        <div class="stats">
-          <div class="stat-item">
-            <div class="stat-number">+500</div>
-            <div class="stat-text">عميل راضي</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">10K+</div>
-            <div class="stat-text">فيديو منشور</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">100%</div>
-            <div class="stat-text">أمان كامل</div>
-          </div>
+    <div class="container nav">
+      <div class="logo">
+        <div class="logo-icon"><i class="fas fa-rocket"></i></div>
+        <div class="logo-text">
+          <div class="name">الأسطورة</div>
+          <div class="sub">Combo Reach</div>
         </div>
       </div>
-	  <!-- بدل الصورة الحالية في hero-image -->
-<div class="hero-image fade-in delay-1">
-  <div class="card" style="background: var(--gradient); padding: 30px; text-align: center;">
-    <div style="font-size: 4rem; margin-bottom: 20px; opacity: 0.9;">
-      <i class="fas fa-lock"></i>
+      <a href="#pricing" class="btn btn-gold" style="padding: 10px 24px; font-size: 0.9rem;">
+        <i class="fas fa-gem"></i> عرض الباقات
+      </a>
     </div>
-    <h3 style="color: white; margin-bottom: 10px;">أمان 100%</h3>
-    <p style="color: rgba(255,255,255,0.9); margin-bottom: 0;">
-      نحن نؤمن بخصوصيتك<br>لا نطلب حسابات عملائنا أبدًا
-    </p>
-  </div>
-</div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+    </div>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content fade-in">
+          <div class="hero-eyebrow">
+            <div class="hero-eyebrow-dot"></div>
+            <span class="hero-eyebrow-text">متاح الآن · نتائج من الأسبوع الأول</span>
+          </div>
+
+          <h1>انتشار آمن<br><span class="text-gold">بدون تسليم أي بيانات</span></h1>
+
+          <p class="hero-desc">
+            نجهز لك فيديوهات احترافية مضمونة الانتشار + خطة نشر استراتيجية.
+            متابعون حقيقيون، تفاعل عضوي، وأمان كامل لحسابك.
+          </p>
+
+          <div class="hero-features">
+            <div class="hero-feat"><div class="hero-feat-dot"></div><span>لا نطلب الوصول لحسابك أبدًا</span></div>
+            <div class="hero-feat"><div class="hero-feat-dot"></div><span>فيديوهات جاهزة للنشر فوريًا</span></div>
+            <div class="hero-feat"><div class="hero-feat-dot"></div><span>زيادة المتابعين والتفاعل الحقيقي</span></div>
+            <div class="hero-feat"><div class="hero-feat-dot"></div><span>دعم فني متخصص على مدار الساعة</span></div>
+          </div>
+
+          <div class="hero-buttons">
+            <a href="#pricing" class="btn btn-gold">
+              <i class="fas fa-gem"></i> عرض الباقات
+            </a>
+            <a href="https://wa.me/201013381602" class="btn btn-ghost">
+              <i class="fab fa-whatsapp"></i> استشارة مجانية
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-num">+500</div>
+              <div class="stat-label">عميل راضي</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">10K+</div>
+              <div class="stat-label">فيديو منشور</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">100%</div>
+              <div class="stat-label">أمان كامل</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-in delay-1">
+          <div class="hero-panel">
+            <div class="panel-icon"><i class="fas fa-lock"></i></div>
+            <div class="panel-title">أمان <span class="text-gold">100%</span></div>
+            <p class="panel-desc">نحن نؤمن بخصوصيتك — لا نطلب حسابات عملائنا أبدًا</p>
+            <div class="panel-badges">
+              <div class="panel-badge"><i class="fas fa-shield-alt"></i><span>خصوصية تامة وحماية كاملة</span></div>
+              <div class="panel-badge"><i class="fas fa-bolt"></i><span>نتائج مرئية من الأسبوع الأول</span></div>
+              <div class="panel-badge"><i class="fas fa-users"></i><span>متابعون حقيقيون وتفاعل عضوي</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -1009,35 +1138,37 @@ img {
   </section>
 
   <!-- Problem / Solution -->
-  <section class="problem-solution">
+  <section class="ps-section">
     <div class="container">
-      <h2>المشكلة والحل</h2>
+      <div class="section-title fade-in">
+        <div class="section-label"><i class="fas fa-arrows-left-right"></i> المشكلة والحل</div>
+        <h2>ما الذي يميزنا؟</h2>
+      </div>
       <div class="ps-grid">
         <div class="card ps-card problem fade-in">
-          <div class="ps-icon">
-            <i class="fas fa-exclamation-triangle"></i>
+          <div class="ps-header">
+            <div class="ps-icon-wrap"><i class="fas fa-times"></i></div>
+            <h3 style="font-size:1.25rem;">ما تعاني منه الآن</h3>
           </div>
-          <h3>المشاكل التي تواجهك</h3>
-          <ul style="text-align: right; padding-right: 20px;">
-            <li style="margin-bottom: 10px; color: var(--muted);">✓ مخاطر تسليم الحساب لجهات غير موثوقة</li>
-            <li style="margin-bottom: 10px; color: var(--muted);">✓ فيديوهات ضعيفة لا تصل للجمهور المستهدف</li>
-            <li style="margin-bottom: 10px; color: var(--muted);">✓ فقدان الوقت في تجربة استراتيجيات غير مجدية</li>
-            <li style="margin-bottom: 10px; color: var(--muted);">✓ انعدام الخصوصية والأمان الرقمي</li>
-            <li style="color: var(--muted);">✓ نتائج بطيئة ومتابعين وهميين</li>
+          <ul class="ps-list">
+            <li><i class="fas fa-times-circle"></i> مخاطر تسليم الحساب لجهات غير موثوقة</li>
+            <li><i class="fas fa-times-circle"></i> فيديوهات ضعيفة لا تصل للجمهور المستهدف</li>
+            <li><i class="fas fa-times-circle"></i> فقدان الوقت في استراتيجيات غير مجدية</li>
+            <li><i class="fas fa-times-circle"></i> انعدام الخصوصية والأمان الرقمي</li>
+            <li><i class="fas fa-times-circle"></i> نتائج بطيئة ومتابعون وهميون</li>
           </ul>
         </div>
-
         <div class="card ps-card solution fade-in delay-1">
-          <div class="ps-icon">
-            <i class="fas fa-check-circle"></i>
+          <div class="ps-header">
+            <div class="ps-icon-wrap"><i class="fas fa-check"></i></div>
+            <h3 style="font-size:1.25rem;">الحل مع كومبو الانتشار</h3>
           </div>
-          <h3>الحل مع كومبو الانتشار</h3>
-          <ul style="text-align: right; padding-right: 20px;">
-            <li style="margin-bottom: 10px; color: var(--muted);">✓ لا نطلب حسابك أبدًا - أنت تتحكم بالكامل</li>
-            <li style="margin-bottom: 10px; color: var(--muted);">✓ فيديوهات محترفة مصممة للانتشار</li>
-            <li style="margin-bottom: 10px; color: var(--muted);">✓ خطة نشر استراتيجية مدروسة</li>
-            <li style="margin-bottom: 10px; color: var(--muted);">خصوصية 100% وأمان كامل لبياناتك</li>
-            <li style="color: var(--muted);">✓ نتائج حقيقية ومرئية من الأسبوع الأول</li>
+          <ul class="ps-list">
+            <li><i class="fas fa-check-circle"></i> لا نطلب حسابك أبدًا — أنت تتحكم بالكامل</li>
+            <li><i class="fas fa-check-circle"></i> فيديوهات محترفة مصممة للانتشار</li>
+            <li><i class="fas fa-check-circle"></i> خطة نشر استراتيجية مدروسة</li>
+            <li><i class="fas fa-check-circle"></i> خصوصية 100% وأمان كامل لبياناتك</li>
+            <li><i class="fas fa-check-circle"></i> نتائج حقيقية ومرئية من الأسبوع الأول</li>
           </ul>
         </div>
       </div>
@@ -1045,268 +1176,310 @@ img {
   </section>
 
   <!-- Packages -->
-<section id="pricing" class="packages">
-  <div class="container">
-    <h2>عرض خاص لفترة محدودة 🔥</h2>
-    <p class="lead" style="text-align: center; max-width: 800px; margin: 0 auto 30px;">
-      خصم 50% + ضعف عدد الفيديوهات لفترة محدودة
-    </p>
-
-    <div class="package-grid">
-
-      <!-- Starter -->
-      <div class="package-card fade-in">
-        <div class="popular-badge" style="background:#ff4d4d;">خصم 50%</div>
-        <div class="card">
-          <div class="package-header">
-            <img src="https://i.postimg.cc/KcJrvFzs/afraj.jpg" alt="الباقة الأساسية" style="margin-bottom: 20px;">
-            <h3>Starter</h3>
-
-            <div class="package-price">
-              <span style="text-decoration: line-through; color: #999;">1999 ج.م</span>
-              <br>
-              <span style="color:#ff4d4d;font-size:28px;">999 ج.م</span>
-            </div>
-
-            <p>البداية المثالية للانتشار</p>
-          </div>
-
-          <div class="package-features">
-            <div class="package-feature">
-              <i class="fas fa-check-circle"></i>
-              <span>5 فيديوهات احترافية جاهزة</span>
-            </div>
-
-            <div class="package-feature">
-              <i class="fas fa-check-circle"></i>
-              <span>إرشادات النشر والتوقيت الأمثل</span>
-            </div>
-
-            <div class="package-feature">
-              <i class="fas fa-check-circle"></i>
-              <span>هاشتاجات مصممة للانتشار</span>
-            </div>
-
-            <div class="package-feature">
-              <i class="fas fa-check-circle"></i>
-              <span>دعم عبر الواتساب لمدة أسبوع</span>
-            </div>
-          </div>
-
-          <a href="https://wa.me/201013381602?text=مرحبًا، أريد الاشتراك في عرض Starter"
-             class="btn btn-block btn-primary">
-            <i class="fab fa-whatsapp"></i>
-            احصل على العرض
-          </a>
-        </div>
-      </div>
-
-
-      <!-- Growth -->
-      <div class="package-card fade-in delay-1">
-        <div class="popular-badge">🔥 الأكثر طلبًا</div>
-        <div class="card package-popular">
-
-          <div class="package-header">
-            <img src="https://i.postimg.cc/L53DZBHP/alakthr-tlba.png" alt="الباقة المميزة" style="margin-bottom: 20px;">
-            <h3>Growth</h3>
-
-            <div class="package-price">
-              <span style="text-decoration: line-through; color:#999;">3499 ج.م</span>
-              <br>
-              <span style="color:#ff4d4d;font-size:28px;">1749 ج.م</span>
-            </div>
-
-            <p>الأفضل للنتائج السريعة</p>
-          </div>
-
-          <div class="package-features">
-            <div class="package-feature">
-              <i class="fas fa-check-circle"></i>
-              <span>9 فيديو احترافي عالي الجودة</span>
-            </div>
-
-            <div class="package-feature">
-              <i class="fas fa-check-circle"></i>
-              <span>تحليل الجمهور المستهدف</span>
-            </div>
-
-            <div class="package-feature">
-              <i class="fas fa-check-circle"></i>
-              <span>استراتيجية نشر متكاملة</span>
-            </div>
-
-            <div class="package-feature">
-              <i class="fas fa-check-circle"></i>
-              <span>دعم لمدة شهر كامل</span>
-            </div>
-
-            <div class="package-feature">
-              <i class="fas fa-check-circle"></i>
-              <span>تعديلات مجانية على الفيديوهات</span>
-            </div>
-          </div>
-
-          <a href="https://wa.me/201013381602?text=مرحبًا، أريد الاشتراك في عرض Growth"
-             class="btn btn-block btn-primary">
-            <i class="fas fa-bolt"></i>
-            ابدأ النمو الآن
-          </a>
-
-        </div>
-      </div>
-
-
-      <!-- Dominator -->
-      <div class="package-card fade-in delay-2">
-        <div class="popular-badge" style="background:#ff4d4d;">عرض خاص</div>
-
-        <div class="card">
-          <div class="package-header">
-            <img src="https://i.postimg.cc/L8C8nCfj/ʿly-klay.png" alt="الباقة المتطورة" style="margin-bottom: 20px;">
-            <h3>Dominator</h3>
-
-            <div class="package-price">
-              <span style="text-decoration: line-through; color:#999;">5999 ج.م</span>
-              <br>
-              <span style="color:#ff4d4d;font-size:28px;">2999 ج.م</span>
-            </div>
-
-            <p>الهيمنة على السوشيال ميديا</p>
-          </div>
-
-          <div class="package-features">
-            <div class="package-feature">
-              <i class="fas fa-check-circle"></i>
-              <span>15 فيديو محترف متنوع المحتوى</span>
-            </div>
-
-            <div class="package-feature">
-              <i class="fas fa-check-circle"></i>
-              <span>خطة نشر شهرية كاملة</span>
-            </div>
-
-            <div class="package-feature">
-              <i class="fas fa-check-circle"></i>
-              <span>جلسة استشارية متخصصة</span>
-            </div>
-
-            <div class="package-feature">
-              <i class="fas fa-check-circle"></i>
-              <span>دعم مباشر على مدار الساعة</span>
-            </div>
-
-            <div class="package-feature">
-              <i class="fas fa-check-circle"></i>
-              <span>تحليل أداء وتقارير شهرية</span>
-            </div>
-
-            <div class="package-feature">
-              <i class="fas fa-check-circle"></i>
-              <span>أولوية في الخدمة والدعم</span>
-            </div>
-          </div>
-
-          <a href="https://wa.me/201013381602?text=مرحبًا، أريد الاشتراك في عرض Dominator"
-             class="btn btn-block btn-primary">
-            <i class="fas fa-crown"></i>
-            احصل على العرض الآن
-          </a>
-
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-  <!-- Social Proof -->
-  <section class="social-proof">
+  <section id="pricing" class="packages">
     <div class="container">
-      <h2>لماذا يثق بنا المئات</h2>
-      <div class="proof-grid">
-        <div class="card proof-card fade-in">
-          <div class="proof-icon">
-            <i class="fas fa-user-shield"></i>
+      <div class="section-title fade-in">
+        <div class="section-label"><i class="fas fa-fire"></i> عرض خاص لفترة محدودة</div>
+        <h2>اختر باقتك <span class="text-gold">🔥</span></h2>
+        <p style="text-align:center; max-width:600px; margin: 0 auto;">خصم 50% + ضعف عدد الفيديوهات لفترة محدودة</p>
+      </div>
+
+      <div class="package-grid">
+        <!-- Starter -->
+        <div class="package-card fade-in">
+          <div class="pkg-badge red">خصم 50%</div>
+          <div class="card">
+            <img src="https://i.postimg.cc/KcJrvFzs/afraj.jpg" alt="Starter" class="pkg-img">
+            <div class="pkg-header">
+              <div class="pkg-name">Starter</div>
+              <div class="pkg-tagline">البداية المثالية للانتشار</div>
+              <div class="pkg-price-old">1999 ج.م</div>
+              <div class="pkg-price-new">999 <span class="pkg-price-unit">ج.م</span></div>
+            </div>
+            <div class="pkg-divider"></div>
+            <div class="pkg-features">
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>5 فيديوهات احترافية جاهزة</span></div>
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>إرشادات النشر والتوقيت الأمثل</span></div>
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>هاشتاجات مصممة للانتشار</span></div>
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>دعم عبر الواتساب لمدة أسبوع</span></div>
+            </div>
+            <a href="https://wa.me/201013381602?text=مرحبًا، أريد الاشتراك في عرض Starter" class="btn btn-ghost btn-block">
+              <i class="fab fa-whatsapp"></i> احصل على العرض
+            </a>
           </div>
-          <div class="proof-number">100%</div>
-          <h4>أمان كامل</h4>
-          <p>لا نطلب حسابات عملائنا أبدًا</p>
         </div>
 
-        <div class="card proof-card fade-in delay-1">
-          <div class="proof-icon">
-            <i class="fas fa-video"></i>
+        <!-- Growth (Featured) -->
+        <div class="package-card featured fade-in delay-1">
+          <div class="pkg-badge">🔥 الأكثر طلبًا</div>
+          <div class="card">
+            <img src="https://i.postimg.cc/L53DZBHP/alakthr-tlba.png" alt="Growth" class="pkg-img">
+            <div class="pkg-header">
+              <div class="pkg-name">Growth</div>
+              <div class="pkg-tagline">الأفضل للنتائج السريعة</div>
+              <div class="pkg-price-old">3499 ج.م</div>
+              <div class="pkg-price-new">1749 <span class="pkg-price-unit">ج.م</span></div>
+            </div>
+            <div class="pkg-divider"></div>
+            <div class="pkg-features">
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>9 فيديو احترافي عالي الجودة</span></div>
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>تحليل الجمهور المستهدف</span></div>
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>استراتيجية نشر متكاملة</span></div>
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>دعم لمدة شهر كامل</span></div>
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>تعديلات مجانية على الفيديوهات</span></div>
+            </div>
+            <a href="https://wa.me/201013381602?text=مرحبًا، أريد الاشتراك في عرض Growth" class="btn btn-gold btn-block">
+              <i class="fas fa-bolt"></i> ابدأ النمو الآن
+            </a>
           </div>
-          <div class="proof-number">10K+</div>
-          <h4>فيديو منشور</h4>
-          <p>فيديوهات حققت انتشارًا واسعًا</p>
         </div>
 
-        <div class="card proof-card fade-in delay-2">
-          <div class="proof-icon">
-            <i class="fas fa-smile"></i>
+        <!-- Dominator -->
+        <div class="package-card fade-in delay-2">
+          <div class="pkg-badge red">عرض خاص</div>
+          <div class="card">
+            <img src="https://i.postimg.cc/L8C8nCfj/ʿly-klay.png" alt="Dominator" class="pkg-img">
+            <div class="pkg-header">
+              <div class="pkg-name">Dominator</div>
+              <div class="pkg-tagline">الهيمنة على السوشيال ميديا</div>
+              <div class="pkg-price-old">5999 ج.م</div>
+              <div class="pkg-price-new">2999 <span class="pkg-price-unit">ج.م</span></div>
+            </div>
+            <div class="pkg-divider"></div>
+            <div class="pkg-features">
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>15 فيديو محترف متنوع المحتوى</span></div>
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>خطة نشر شهرية كاملة</span></div>
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>جلسة استشارية متخصصة</span></div>
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>دعم مباشر على مدار الساعة</span></div>
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>تحليل أداء وتقارير شهرية</span></div>
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>أولوية في الخدمة والدعم</span></div>
+            </div>
+            <a href="https://wa.me/201013381602?text=مرحبًا، أريد الاشتراك في عرض Dominator" class="btn btn-ghost btn-block">
+              <i class="fas fa-crown"></i> احصل على العرض الآن
+            </a>
           </div>
-          <div class="proof-number">98%</div>
-          <h4>رضا العملاء</h4>
-          <p>عملاء سعداء بنتائجنا</p>
-        </div>
-
-        <div class="card proof-card fade-in">
-          <div class="proof-icon">
-            <i class="fas fa-clock"></i>
-          </div>
-          <div class="proof-number">24/7</div>
-          <h4>دعم فني</h4>
-          <p>دعم متاح على مدار الساعة</p>
         </div>
       </div>
     </div>
   </section>
 
-<!-- Portfolio -->
-<section>
-  <div class="container">
-    <h2>كيفية العمل</h2>
-    <p class="lead" style="text-align: center; max-width: 700px; margin: 0 auto 20px;">
-      خطوات بسيطة لتحقيق انتشار حسابك بأمان كامل
-    </p>
-
-    <div class="why-grid" style="margin-top: 30px;">
-      <div class="card fade-in">
-        <div class="feature-icon">
-          <i class="fas fa-clipboard-check"></i>
-        </div>
-        <h3>اختر الباقة</h3>
-        <p>اختر الباقة المناسبة لميزانيتك وأهدافك</p>
+  <!-- Social Proof -->
+  <section class="social-proof">
+    <div class="container">
+      <div class="section-title fade-in">
+        <div class="section-label"><i class="fas fa-star"></i> إثبات اجتماعي</div>
+        <h2>لماذا يثق بنا <span class="text-gold">المئات</span></h2>
       </div>
-
-      <div class="card fade-in delay-1">
-        <div class="feature-icon">
-          <i class="fas fa-video"></i>
+      <div class="proof-grid">
+        <div class="card proof-card fade-in">
+          <div class="proof-icon-wrap"><i class="fas fa-user-shield"></i></div>
+          <div class="proof-num">100%</div>
+          <div class="proof-title">أمان كامل</div>
+          <p class="proof-desc">لا نطلب حسابات عملائنا أبدًا</p>
         </div>
-        <h3>استلم الفيديوهات</h3>
-        <p>تصلك الفيديوهات جاهزة خلال 24-48 ساعة</p>
-      </div>
-
-      <div class="card fade-in delay-2">
-        <div class="feature-icon">
-          <i class="fas fa-upload"></i>
+        <div class="card proof-card fade-in delay-1">
+          <div class="proof-icon-wrap"><i class="fas fa-video"></i></div>
+          <div class="proof-num">10K+</div>
+          <div class="proof-title">فيديو منشور</div>
+          <p class="proof-desc">فيديوهات حققت انتشارًا واسعًا</p>
         </div>
-        <h3>انشر بنفسك</h3>
-        <p>نرشدك للتوقيت والهاشتاجات الأمثل للنشر</p>
-      </div>
-
-      <div class="card fade-in">
-        <div class="feature-icon">
-          <i class="fas fa-chart-line"></i>
+        <div class="card proof-card fade-in delay-2">
+          <div class="proof-icon-wrap"><i class="fas fa-smile"></i></div>
+          <div class="proof-num">98%</div>
+          <div class="proof-title">رضا العملاء</div>
+          <p class="proof-desc">عملاء سعداء بنتائجنا</p>
         </div>
-        <h3>شاهد النتائج</h3>
-        <p>زيادة حقيقية في المتابعين والتفاعل</p>
+        <div class="card proof-card fade-in delay-3">
+          <div class="proof-icon-wrap"><i class="fas fa-headset"></i></div>
+          <div class="proof-num">24/7</div>
+          <div class="proof-title">دعم فني</div>
+          <p class="proof-desc">دعم متاح على مدار الساعة</p>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 
+  <!-- How It Works -->
+  <section class="how-it-works">
+    <div class="container">
+      <div class="section-title fade-in">
+        <div class="section-label"><i class="fas fa-list-ol"></i> كيفية العمل</div>
+        <h2>أربع خطوات <span class="text-gold">للانتشار</span></h2>
+      </div>
+      <div class="steps-grid">
+        <div class="card step-card fade-in">
+          <div class="step-num">01</div>
+          <div class="step-icon"><i class="fas fa-clipboard-check"></i></div>
+          <div class="step-title">اختر الباقة</div>
+          <p class="step-desc">اختر الباقة المناسبة لميزانيتك وأهدافك</p>
+        </div>
+        <div class="card step-card fade-in delay-1">
+          <div class="step-num">02</div>
+          <div class="step-icon"><i class="fas fa-video"></i></div>
+          <div class="step-title">استلم الفيديوهات</div>
+          <p class="step-desc">تصلك الفيديوهات جاهزة خلال 24-48 ساعة</p>
+        </div>
+        <div class="card step-card fade-in delay-2">
+          <div class="step-num">03</div>
+          <div class="step-icon"><i class="fas fa-upload"></i></div>
+          <div class="step-title">انشر بنفسك</div>
+          <p class="step-desc">نرشدك للتوقيت والهاشتاجات الأمثل للنشر</p>
+        </div>
+        <div class="card step-card fade-in delay-3">
+          <div class="step-num">04</div>
+          <div class="step-icon"><i class="fas fa-chart-line"></i></div>
+          <div class="step-title">شاهد النتائج</div>
+          <p class="step-desc">زيادة حقيقية في المتابعين والتفاعل</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="container">
+      <div class="section-title fade-in">
+        <div class="section-label"><i class="fas fa-question"></i> الأسئلة الشائعة</div>
+        <h2>أسئلة <span class="text-gold">وأجوبة</span></h2>
+      </div>
+      <div class="faq-container">
+        <div class="faq-item active">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>هل تحتاجون للوصول إلى حسابي؟</span>
+            <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+          </div>
+          <div class="faq-a">لا، نحن لا نطلب أي بيانات دخول لحسابك. أنت تستلم الفيديوهات وتنشرها بنفسك بالكامل. أمان حسابك هو أولويتنا الأولى.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>كم من الوقت تستغرق تسليم الفيديوهات؟</span>
+            <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+          </div>
+          <div class="faq-a">نسلم الفيديوهات خلال 24 إلى 48 ساعة من بدء العمل، حسب الباقة المختارة وعدد الفيديوهات المطلوبة.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>هل المتابعون الذين سأحصل عليهم حقيقيون؟</span>
+            <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+          </div>
+          <div class="faq-a">نعم، الفيديوهات المحترفة التي نصممها تجذب متابعين حقيقيين مهتمين بمحتواك. لا نستخدم أي أدوات أو طرق مصطنعة.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>ما هي منصات التواصل الاجتماعي التي تدعمونها؟</span>
+            <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+          </div>
+          <div class="faq-a">نتخصص في تيك توك ويوتيوب شورتس، مع دعم إضافي لإنستغرام ريلز. الفيديوهات مصممة لتحقيق أعلى انتشار على هذه المنصات.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>هل يمكنني طلب تعديلات على الفيديوهات؟</span>
+            <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+          </div>
+          <div class="faq-a">نعم، باقتا Growth وDominator تتضمنان تعديلات مجانية. باقة Starter تتضمن تعديلًا واحدًا مجانيًا بعد التسليم.</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <div class="cta-glow"></div>
+    <div class="container cta-inner">
+      <div class="section-label" style="margin:0 auto 2rem;display:inline-flex;"><i class="fas fa-rocket"></i> ابدأ الآن</div>
+      <h2 class="cta-h">جاهز للانطلاق؟<br><span class="text-gold">انتشارك يبدأ اليوم</span></h2>
+      <p class="cta-sub">لا تضيع وقتك في طرق غير مجدية. انضم لمئات العملاء الراضين وابدأ رحلتك نحو الانتشار الحقيقي الآن.</p>
+      <div class="cta-btns">
+        <a href="#pricing" class="btn btn-gold">
+          <i class="fas fa-gem"></i> اختر باقتك الآن
+        </a>
+        <a href="https://wa.me/201013381602" class="btn btn-wa">
+          <i class="fab fa-whatsapp"></i> استشارة مجانية على الواتساب
+        </a>
+      </div>
+      <div class="guarantee">
+        <i class="fas fa-shield-alt"></i>
+        <span>ضمان الجودة الكاملة · لا نطلب بيانات حسابك أبدًا</span>
+      </div>
+    </div>
+  </section>
 
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo-wrap">
+            <div class="logo">
+              <div class="logo-icon"><i class="fas fa-rocket"></i></div>
+              <div class="logo-text">
+                <div class="name">الأسطورة</div>
+                <div class="sub">Combo Reach</div>
+              </div>
+            </div>
+          </div>
+          <p class="footer-desc">خدمة احترافية لتجهيز فيديوهات الانتشار على تيك توك ويوتيوب بأمان تام وبدون تسليم أي حسابات.</p>
+          <div class="footer-contacts">
+            <a href="https://wa.me/201013381602" class="contact-link">
+              <i class="fab fa-whatsapp"></i>
+              <span>201013381602+</span>
+            </a>
+          </div>
+          <div class="socials" style="margin-top:1rem;">
+            <a href="https://wa.me/201013381602" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-tiktok"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-heading">الباقات</div>
+          <ul class="footer-list">
+            <li>باقة Starter — 999 ج.م</li>
+            <li>باقة Growth — 1749 ج.م</li>
+            <li>باقة Dominator — 2999 ج.م</li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">روابط سريعة</div>
+          <ul class="footer-list">
+            <li><a href="#pricing" style="color:var(--muted);">الأسعار والباقات</a></li>
+            <li><a href="https://wa.me/201013381602" style="color:var(--muted);">تواصل معنا</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2024 الأسطورة — Combo Reach. جميع الحقوق محفوظة.</span>
+        <span>صُنع بـ ❤ لنجاحك الرقمي</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleFaq(el) {
+      const item = el.closest('.faq-item');
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+      if (!isActive) item.classList.add('active');
+    }
+
+    // Intersection observer for fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.animationPlayState = 'running';
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      el.style.animationPlayState = 'paused';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
