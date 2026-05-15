@@ -1,1072 +1,1292 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>الأسطورة</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;800;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-/* ═══════════════════════════════════════════════════════
-   ROOT TOKENS
-═══════════════════════════════════════════════════════ */
-:root {
-  --neon-cyan:   #00f5ff;
-  --neon-blue:   #0080ff;
-  --neon-purple: #7b2fff;
-  --neon-pink:   #ff006e;
-  --neon-green:  #00ff88;
-  --neon-gold:   #ffd700;
-  --dark-bg:     #020408;
-  --dark-card:   rgba(6,12,26,0.82);
-  --glass-border:rgba(0,245,255,0.10);
-  --text-primary:#e8f4ff;
-  --text-secondary:rgba(160,210,255,0.70);
-  --text-muted:  rgba(100,155,210,0.42);
-  --ease-expo:   cubic-bezier(0.19,1,0.22,1);
-  --ease-spring: cubic-bezier(0.175,0.885,0.32,1.275);
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="خدمة تجهيز فيديوهات احترافية لزيادة انتشار صفحات تيك توك ويوتيوب بدون تسليم الحساب." />
+  <title>الأسطورة | انتشار آمن بمتابعين حقيقيين</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@300;400;600;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-/* ═══════════════════════════════════════════════════════
-   RESET
-═══════════════════════════════════════════════════════ */
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{
-  width:100%;min-height:100vh;overflow-x:hidden;
-  background:var(--dark-bg);
-  font-family:'Tajawal','Cairo',sans-serif;
-  color:var(--text-primary);
-  -webkit-font-smoothing:antialiased;
-  direction:rtl;
-}
-a{text-decoration:none;color:inherit;}
-button{font-family:inherit;cursor:pointer;border:none;background:none;}
-img{max-width:100%;display:block;}
-::selection{background:rgba(0,245,255,0.22);color:#fff;}
-::-webkit-scrollbar{width:4px;}
-::-webkit-scrollbar-track{background:var(--dark-bg);}
-::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--neon-cyan),var(--neon-purple));border-radius:2px;}
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E0C070;
+      --gold-pale: #F0D898;
+      --gold-dim: rgba(201,168,76,0.12);
+      --gold-glow: rgba(201,168,76,0.25);
+      --black: #050508;
+      --surface: #0A0A10;
+      --surface-2: #0F0F18;
+      --surface-3: #141420;
+      --white: #F5F2EC;
+      --white-dim: rgba(245,242,236,0.72);
+      --white-faint: rgba(245,242,236,0.1);
+      --muted: rgba(245,242,236,0.42);
+      --border: rgba(201,168,76,0.22);
+      --border-faint: rgba(245,242,236,0.07);
+      --border-hover: rgba(201,168,76,0.45);
+      --red: #E05555;
+      --green: #3EC878;
+      --discord: #5865F2;
+      --radius: 18px;
+      --radius-sm: 12px;
+      --radius-xs: 7px;
+      --shadow-gold: 0 0 40px rgba(201,168,76,0.15);
+      --shadow-card: 0 24px 60px rgba(0,0,0,0.55);
+    }
 
-/* ═══════════════════════════════════════════════════════
-   FIXED BACKGROUND (shared across all pages)
-═══════════════════════════════════════════════════════ */
-#bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
-.bg-grid{
-  position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:
-    linear-gradient(rgba(0,245,255,0.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,245,255,0.025) 1px,transparent 1px);
-  background-size:72px 72px;
-  mask-image:radial-gradient(ellipse 85% 85% at 50% 50%,black 10%,transparent 85%);
-  animation:gridDrift 30s linear infinite;
-}
-@keyframes gridDrift{from{background-position:0 0;}to{background-position:72px 72px;}}
-.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(100px);animation:orbFloat ease-in-out infinite;}
-.orb-1{width:700px;height:700px;top:-250px;right:-200px;background:radial-gradient(circle,rgba(0,245,255,0.09),transparent 70%);animation-duration:22s;}
-.orb-2{width:600px;height:600px;bottom:-180px;left:-180px;background:radial-gradient(circle,rgba(123,47,255,0.10),transparent 70%);animation-duration:28s;animation-delay:-12s;}
-.orb-3{width:450px;height:450px;top:35%;left:50%;background:radial-gradient(circle,rgba(0,128,255,0.07),transparent 70%);animation-duration:18s;animation-delay:-7s;}
-@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(40px,-35px) scale(1.06);}66%{transform:translate(-28px,42px) scale(0.94);}}
-.scanlines{position:fixed;inset:0;pointer-events:none;z-index:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.03) 3px,rgba(0,0,0,0.03) 4px);opacity:0.4;}
-#mouse-glow{position:fixed;width:600px;height:600px;border-radius:50%;pointer-events:none;z-index:0;background:radial-gradient(circle,rgba(0,245,255,0.04) 0%,transparent 65%);transform:translate(-50%,-50%);transition:left .18s ease,top .18s ease;}
-.status-bar{position:fixed;top:0;left:0;right:0;height:2px;z-index:1000;background:linear-gradient(90deg,var(--neon-purple),var(--neon-blue),var(--neon-cyan),var(--neon-green),var(--neon-cyan),var(--neon-blue),var(--neon-purple));background-size:200% 100%;animation:statusSlide 4s linear infinite;opacity:.7;}
-@keyframes statusSlide{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
-.corner{position:fixed;width:54px;height:54px;pointer-events:none;z-index:2;opacity:.28;}
-.corner-tl{top:22px;left:22px;border-top:1px solid var(--neon-cyan);border-right:1px solid var(--neon-cyan);border-radius:0 8px 0 0;}
-.corner-tr{top:22px;right:22px;border-top:1px solid var(--neon-cyan);border-left:1px solid var(--neon-cyan);border-radius:8px 0 0 0;}
-.corner-bl{bottom:22px;left:22px;border-bottom:1px solid var(--neon-cyan);border-right:1px solid var(--neon-cyan);border-radius:0 0 0 8px;}
-.corner-br{bottom:22px;right:22px;border-bottom:1px solid var(--neon-cyan);border-left:1px solid var(--neon-cyan);border-radius:0 0 8px 0;}
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-/* ═══════════════════════════════════════════════════════
-   NAVBAR (shared)
-═══════════════════════════════════════════════════════ */
-#navbar{
-  position:fixed;top:2px;left:0;right:0;z-index:500;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 2.2rem;height:62px;
-  background:rgba(2,4,8,0.80);
-  backdrop-filter:blur(28px) saturate(160%);
-  border-bottom:1px solid var(--glass-border);
-  transition:background .4s,box-shadow .4s;
-}
-#navbar.scrolled{background:rgba(2,4,8,0.96);box-shadow:0 1px 0 rgba(0,245,255,0.08),0 8px 32px rgba(0,0,0,0.5);}
-.nav-logo{
-  font-family:'Cairo',sans-serif;font-size:1.25rem;font-weight:900;
-  background:linear-gradient(90deg,var(--neon-cyan),var(--neon-blue));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  cursor:pointer;user-select:none;
-}
-.nav-logo:hover{filter:drop-shadow(0 0 10px rgba(0,245,255,0.6));}
-.nav-links{display:flex;gap:.2rem;list-style:none;}
-.nav-links li a{
-  display:block;color:var(--text-secondary);font-size:.875rem;font-weight:600;
-  padding:.42rem .9rem;border-radius:8px;cursor:pointer;
-  transition:color .25s,background .25s;
-}
-.nav-links li a:hover,.nav-links li a.active{color:var(--neon-cyan);background:rgba(0,245,255,0.07);}
-.nav-back-btn{
-  display:none;align-items:center;gap:8px;
-  padding:.5rem 1.2rem;border-radius:8px;
-  border:1px solid rgba(0,245,255,0.25);
-  background:rgba(0,245,255,0.06);
-  color:var(--neon-cyan);font-size:.875rem;font-weight:700;
-  transition:all .3s;cursor:pointer;
-}
-.nav-back-btn:hover{background:rgba(0,245,255,0.14);box-shadow:0 0 20px rgba(0,245,255,0.2);}
-.nav-back-btn.visible{display:flex;}
+    body {
+      font-family: 'Tajawal', 'Cairo', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+      line-height: 1.8;
+    }
 
-/* ═══════════════════════════════════════════════════════
-   PAGE SYSTEM — smooth transitions
-═══════════════════════════════════════════════════════ */
-.page-view{
-  position:relative;z-index:1;
-  min-height:100vh;
-  padding-top:64px;
-  display:none;
-  opacity:0;
-  transform:translateY(20px);
-  transition:opacity .55s var(--ease-expo),transform .55s var(--ease-expo);
-}
-.page-view.active{
-  display:block;
-  opacity:1;transform:translateY(0);
-}
-/* fade-in trigger */
-.page-view.animating{display:block;}
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.35;
+    }
 
-/* ═══════════════════════════════════════════════════════
-   ████  PAGE 0: GATEWAY  ████
-═══════════════════════════════════════════════════════ */
-#page-gateway{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  min-height:100vh;padding:70px 28px 80px;
-}
-.gw-header{text-align:center;margin-bottom:56px;}
-.gw-logo-wrap{position:relative;width:88px;height:88px;margin:0 auto 26px;}
-.gw-logo-ring-outer{position:absolute;inset:-10px;border-radius:50%;border:1px solid rgba(0,245,255,0.12);animation:ringRotate 16s linear infinite;}
-.gw-logo-ring-outer::before{content:'';position:absolute;top:-3px;left:50%;width:6px;height:6px;border-radius:50%;background:var(--neon-cyan);box-shadow:0 0 10px var(--neon-cyan);transform:translateX(-50%);}
-@keyframes ringRotate{to{transform:rotate(360deg);}}
-.gw-logo-ring{width:88px;height:88px;border-radius:50%;border:1.5px solid rgba(0,245,255,0.35);display:flex;align-items:center;justify-content:center;background:rgba(0,245,255,0.04);backdrop-filter:blur(12px);box-shadow:0 0 40px rgba(0,245,255,0.18),inset 0 0 30px rgba(0,245,255,0.05);animation:logoPulse 4s ease-in-out infinite;}
-@keyframes logoPulse{0%,100%{box-shadow:0 0 40px rgba(0,245,255,0.18),inset 0 0 30px rgba(0,245,255,0.05);}50%{box-shadow:0 0 70px rgba(0,245,255,0.40),inset 0 0 50px rgba(0,245,255,0.10);}}
-.gw-logo-icon{font-family:'Orbitron',sans-serif;font-size:2rem;font-weight:900;background:linear-gradient(135deg,var(--neon-cyan),var(--neon-blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 12px rgba(0,245,255,0.7));}
-.gw-elite-badge{display:inline-flex;align-items:center;gap:8px;font-family:'Orbitron',sans-serif;font-size:.60rem;font-weight:700;letter-spacing:.28em;color:var(--neon-gold);border:1px solid rgba(255,215,0,0.25);padding:6px 18px;border-radius:50px;background:rgba(255,215,0,0.05);margin-bottom:18px;box-shadow:0 0 20px rgba(255,215,0,0.10);backdrop-filter:blur(8px);}
-.gw-elite-badge::before,.gw-elite-badge::after{content:'◈';font-size:.55rem;opacity:.6;}
-.gw-title{font-family:'Cairo',sans-serif;font-size:clamp(3.2rem,8vw,5.8rem);font-weight:900;letter-spacing:-.03em;background:linear-gradient(135deg,#ffffff 0%,var(--neon-cyan) 40%,var(--neon-blue) 75%,var(--neon-purple) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1;margin-bottom:16px;filter:drop-shadow(0 0 40px rgba(0,245,255,0.25));background-size:200% 200%;animation:titleShimmer 6s ease infinite alternate;}
-@keyframes titleShimmer{0%{background-position:0% 50%;}100%{background-position:100% 50%;}}
-.gw-subtitle{font-size:1.05rem;font-weight:300;color:var(--text-secondary);}
-.gw-subtitle span{color:var(--neon-cyan);font-weight:600;}
-.gw-divider{width:240px;height:1px;margin:0 auto 60px;background:linear-gradient(90deg,transparent,var(--neon-cyan),var(--neon-purple),transparent);box-shadow:0 0 12px rgba(0,245,255,0.3);position:relative;}
-.gw-cards{display:grid;grid-template-columns:repeat(3,minmax(0,380px));gap:28px;justify-content:center;width:100%;max-width:1220px;}
+    /* ─── GLOBAL BACKGROUND ─── */
+    .site-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .site-bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.035) 1px, transparent 1px);
+      background-size: 70px 70px;
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, black 20%, transparent 100%);
+    }
+    .site-bg-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      animation: orbDrift 16s ease-in-out infinite;
+    }
+    .site-bg-orb-1 { width: 700px; height: 500px; top: -150px; right: -200px; background: radial-gradient(ellipse, rgba(201,168,76,0.1), transparent 65%); animation-delay: 0s; }
+    .site-bg-orb-2 { width: 500px; height: 400px; bottom: 10%; left: -150px; background: radial-gradient(ellipse, rgba(88,101,242,0.08), transparent 65%); animation-delay: -6s; }
+    .site-bg-orb-3 { width: 400px; height: 400px; top: 45%; right: 25%; background: radial-gradient(ellipse, rgba(201,168,76,0.06), transparent 65%); animation-delay: -11s; }
+    @keyframes orbDrift {
+      0%, 100% { transform: translate(0,0) scale(1); }
+      40% { transform: translate(30px, -25px) scale(1.05); }
+      70% { transform: translate(-20px, 20px) scale(0.97); }
+    }
 
-/* Gateway card */
-.gw-card{
-  position:relative;background:var(--dark-card);border:1px solid var(--glass-border);
-  border-radius:26px;padding:48px 36px 42px;
-  display:flex;flex-direction:column;align-items:center;text-align:center;
-  cursor:pointer;backdrop-filter:blur(28px);overflow:hidden;
-  opacity:0;animation:cardReveal .9s var(--ease-expo) forwards;
-  transition:transform .5s var(--ease-spring),border-color .4s,box-shadow .4s;
-}
-.gw-card:nth-child(1){animation-delay:.9s;}
-.gw-card:nth-child(2){animation-delay:1.1s;}
-.gw-card:nth-child(3){animation-delay:1.3s;}
-@keyframes cardReveal{from{opacity:0;transform:translateY(40px) scale(.96);}to{opacity:1;transform:translateY(0) scale(1);}}
-.gw-card::before{content:'';position:absolute;inset:0;border-radius:26px;background:linear-gradient(135deg,rgba(255,255,255,0.055) 0%,transparent 50%);pointer-events:none;z-index:0;}
-.gw-card::after{content:'';position:absolute;top:0;left:20px;right:20px;height:1px;border-radius:100%;background:linear-gradient(90deg,transparent,var(--c-accent,var(--neon-cyan)),transparent);opacity:.5;transition:opacity .4s;}
-.gw-card-glow{position:absolute;bottom:-60px;left:50%;transform:translateX(-50%);width:200px;height:120px;background:radial-gradient(ellipse,var(--c-accent,var(--neon-cyan)),transparent 70%);opacity:.06;filter:blur(20px);transition:opacity .4s;pointer-events:none;z-index:0;}
-.gw-card:hover{transform:translateY(-14px) scale(1.018);border-color:color-mix(in srgb,var(--c-accent,var(--neon-cyan)) 45%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--c-accent,var(--neon-cyan)) 20%,transparent),0 24px 80px color-mix(in srgb,var(--c-accent,var(--neon-cyan)) 16%,transparent),inset 0 0 50px color-mix(in srgb,var(--c-accent,var(--neon-cyan)) 4%,transparent);}
-.gw-card:hover::after{opacity:1;}
-.gw-card:hover .gw-card-glow{opacity:.14;}
-.gw-card.c-accounts{--c-accent:#00f5ff;}
-.gw-card.c-spread  {--c-accent:#7b2fff;}
-.gw-card.c-course  {--c-accent:#ffd700;}
+    /* Particles */
+    #particles { position: absolute; inset: 0; }
+    .pt {
+      position: absolute;
+      border-radius: 50%;
+      animation: ptRise linear infinite;
+    }
+    @keyframes ptRise {
+      0%   { transform: translateY(100vh) translateX(0); opacity: 0; }
+      8%   { opacity: 1; }
+      92%  { opacity: 1; }
+      100% { transform: translateY(-30px) translateX(40px); opacity: 0; }
+    }
 
-.gw-icon-wrap{width:82px;height:82px;border-radius:22px;border:1px solid color-mix(in srgb,var(--c-accent,var(--neon-cyan)) 30%,transparent);display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--c-accent,var(--neon-cyan)) 7%,rgba(0,0,0,.3));margin-bottom:28px;position:relative;z-index:1;transition:all .5s var(--ease-spring);animation:iconFloat 5s ease-in-out infinite;}
-.gw-card:nth-child(2) .gw-icon-wrap{animation-delay:-1.6s;}
-.gw-card:nth-child(3) .gw-icon-wrap{animation-delay:-3.2s;}
-@keyframes iconFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
-.gw-card:hover .gw-icon-wrap{background:color-mix(in srgb,var(--c-accent,var(--neon-cyan)) 18%,rgba(0,0,0,.4));border-color:color-mix(in srgb,var(--c-accent,var(--neon-cyan)) 60%,transparent);box-shadow:0 0 40px color-mix(in srgb,var(--c-accent,var(--neon-cyan)) 45%,transparent);transform:translateY(-10px) scale(1.08);animation-play-state:paused;}
-.gw-icon-wrap svg{width:38px;height:38px;stroke:var(--c-accent,var(--neon-cyan));fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 8px color-mix(in srgb,var(--c-accent,var(--neon-cyan)) 70%,transparent));transition:filter .4s;}
-.gw-card:hover .gw-icon-wrap svg{filter:drop-shadow(0 0 18px var(--c-accent,var(--neon-cyan)));}
+    /* ─── LAYOUT ─── */
+    .container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
+    section { padding: 110px 0; position: relative; z-index: 1; }
+    img { max-width: 100%; display: block; border-radius: var(--radius); user-select: none; pointer-events: none; -webkit-user-drag: none; }
+    a { text-decoration: none; color: inherit; }
+    ul, ol { list-style: none; }
+    h1, h2, h3, h4 { font-family: 'Cairo', sans-serif; font-weight: 900; line-height: 1.25; color: var(--white); }
+    h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); }
+    h3 { font-size: 1.5rem; }
+    p { color: var(--muted); font-size: 1.05rem; margin-bottom: 1.2rem; }
 
-.gw-card-label{font-family:'Orbitron',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.22em;color:var(--c-accent,var(--neon-cyan));opacity:.65;margin-bottom:10px;text-transform:uppercase;position:relative;z-index:1;}
-.gw-card-title{font-family:'Cairo',sans-serif;font-size:1.85rem;font-weight:900;color:#fff;margin-bottom:14px;position:relative;z-index:1;}
-.gw-card-desc{font-size:.96rem;font-weight:300;color:var(--text-secondary);line-height:1.85;margin-bottom:36px;flex:1;position:relative;z-index:1;max-width:280px;}
-.gw-cta{display:inline-flex;align-items:center;gap:10px;padding:13px 32px;border-radius:50px;border:1px solid color-mix(in srgb,var(--c-accent,var(--neon-cyan)) 45%,transparent);background:color-mix(in srgb,var(--c-accent,var(--neon-cyan)) 9%,rgba(0,0,0,.3));color:var(--c-accent,var(--neon-cyan));font-family:'Cairo',sans-serif;font-size:1rem;font-weight:700;transition:all .35s var(--ease-spring);backdrop-filter:blur(8px);position:relative;z-index:1;overflow:hidden;}
-.gw-card:hover .gw-cta{background:color-mix(in srgb,var(--c-accent,var(--neon-cyan)) 20%,rgba(0,0,0,.3));border-color:color-mix(in srgb,var(--c-accent,var(--neon-cyan)) 70%,transparent);box-shadow:0 0 30px color-mix(in srgb,var(--c-accent,var(--neon-cyan)) 35%,transparent);transform:scale(1.04);}
-.cta-arrow{transition:transform .35s;display:inline-block;}
-.gw-card:hover .cta-arrow{transform:translateX(-5px);}
+    .text-gold {
+      background: linear-gradient(135deg, var(--gold-pale), var(--gold), #8B6F1A);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-/* ═══════════════════════════════════════════════════════
-   ████  PAGE 1: ACCOUNTS  ████
-═══════════════════════════════════════════════════════ */
-#page-accounts{padding:0;}
-/* --- hero --- */
-.acc-hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 5rem;position:relative;z-index:1;}
-.acc-hero-badge{display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(0,212,255,0.25);background:rgba(0,212,255,0.06);color:var(--neon-cyan);font-size:.7rem;font-weight:600;padding:.45rem 1.3rem;border-radius:50px;margin-bottom:2rem;letter-spacing:3px;text-transform:uppercase;font-family:'Orbitron',sans-serif;backdrop-filter:blur(10px);}
-.acc-hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--neon-cyan);box-shadow:0 0 8px var(--neon-cyan);animation:dotBlink 2s ease-in-out infinite;}
-@keyframes dotBlink{0%,100%{opacity:1;}50%{opacity:.3;}}
-.acc-hero-title{font-family:'Cairo',sans-serif;font-size:clamp(4rem,12vw,9rem);font-weight:900;line-height:.95;margin-bottom:.6rem;background:linear-gradient(135deg,var(--neon-cyan) 0%,var(--neon-purple) 50%,var(--neon-green) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 5s ease-in-out infinite alternate;}
-@keyframes shimmer{0%{filter:drop-shadow(0 0 20px rgba(0,245,255,.5));}50%{filter:drop-shadow(0 0 50px rgba(123,47,255,.7));}100%{filter:drop-shadow(0 0 35px rgba(0,255,136,.5));}}
-.acc-hero-sub{font-family:'Orbitron',sans-serif;font-size:.7rem;color:var(--text-muted);letter-spacing:5px;text-transform:uppercase;margin-bottom:1.5rem;}
-.acc-hero-desc{font-size:clamp(1rem,2vw,1.2rem);color:var(--text-secondary);margin-bottom:3rem;max-width:560px;line-height:1.9;}
-.acc-hero-desc span{color:var(--neon-cyan);font-weight:700;}
-.acc-hero-btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
-/* --- buttons shared --- */
-.btn-primary{background:linear-gradient(135deg,var(--neon-cyan),var(--neon-purple));color:#fff;border:none;padding:.95rem 2.4rem;border-radius:14px;font-family:'Cairo',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;transition:transform .3s var(--ease-spring),box-shadow .3s;box-shadow:0 0 30px rgba(0,212,255,.3);}
-.btn-primary:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 0 50px rgba(0,212,255,.55);}
-.btn-secondary{background:rgba(0,212,255,0.06);color:var(--neon-cyan);border:1px solid rgba(0,212,255,.3);padding:.95rem 2.4rem;border-radius:14px;font-family:'Cairo',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;transition:all .3s var(--ease-spring);backdrop-filter:blur(10px);}
-.btn-secondary:hover{transform:translateY(-3px);background:rgba(0,212,255,.13);border-color:rgba(0,212,255,.6);box-shadow:0 0 30px rgba(0,212,255,.25);}
-/* --- accounts grid --- */
-.acc-section{position:relative;z-index:1;padding:5rem 2rem;max-width:1200px;margin:0 auto;}
-.sec-label{font-family:'Orbitron',sans-serif;font-size:.62rem;letter-spacing:5px;color:var(--neon-cyan);text-transform:uppercase;margin-bottom:.6rem;display:block;}
-.sec-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-bottom:.8rem;background:linear-gradient(90deg,#e8f4ff 40%,var(--neon-cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.2;}
-.sec-sub{color:var(--text-secondary);font-size:1rem;margin-bottom:3rem;font-weight:400;line-height:1.7;max-width:500px;}
-.neon-div{width:60px;height:2px;background:linear-gradient(90deg,var(--neon-cyan),var(--neon-purple));margin:1rem 0 1.6rem;border-radius:1px;box-shadow:0 0 12px var(--neon-cyan);}
-.accounts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;}
-.account-card{background:rgba(9,15,24,0.7);border:1px solid rgba(0,212,255,.12);border-radius:22px;overflow:hidden;transition:transform .45s var(--ease-spring),box-shadow .45s,border-color .3s;position:relative;backdrop-filter:blur(24px);}
-.account-card:hover{transform:translateY(-10px) scale(1.015);border-color:rgba(0,212,255,.4);box-shadow:0 0 0 1px rgba(0,212,255,.15),0 0 50px rgba(0,212,255,.18),0 25px 60px rgba(0,0,0,.5);}
-.ac-header{position:relative;padding:1.4rem 1.4rem 1.1rem;display:flex;gap:1rem;align-items:center;border-bottom:1px solid rgba(0,212,255,.07);}
-.ac-avatar{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--neon-cyan),var(--neon-purple));display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 0 20px rgba(0,212,255,.35);position:relative;overflow:hidden;}
-.ac-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
-.ac-info h3{font-size:.98rem;font-weight:700;margin-bottom:.22rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.ac-cat{font-size:.76rem;color:var(--neon-purple);font-weight:600;}
-.ac-body{padding:1.1rem 1.4rem;}
-.ac-stats{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:1rem;}
-.stat-box{background:rgba(0,212,255,.04);border:1px solid rgba(0,212,255,.08);border-radius:10px;padding:.6rem .7rem;text-align:center;}
-.stat-box-label{font-size:.58rem;color:var(--text-muted);font-weight:600;letter-spacing:1.5px;text-transform:uppercase;font-family:'Orbitron',sans-serif;margin-bottom:.22rem;display:block;}
-.stat-box-val{font-size:.92rem;font-weight:700;color:var(--neon-cyan);}
-.ac-platform{display:flex;align-items:center;gap:.5rem;color:var(--text-secondary);font-size:.8rem;margin-bottom:.8rem;}
-.ac-footer{padding:0 1.4rem 1.4rem;}
-.btn-buy{background:linear-gradient(135deg,var(--neon-cyan),var(--neon-purple));color:#fff;border:none;padding:.78rem 1.4rem;border-radius:10px;font-family:'Cairo',sans-serif;font-weight:700;font-size:.93rem;cursor:pointer;transition:transform .25s var(--ease-spring),box-shadow .25s;box-shadow:0 0 18px rgba(0,212,255,.25);width:100%;}
-.btn-buy:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 0 35px rgba(0,212,255,.5);}
-/* stats strip */
-.stats-strip{background:rgba(9,15,24,.7);border:1px solid rgba(0,212,255,.12);border-radius:22px;padding:3rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:2rem;position:relative;overflow:hidden;backdrop-filter:blur(24px);margin:0 2rem 5rem;max-width:1200px;margin-inline:auto;}
-.stats-strip::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--neon-cyan),var(--neon-purple),transparent);}
-.stat-blk{text-align:center;}
-.stat-num{font-size:clamp(2rem,4vw,3rem);font-weight:900;font-family:'Orbitron',sans-serif;background:linear-gradient(135deg,var(--neon-cyan),var(--neon-green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;margin-bottom:.4rem;filter:drop-shadow(0 0 10px rgba(0,212,255,.3));}
-.stat-lbl{color:var(--text-secondary);font-size:.88rem;font-weight:600;}
-/* reviews */
-.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.3rem;}
-.review-card{background:rgba(9,15,24,.7);border:1px solid rgba(0,212,255,.12);border-radius:18px;padding:1.7rem;transition:transform .4s var(--ease-spring),box-shadow .4s,border-color .3s;position:relative;overflow:hidden;backdrop-filter:blur(20px);}
-.review-card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,212,255,.15),transparent);}
-.review-card:hover{transform:translateY(-6px);border-color:rgba(0,212,255,.28);box-shadow:0 0 30px rgba(0,212,255,.1),0 15px 45px rgba(0,0,0,.4);}
-.review-stars{color:#f0b90b;margin-bottom:.9rem;font-size:.85rem;letter-spacing:3px;}
-.review-text{color:var(--text-secondary);font-size:.9rem;line-height:1.85;margin-bottom:1.4rem;}
-.review-author{display:flex;align-items:center;gap:.9rem;}
-.author-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--neon-purple),var(--neon-cyan));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;box-shadow:0 0 14px rgba(123,47,255,.35);}
-.author-name{font-weight:700;font-size:.86rem;margin-bottom:.12rem;}
-.author-loc{font-size:.7rem;color:var(--text-muted);font-family:'Orbitron',sans-serif;}
-/* contact */
-.contact-section{text-align:center;padding:5rem 2rem;}
-.contact-btns{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:2rem;}
-.cbtn{display:inline-flex;align-items:center;gap:.8rem;padding:.92rem 2rem;border-radius:14px;font-family:'Cairo',sans-serif;font-weight:700;font-size:.93rem;color:#fff;border:none;cursor:pointer;transition:transform .3s var(--ease-spring),box-shadow .3s;min-width:155px;justify-content:center;text-decoration:none;}
-.cbtn:hover{transform:translateY(-4px) scale(1.03);}
-.cbtn-wa{background:linear-gradient(135deg,#25d366,#128c7e);box-shadow:0 0 22px rgba(37,211,102,.25);}
-.cbtn-wa:hover{box-shadow:0 0 40px rgba(37,211,102,.55);}
-.cbtn-dc{background:linear-gradient(135deg,#5865f2,#7289da);box-shadow:0 0 22px rgba(88,101,242,.25);}
-.cbtn-dc:hover{box-shadow:0 0 40px rgba(88,101,242,.55);}
+    /* ─── SECTION LABEL ─── */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: var(--gold-dim);
+      border: 1px solid var(--border);
+      padding: 7px 18px;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(8px);
+    }
 
-/* ═══════════════════════════════════════════════════════
-   ████  PAGE 2: SPREAD  ████
-═══════════════════════════════════════════════════════ */
-#page-spread{padding:0;}
-/* reuse acc-hero style with gold theme */
-.sprd-hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 5rem;position:relative;z-index:1;}
-.sprd-badge{display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(201,168,76,.25);background:rgba(201,168,76,.06);color:var(--neon-gold);font-size:.7rem;font-weight:600;padding:.45rem 1.3rem;border-radius:50px;margin-bottom:2rem;letter-spacing:3px;text-transform:uppercase;font-family:'Orbitron',sans-serif;backdrop-filter:blur(10px);}
-.sprd-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--neon-green);box-shadow:0 0 8px var(--neon-green);animation:dotBlink 2s ease-in-out infinite;}
-.sprd-title{font-family:'Cairo',sans-serif;font-size:clamp(2.4rem,5vw,3.8rem);font-weight:900;line-height:1.3;margin-bottom:1.4rem;background:linear-gradient(135deg,#f0d898,#c9a84c,#8b6f1a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.sprd-desc{font-size:1.1rem;color:var(--text-secondary);margin-bottom:2.5rem;max-width:560px;line-height:1.9;}
-.sprd-feats{display:flex;flex-direction:column;gap:11px;margin-bottom:2.5rem;max-width:480px;margin-inline:auto;}
-.sprd-feat{display:flex;align-items:center;gap:12px;font-size:.95rem;color:var(--text-secondary);padding:9px 16px;background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.08);border-radius:10px;transition:all .3s;text-align:right;}
-.sprd-feat:hover{background:rgba(201,168,76,.09);border-color:rgba(201,168,76,.18);}
-.sprd-feat-dot{width:6px;height:6px;background:var(--neon-gold);border-radius:50%;flex-shrink:0;box-shadow:0 0 6px rgba(255,215,0,.6);}
-/* packages */
-.pkg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:24px;align-items:start;}
-.pkg-card{background:rgba(12,12,22,.8);border:1px solid rgba(201,168,76,.15);border-radius:22px;padding:32px 26px;position:relative;overflow:hidden;backdrop-filter:blur(14px);transition:all .4s var(--ease-spring);}
-.pkg-card.featured{border-color:rgba(201,168,76,.4);box-shadow:0 0 0 1px rgba(201,168,76,.18),0 35px 70px rgba(0,0,0,.6),0 0 40px rgba(201,168,76,.1);}
-.pkg-card:hover{transform:translateY(-8px);box-shadow:0 0 40px rgba(201,168,76,.15),0 30px 60px rgba(0,0,0,.5);}
-.pkg-top-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#e0c070,#c9a84c);color:#080500;padding:5px 22px;border-radius:50px;font-weight:800;font-size:.78rem;white-space:nowrap;z-index:2;box-shadow:0 4px 16px rgba(201,168,76,.35);}
-.pkg-top-badge.red{background:linear-gradient(135deg,#ff6e6e,#e05555);color:#fff;}
-.pkg-img{width:100%;height:170px;object-fit:cover;border-radius:14px;margin-bottom:1.5rem;border:1px solid rgba(201,168,76,.15);}
-.pkg-name{font-size:1.3rem;font-weight:900;margin-bottom:.4rem;letter-spacing:1px;font-family:'Orbitron',sans-serif;background:linear-gradient(135deg,#f0d898,#c9a84c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.pkg-tagline{font-size:.86rem;color:var(--text-muted);margin-bottom:.8rem;}
-.pkg-old{font-size:.95rem;color:var(--text-muted);text-decoration:line-through;}
-.pkg-price{font-size:2.2rem;font-weight:900;font-family:'Orbitron',sans-serif;background:linear-gradient(135deg,#f0d898,#c9a84c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;}
-.pkg-unit{font-size:.82rem;color:var(--text-muted);font-family:'Cairo',sans-serif;}
-.pkg-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.15),transparent);margin:1.4rem 0;}
-.pkg-feats{margin-bottom:1.8rem;}
-.pkg-feat-item{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:.88rem;color:var(--text-secondary);border-bottom:1px solid rgba(255,255,255,.04);}
-.pkg-feat-item:last-child{border-bottom:none;}
-.pkg-feat-item i{color:var(--neon-gold);font-size:.8rem;flex-shrink:0;}
-.btn-gold{background:linear-gradient(135deg,#e0c070,#c9a84c,#8b6914);color:#080500;font-weight:900;border:none;padding:.85rem 1.6rem;border-radius:50px;font-family:'Cairo',sans-serif;font-size:.97rem;cursor:pointer;width:100%;box-shadow:0 0 0 1px rgba(201,168,76,.4),0 8px 32px rgba(201,168,76,.28);transition:all .3s var(--ease-spring);}
-.btn-gold:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(201,168,76,.6),0 16px 40px rgba(201,168,76,.38);}
-.btn-ghost-sprd{background:rgba(245,242,236,.07);color:#fff;border:1px solid rgba(245,242,236,.12);padding:.85rem 1.6rem;border-radius:50px;font-family:'Cairo',sans-serif;font-weight:700;font-size:.97rem;cursor:pointer;width:100%;transition:all .3s var(--ease-spring);}
-.btn-ghost-sprd:hover{transform:translateY(-2px);background:rgba(245,242,236,.12);}
-/* steps */
-.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;}
-.step-card{background:rgba(12,12,22,.8);border:1px solid rgba(201,168,76,.12);border-radius:20px;padding:32px 22px;text-align:center;backdrop-filter:blur(14px);transition:all .4s var(--ease-spring);}
-.step-card:hover{transform:translateY(-6px);border-color:rgba(201,168,76,.28);box-shadow:0 0 30px rgba(201,168,76,.1);}
-.step-num{width:52px;height:52px;border-radius:50%;background:rgba(14,14,24,.9);border:1px solid rgba(201,168,76,.3);display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-weight:900;font-size:.95rem;color:var(--neon-gold);margin:0 auto 1.4rem;}
-.step-icon-big{font-size:1.7rem;color:var(--neon-gold);margin-bottom:.9rem;}
-.step-title{font-size:1.05rem;font-weight:700;margin-bottom:.55rem;}
-.step-desc{font-size:.86rem;color:var(--text-muted);}
+    .section-title { text-align: center; margin-bottom: 4rem; }
+    .section-title h2 { margin-bottom: 0.75rem; }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 1rem auto 0;
+      border-radius: 2px;
+    }
 
-/* ═══════════════════════════════════════════════════════
-   ████  PAGE 3: COURSE  ████
-═══════════════════════════════════════════════════════ */
-#page-course{padding:0;}
-.crs-hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 5rem;position:relative;z-index:1;}
-.crs-badge{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:999px;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);color:#c4b5fd;font-size:.9rem;font-weight:600;margin-bottom:24px;animation:pglow 3s ease-in-out infinite;}
-@keyframes pglow{0%,100%{box-shadow:0 0 0 0 rgba(124,58,237,.3);}50%{box-shadow:0 0 0 8px rgba(124,58,237,0);}}
-.crs-badge::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--neon-green);box-shadow:0 0 8px var(--neon-green);animation:dotBlink 2s infinite;}
-.crs-title{font-family:'Cairo',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:900;line-height:1.3;margin-bottom:22px;letter-spacing:-1px;}
-.crs-grad{background:linear-gradient(135deg,#f472b6 0%,#a78bfa 50%,#60a5fa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 200%;animation:gradShift 4s ease infinite;}
-@keyframes gradShift{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
-.crs-desc{color:var(--text-secondary);margin-bottom:28px;font-size:1.05rem;line-height:1.9;max-width:560px;}
-.crs-warning{display:inline-flex;align-items:flex-start;gap:8px;padding:14px 18px;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);border-radius:12px;color:#fcd34d;font-size:.9rem;margin-bottom:28px;}
-/* learn box */
-.learn-box{background:rgba(15,20,50,.9);border:1px solid rgba(167,139,250,.2);border-radius:22px;padding:32px;backdrop-filter:blur(16px);box-shadow:0 0 30px rgba(167,139,250,.1),0 30px 60px rgba(0,0,0,.4);max-width:500px;margin:0 auto;}
-.learn-box h3{text-align:center;margin-bottom:20px;font-size:1.2rem;font-weight:700;}
-.learn-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid rgba(167,139,250,.08);transition:all .3s;}
-.learn-item:last-child{border-bottom:none;}
-.learn-item:hover{padding-right:6px;}
-.learn-item-icon{width:32px;height:32px;background:rgba(167,139,250,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;border:1px solid rgba(167,139,250,.15);}
-/* features */
-.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
-.feat-card{background:rgba(10,15,35,.75);border:1px solid rgba(167,139,250,.15);border-radius:20px;padding:30px 26px;text-align:center;transition:all .4s var(--ease-spring);position:relative;overflow:hidden;backdrop-filter:blur(12px);}
-.feat-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--neon-purple),transparent);transform:scaleX(0);transition:transform .4s;}
-.feat-card:hover{transform:translateY(-8px);border-color:rgba(167,139,250,.35);box-shadow:0 0 30px rgba(167,139,250,.15);}
-.feat-card:hover::before{transform:scaleX(1);}
-.feat-icon-wrap{width:64px;height:64px;border-radius:18px;background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(219,39,119,.1));border:1px solid rgba(167,139,250,.2);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 18px;transition:all .4s;}
-.feat-card:hover .feat-icon-wrap{background:linear-gradient(135deg,rgba(124,58,237,.35),rgba(219,39,119,.2));box-shadow:0 0 20px rgba(167,139,250,.3);transform:scale(1.1) rotate(5deg);}
-.feat-card h3{font-size:1.1rem;font-weight:700;margin-bottom:10px;}
-/* curriculum */
-.curr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px;}
-.curr-card{background:rgba(10,15,35,.75);border:1px solid rgba(167,139,250,.15);border-radius:20px;padding:28px;backdrop-filter:blur(12px);transition:all .4s var(--ease-spring);position:relative;overflow:hidden;}
-.curr-card::before{content:'';position:absolute;top:0;right:0;width:4px;height:0;background:linear-gradient(180deg,#a78bfa,#f472b6);transition:height .4s;}
-.curr-card:hover{transform:translateY(-5px);border-color:rgba(167,139,250,.3);box-shadow:0 0 30px rgba(167,139,250,.1);}
-.curr-card:hover::before{height:100%;}
-.curr-num{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:linear-gradient(135deg,#7c3aed,#db2777);border-radius:10px;font-size:.82rem;font-weight:900;margin-bottom:14px;font-family:'Orbitron',sans-serif;box-shadow:0 4px 15px rgba(124,58,237,.4);}
-.curr-card h3{font-size:1.02rem;font-weight:700;margin-bottom:10px;}
-.curr-card p{color:var(--text-secondary);font-size:.9rem;line-height:2;}
-/* pricing */
-.crs-pkg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:24px;align-items:start;}
-.crs-pkg{background:rgba(10,15,35,.75);border:1px solid rgba(167,139,250,.15);border-radius:22px;padding:30px 24px;text-align:center;backdrop-filter:blur(14px);transition:all .4s var(--ease-spring);position:relative;overflow:hidden;}
-.crs-pkg::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(167,139,250,.5),transparent);}
-.crs-pkg:hover{transform:translateY(-8px);box-shadow:0 0 30px rgba(167,139,250,.15),0 30px 60px rgba(0,0,0,.4);}
-.crs-pkg.featured-crs{border-color:rgba(139,92,246,.5);background:linear-gradient(135deg,rgba(15,20,50,.9),rgba(10,14,38,.95));}
-.crs-pkg.vip-crs{background:linear-gradient(135deg,rgba(30,20,5,.9),rgba(20,14,3,.95));border-color:rgba(251,191,36,.3);}
-.crs-pkg img{width:100%;border-radius:14px;margin-bottom:18px;border:1px solid rgba(167,139,250,.15);}
-.crs-pkg-badge{display:inline-block;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;padding:5px 18px;border-radius:50px;font-weight:800;font-size:.75rem;margin-bottom:14px;}
-.crs-pkg-badge.gold{background:linear-gradient(135deg,#d97706,#b45309);}
-.crs-price{font-size:2.4rem;font-weight:900;font-family:'Orbitron',sans-serif;margin:10px 0 4px;background:linear-gradient(135deg,#f1f5f9,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.vip-crs .crs-price{background:linear-gradient(135deg,#fbbf24,#f59e0b);-webkit-background-clip:text;background-clip:text;}
-.crs-orig{text-decoration:line-through;color:var(--text-muted);font-size:.9rem;margin-bottom:12px;}
-.crs-feat-list{list-style:none;text-align:right;margin-bottom:22px;}
-.crs-feat-list li{padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:center;gap:8px;font-size:.9rem;color:var(--text-secondary);}
-.crs-feat-list li:last-child{border-bottom:none;}
-.crs-feat-list .yes{color:var(--text-primary);}
-.btn-purple{background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;border:none;padding:.85rem 1.4rem;border-radius:50px;font-family:'Cairo',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;width:100%;box-shadow:0 6px 20px rgba(124,58,237,.35);transition:all .3s var(--ease-spring);}
-.btn-purple:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(124,58,237,.5);}
-.btn-outline-crs{border:1.5px solid rgba(167,139,250,.5);color:#a78bfa;background:rgba(167,139,250,.05);padding:.85rem 1.4rem;border-radius:50px;font-family:'Cairo',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;width:100%;transition:all .3s var(--ease-spring);}
-.btn-outline-crs:hover{transform:translateY(-2px);border-color:#a78bfa;background:rgba(167,139,250,.12);}
-.btn-vip{background:linear-gradient(135deg,#d97706,#b45309);color:#fff;border:1px solid rgba(251,191,36,.3);padding:.85rem 1.4rem;border-radius:50px;font-family:'Cairo',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;width:100%;box-shadow:0 6px 20px rgba(217,119,6,.3);transition:all .3s var(--ease-spring);}
-.btn-vip:hover{transform:translateY(-2px);}
-/* discord */
-.discord-box{text-align:center;padding:50px 40px;background:linear-gradient(135deg,rgba(88,101,242,.1),rgba(88,101,242,.04));border-radius:22px;border:1px solid rgba(88,101,242,.2);backdrop-filter:blur(12px);position:relative;overflow:hidden;}
-.discord-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(88,101,242,.6),transparent);}
-.btn-discord-big{display:inline-flex;align-items:center;justify-content:center;gap:12px;background:linear-gradient(135deg,#5865f2,#4752c4);color:#fff;padding:16px 36px;border-radius:999px;font-weight:700;font-size:1.05rem;margin-top:24px;transition:all .35s var(--ease-spring);border:1px solid rgba(255,255,255,.1);font-family:'Cairo',sans-serif;cursor:pointer;text-decoration:none;}
-.btn-discord-big:hover{transform:translateY(-4px);box-shadow:0 15px 35px rgba(88,101,242,.45);}
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 34px;
+      border-radius: 50px;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .btn:hover::before { opacity: 1; }
 
-/* ═══════════════════════════════════════════════════════
-   SHARED SECTION WRAPPER
-═══════════════════════════════════════════════════════ */
-.pg-section{position:relative;z-index:1;padding:5rem 2rem;max-width:1200px;margin:0 auto;}
-.pg-section.center{text-align:center;}
-.pg-section.center .sec-sub{margin-inline:auto;}
-.pg-section.center .neon-div{margin-inline:auto;}
-.page-footer{position:relative;z-index:1;border-top:1px solid rgba(0,245,255,.08);padding:3rem 2rem 2.5rem;text-align:center;background:rgba(2,4,8,.8);backdrop-filter:blur(20px);}
-.page-footer-logo{font-size:2rem;font-weight:900;background:linear-gradient(90deg,var(--neon-cyan),var(--neon-purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;margin-bottom:.5rem;font-family:'Cairo',sans-serif;}
-.page-footer-copy{color:var(--text-muted);font-size:.78rem;line-height:1.8;}
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold), #8B6914);
+      color: #080500;
+      font-weight: 900;
+      box-shadow: 0 0 0 1px rgba(201,168,76,0.4), 0 8px 32px rgba(201,168,76,0.28);
+    }
+    .btn-gold:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 0 1px rgba(201,168,76,0.6), 0 16px 40px rgba(201,168,76,0.38), 0 0 60px rgba(201,168,76,0.15);
+    }
 
-/* ═══════════════════════════════════════════════════════
-   FLOATING WHATSAPP
-═══════════════════════════════════════════════════════ */
-.float-wa{position:fixed;bottom:24px;left:24px;z-index:800;display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;padding:12px 20px;border-radius:999px;font-family:'Cairo',sans-serif;font-weight:700;font-size:.92rem;box-shadow:0 6px 24px rgba(37,211,102,.45);transition:all .35s var(--ease-spring);border:1px solid rgba(255,255,255,.15);direction:ltr;text-decoration:none;}
-.float-wa:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 14px 36px rgba(37,211,102,.55);}
-.float-wa-pulse{position:fixed;bottom:24px;left:24px;z-index:799;width:52px;height:52px;border-radius:50%;background:rgba(37,211,102,.3);animation:waPulse 2.5s ease-out infinite;pointer-events:none;}
-@keyframes waPulse{0%{transform:scale(1);opacity:.7;}70%{transform:scale(2.2);opacity:0;}100%{transform:scale(2.2);opacity:0;}}
+    .btn-ghost {
+      background: rgba(245,242,236,0.07);
+      color: var(--white);
+      border: 1px solid rgba(245,242,236,0.12);
+      backdrop-filter: blur(10px);
+    }
+    .btn-ghost:hover {
+      transform: translateY(-3px);
+      background: rgba(245,242,236,0.12);
+      border-color: rgba(245,242,236,0.22);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
 
-/* ═══════════════════════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════════════════════ */
-@media(max-width:900px){
-  .gw-cards{grid-template-columns:1fr;max-width:420px;}
-  #navbar .nav-links{display:none;}
-  .corner{display:none;}
-}
-@media(max-width:600px){
-  #page-gateway{padding:50px 16px 70px;}
-  .gw-title{font-size:3rem;}
-  .gw-cards{gap:18px;}
-  .gw-card{padding:36px 22px 30px;}
-  .acc-hero-btns{flex-direction:column;align-items:stretch;}
-  .sprd-feats{max-width:100%;}
-  .pkg-grid,.steps-grid,.feat-grid,.curr-grid,.crs-pkg-grid{grid-template-columns:1fr;}
-  .float-wa{left:12px;bottom:16px;padding:10px 16px;font-size:.83rem;}
-  .float-wa-pulse{left:12px;bottom:16px;}
-  .discord-box{padding:30px 18px;}
-  body{padding-bottom:80px;}
-}
-</style>
+    .btn-block { width: 100%; }
+
+    .btn-wa {
+      background: rgba(30,60,38,0.8);
+      color: #5DE095;
+      border: 1px solid rgba(76,175,125,0.3);
+      backdrop-filter: blur(10px);
+    }
+    .btn-wa:hover {
+      background: rgba(35,70,44,0.9);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(76,175,125,0.2), 0 0 0 1px rgba(76,175,125,0.4);
+    }
+
+    .btn-discord {
+      background: rgba(28,30,60,0.8);
+      color: #9BA4FF;
+      border: 1px solid rgba(88,101,242,0.3);
+      backdrop-filter: blur(10px);
+    }
+    .btn-discord:hover {
+      background: rgba(33,36,75,0.9);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(88,101,242,0.2), 0 0 0 1px rgba(88,101,242,0.4);
+    }
+
+    /* ─── CARDS ─── */
+    .card {
+      background: rgba(12, 12, 22, 0.8);
+      border: 1px solid var(--border-faint);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, var(--gold-dim), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s;
+      pointer-events: none;
+    }
+    .card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .card:hover::before, .card:hover::after { opacity: 1; }
+    .card:hover {
+      border-color: var(--border);
+      transform: translateY(-7px);
+      box-shadow: var(--shadow-card), var(--shadow-gold);
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(5,5,8,0.75);
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+      transition: all 0.4s ease;
+    }
+    header.scrolled {
+      background: rgba(5,5,8,0.92);
+      border-bottom-color: rgba(201,168,76,0.18);
+    }
+
+    .nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; }
+
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo-icon {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, var(--gold), #8B6914);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      color: #080500;
+      box-shadow: 0 0 20px rgba(201,168,76,0.35);
+      transition: box-shadow 0.3s ease;
+    }
+    .logo:hover .logo-icon { box-shadow: 0 0 30px rgba(201,168,76,0.5); }
+    .logo-text { font-family: 'Cairo', sans-serif; font-weight: 900; font-size: 1.4rem; line-height: 1.1; }
+    .logo-text .name {
+      background: linear-gradient(135deg, var(--gold-pale), var(--gold));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .logo-text .sub { font-size: 0.7rem; font-weight: 400; color: var(--muted); letter-spacing: 0.12em; }
+
+    .nav-btns { display: flex; gap: 10px; align-items: center; }
+
+    /* ─── HERO ─── */
+    .hero { padding: 100px 0 80px; position: relative; }
+    .hero-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .hero-orb { position: absolute; border-radius: 50%; filter: blur(90px); }
+    .hero-orb-1 { width: 650px; height: 650px; top: -220px; right: -170px; background: radial-gradient(circle, rgba(201,168,76,0.13), transparent 68%); animation: orbDrift 14s ease-in-out infinite; }
+    .hero-orb-2 { width: 450px; height: 450px; bottom: -50px; left: -120px; background: radial-gradient(circle, rgba(88,101,242,0.09), transparent 68%); animation: orbDrift 18s ease-in-out infinite reverse; }
+
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 70px; align-items: center; }
+
+    .hero-eyebrow { display: flex; align-items: center; gap: 8px; margin-bottom: 1.5rem; }
+    .hero-eyebrow-dot {
+      width: 8px; height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--green);
+      animation: dotPulse 2s infinite;
+    }
+    @keyframes dotPulse {
+      0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 10px var(--green); }
+      50% { opacity: 0.6; transform: scale(0.8); box-shadow: 0 0 4px var(--green); }
+    }
+    .hero-eyebrow-text { font-size: 0.85rem; color: var(--white-dim); letter-spacing: 0.05em; }
+
+    .hero h1 { margin-bottom: 1.4rem; }
+
+    .hero-desc { font-size: 1.1rem; color: var(--white-dim); margin-bottom: 2.5rem; line-height: 1.85; }
+
+    .hero-features { display: flex; flex-direction: column; gap: 11px; margin-bottom: 2.5rem; }
+    .hero-feat {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 0.95rem; color: var(--white-dim);
+      padding: 8px 14px;
+      background: rgba(201,168,76,0.04);
+      border: 1px solid rgba(201,168,76,0.08);
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+    .hero-feat:hover {
+      background: rgba(201,168,76,0.08);
+      border-color: rgba(201,168,76,0.18);
+      padding-right: 18px;
+    }
+    .hero-feat-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 6px var(--gold-glow); }
+
+    .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 3rem; }
+
+    .hero-stats {
+      display: flex; gap: 0;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-faint);
+    }
+    .stat-item { flex: 1; padding: 0 20px; text-align: center; border-left: 1px solid var(--border-faint); }
+    .stat-item:last-child { border-left: none; }
+    .stat-num {
+      font-family: 'Orbitron', 'Cairo', sans-serif;
+      font-weight: 900;
+      font-size: 1.9rem;
+      background: linear-gradient(135deg, var(--gold-pale), var(--gold));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      line-height: 1; margin-bottom: 5px;
+    }
+    .stat-label { font-size: 0.82rem; color: var(--muted); }
+
+    /* Hero panel */
+    .hero-panel {
+      background: rgba(12,12,22,0.85);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 38px;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-gold), var(--shadow-card);
+    }
+    .hero-panel::before {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 220px; height: 220px;
+      background: radial-gradient(circle, rgba(201,168,76,0.12), transparent 65%);
+      pointer-events: none;
+    }
+    .hero-panel::after {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent);
+    }
+
+    .panel-icon {
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg, var(--gold), #6B4E0A);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; color: #080500;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 8px 24px rgba(201,168,76,0.3);
+    }
+    .panel-title { font-size: 1.65rem; font-weight: 900; margin-bottom: 0.75rem; }
+    .panel-desc { color: var(--white-dim); font-size: 1rem; margin-bottom: 2rem; }
+    .panel-badges { display: flex; flex-direction: column; gap: 10px; }
+    .panel-badge {
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(245,242,236,0.04);
+      border: 1px solid rgba(201,168,76,0.1);
+      border-radius: var(--radius-sm);
+      padding: 13px 16px;
+      font-size: 0.9rem; color: var(--white-dim);
+      transition: all 0.3s ease;
+    }
+    .panel-badge:hover {
+      background: rgba(201,168,76,0.07);
+      border-color: rgba(201,168,76,0.22);
+    }
+    .panel-badge i { color: var(--gold); font-size: 1rem; }
+
+    /* ─── P/S SECTION ─── */
+    .ps-section { background: var(--surface); border-top: 1px solid rgba(201,168,76,0.08); border-bottom: 1px solid rgba(201,168,76,0.08); }
+    .ps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+
+    .ps-card { padding: 40px 36px; }
+    .ps-card.problem { border-color: rgba(224,85,85,0.2); background: rgba(224,85,85,0.03); }
+    .ps-card.problem:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 30px rgba(224,85,85,0.08); }
+    .ps-card.solution { border-color: rgba(62,200,120,0.22); background: rgba(62,200,120,0.03); }
+    .ps-card.solution:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 30px rgba(62,200,120,0.08); }
+
+    .ps-header { display: flex; align-items: center; gap: 14px; margin-bottom: 1.5rem; }
+    .ps-icon-wrap { width: 50px; height: 50px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+    .problem .ps-icon-wrap { background: rgba(224,85,85,0.14); color: var(--red); }
+    .solution .ps-icon-wrap { background: rgba(62,200,120,0.14); color: var(--green); }
+
+    .ps-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--border-faint);
+      color: var(--muted); font-size: 0.95rem; line-height: 1.55;
+      transition: all 0.25s ease;
+    }
+    .ps-list li:hover { color: var(--white-dim); padding-right: 5px; }
+    .ps-list li:last-child { border-bottom: none; }
+    .ps-list i { margin-top: 3px; flex-shrink: 0; }
+    .problem .ps-list i { color: var(--red); opacity: 0.7; }
+    .solution .ps-list i { color: var(--green); }
+
+    /* ─── PACKAGES ─── */
+    .packages { background: var(--black); }
+    .package-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
+    .package-card { position: relative; }
+    .package-card.featured { margin-top: -16px; }
+
+    .package-card.featured .card {
+      border-color: var(--border);
+      background: rgba(15,14,24,0.95);
+      box-shadow: 0 0 0 1px rgba(201,168,76,0.25), 0 35px 70px rgba(0,0,0,0.6), var(--shadow-gold);
+    }
+
+    .pkg-badge {
+      position: absolute;
+      top: -14px; left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: #080500;
+      padding: 6px 24px;
+      border-radius: 50px;
+      font-weight: 800; font-size: 0.82rem;
+      white-space: nowrap; z-index: 2;
+      box-shadow: 0 4px 16px rgba(201,168,76,0.35);
+    }
+    .pkg-badge.red {
+      background: linear-gradient(135deg, #ff6e6e, var(--red));
+      color: white;
+      box-shadow: 0 4px 16px rgba(224,85,85,0.3);
+    }
+
+    .pkg-img {
+      width: 100%; height: 180px;
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border-faint);
+      transition: all 0.4s ease;
+    }
+    .card:hover .pkg-img { border-color: var(--border); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+
+    .pkg-header { margin-bottom: 1.5rem; }
+    .pkg-name { font-size: 1.35rem; font-weight: 900; margin-bottom: 0.4rem; color: var(--white); font-family: 'Orbitron', 'Cairo', sans-serif; letter-spacing: 1px; }
+    .pkg-tagline { font-size: 0.88rem; color: var(--muted); margin-bottom: 1rem; }
+    .pkg-price-old { font-size: 1rem; color: var(--muted); text-decoration: line-through; }
+    .pkg-price-new {
+      font-size: 2.3rem; font-weight: 900;
+      background: linear-gradient(135deg, var(--gold-pale), var(--gold));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      line-height: 1;
+      font-family: 'Orbitron', sans-serif;
+    }
+    .pkg-price-unit { font-size: 0.85rem; color: var(--muted); font-weight: 400; font-family: 'Cairo', sans-serif; }
+    .pkg-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border-faint), transparent); margin: 1.5rem 0; }
+
+    .pkg-features { flex-grow: 1; margin-bottom: 2rem; }
+    .pkg-feat {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 0; font-size: 0.9rem; color: var(--white-dim);
+      border-bottom: 1px solid rgba(245,242,236,0.04);
+      transition: all 0.25s ease;
+    }
+    .pkg-feat:last-child { border-bottom: none; }
+    .pkg-feat:hover { color: var(--white); padding-right: 4px; }
+    .pkg-feat i { color: var(--gold); font-size: 0.85rem; flex-shrink: 0; }
+
+    /* ─── SOCIAL PROOF ─── */
+    .social-proof { background: var(--surface); }
+    .proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .proof-card { text-align: center; padding: 36px 20px; }
+
+    .proof-icon-wrap {
+      width: 58px; height: 58px;
+      background: var(--gold-dim);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 1.3rem; color: var(--gold);
+      transition: all 0.4s ease;
+    }
+    .card:hover .proof-icon-wrap {
+      background: rgba(201,168,76,0.2);
+      box-shadow: 0 0 20px rgba(201,168,76,0.2);
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .proof-num {
+      font-family: 'Orbitron', 'Cairo', sans-serif;
+      font-weight: 900; font-size: 2.2rem;
+      background: linear-gradient(135deg, var(--gold-pale), var(--gold));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      margin-bottom: 4px;
+    }
+    .proof-title { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .proof-desc { font-size: 0.85rem; color: var(--muted); margin: 0; }
+
+    /* ─── HOW IT WORKS ─── */
+    .how-it-works { background: var(--black); }
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+      position: relative;
+    }
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 38px; right: 12.5%; left: 12.5%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), var(--border), transparent);
+    }
+    .step-card { text-align: center; padding: 36px 24px; }
+    .step-num {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: rgba(14,14,24,0.9);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1rem;
+      color: var(--gold);
+      margin: 0 auto 1.5rem;
+      position: relative; z-index: 1;
+      transition: all 0.4s ease;
+      box-shadow: 0 0 0 0 rgba(201,168,76,0);
+    }
+    .card:hover .step-num {
+      background: var(--gold-dim);
+      box-shadow: 0 0 20px rgba(201,168,76,0.25);
+    }
+    .step-icon { font-size: 1.8rem; color: var(--gold); margin-bottom: 1rem; opacity: 0.8; transition: all 0.4s ease; }
+    .card:hover .step-icon { opacity: 1; transform: scale(1.15); }
+    .step-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--white); }
+    .step-desc { font-size: 0.88rem; color: var(--muted); margin: 0; }
+
+    /* ─── FAQ ─── */
+    .faq { background: var(--surface); }
+    .faq-container { max-width: 860px; margin: 0 auto; }
+
+    .faq-item {
+      border: 1px solid var(--border-faint);
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .faq-item.active {
+      border-color: var(--border);
+      box-shadow: 0 4px 20px rgba(201,168,76,0.1);
+    }
+
+    .faq-q {
+      padding: 20px 24px;
+      background: rgba(12,12,22,0.7);
+      backdrop-filter: blur(8px);
+      display: flex; justify-content: space-between; align-items: center;
+      cursor: pointer;
+      font-weight: 600; color: var(--white-dim); font-size: 0.97rem;
+      transition: color 0.2s, background 0.2s;
+      gap: 16px;
+    }
+    .faq-q:hover { background: rgba(18,18,32,0.9); }
+    .faq-item.active .faq-q { color: var(--white); background: rgba(18,18,32,0.9); }
+
+    .faq-toggle {
+      width: 30px; height: 30px;
+      background: var(--gold-dim);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xs);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-size: 0.8rem; flex-shrink: 0;
+      transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .faq-item.active .faq-toggle {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: #080500;
+      transform: rotate(45deg);
+      border-color: transparent;
+      box-shadow: 0 4px 12px rgba(201,168,76,0.3);
+    }
+
+    .faq-a {
+      padding: 0 24px;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+      color: var(--muted); font-size: 0.93rem; line-height: 1.85;
+    }
+    .faq-item.active .faq-a { padding: 20px 24px; max-height: 300px; }
+
+    /* ─── FINAL CTA ─── */
+    .final-cta { background: var(--black); text-align: center; position: relative; overflow: hidden; }
+    .cta-glow {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px; height: 500px;
+      background: radial-gradient(ellipse, rgba(201,168,76,0.1), transparent 65%);
+      pointer-events: none;
+      animation: ctaGlowPulse 4s ease-in-out infinite;
+    }
+    @keyframes ctaGlowPulse {
+      0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.08); }
+    }
+    .cta-inner { position: relative; z-index: 1; }
+    .cta-h { font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 1.2rem; }
+    .cta-sub { max-width: 680px; margin: 0 auto 3rem; color: var(--white-dim); font-size: 1.1rem; }
+    .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .guarantee {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      margin-top: 2rem; color: var(--muted); font-size: 0.9rem;
+    }
+    .guarantee i { color: var(--green); }
+
+    /* ─── FOOTER ─── */
+    footer { background: var(--surface); border-top: 1px solid rgba(201,168,76,0.1); padding: 70px 0 40px; position: relative; z-index: 1; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 50px; margin-bottom: 50px; }
+    .footer-logo-wrap { margin-bottom: 1.5rem; }
+    .footer-desc { font-size: 0.92rem; color: var(--muted); max-width: 300px; }
+    .footer-contacts { display: flex; flex-direction: column; gap: 12px; margin-top: 1.5rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.9rem; color: var(--muted);
+      transition: color 0.25s ease;
+    }
+    .contact-link:hover { color: var(--gold); }
+    .contact-link i { color: var(--gold); width: 16px; }
+    .contact-link .discord-icon { color: #5865F2; }
+    .footer-heading {
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem;
+    }
+    .footer-list li { padding: 7px 0; font-size: 0.9rem; color: var(--muted); }
+
+    .socials { display: flex; gap: 10px; margin-top: 0.5rem; }
+    .social-btn {
+      width: 42px; height: 42px;
+      background: var(--surface-2);
+      border: 1px solid var(--border-faint);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: 1rem;
+      transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .social-btn:hover {
+      background: var(--gold-dim);
+      border-color: var(--border);
+      color: var(--gold);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(201,168,76,0.15);
+    }
+    .social-btn.discord-btn:hover {
+      background: rgba(88,101,242,0.12);
+      border-color: rgba(88,101,242,0.4);
+      color: #5865F2;
+      box-shadow: 0 8px 20px rgba(88,101,242,0.15);
+    }
+
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 30px;
+      border-top: 1px solid var(--border-faint);
+      font-size: 0.85rem; color: var(--muted);
+    }
+
+    /* ─── FLOATING BUTTONS ─── */
+    .floating-buttons {
+      position: fixed; bottom: 24px; left: 24px;
+      z-index: 1000;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .floating-wa, .floating-dc {
+      display: flex; align-items: center; gap: 10px;
+      padding: 13px 22px;
+      border-radius: 50px;
+      font-weight: 700; font-size: 0.92rem;
+      font-family: 'Cairo', sans-serif;
+      transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+    }
+    .floating-wa::before, .floating-dc::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(255,255,255,0.06);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .floating-wa:hover::before, .floating-dc:hover::before { opacity: 1; }
+
+    .floating-wa {
+      background: rgba(10,25,16,0.9);
+      border: 1px solid rgba(62,200,120,0.3);
+      color: var(--white);
+    }
+    .floating-wa:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 40px rgba(62,200,120,0.2), 0 0 0 1px rgba(62,200,120,0.4);
+      border-color: rgba(62,200,120,0.5);
+    }
+    .floating-wa i { font-size: 1.2rem; color: #3EC878; }
+    .wa-num {
+      background: linear-gradient(135deg, #7EF0A6, #3EC878);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      direction: ltr;
+    }
+
+    .floating-dc {
+      background: rgba(15,17,48,0.9);
+      border: 1px solid rgba(88,101,242,0.3);
+      color: var(--white);
+    }
+    .floating-dc:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 40px rgba(88,101,242,0.2), 0 0 0 1px rgba(88,101,242,0.5);
+    }
+    .floating-dc i { font-size: 1.2rem; color: #8b94f7; }
+    .dc-text {
+      background: linear-gradient(135deg, #b0b8ff, #5865F2);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+
+    /* Pulse ring on WA */
+    .floating-wa-wrap { position: relative; }
+    .wa-pulse-ring {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      border: 2px solid rgba(62,200,120,0.4);
+      animation: waPulse 2.5s ease-out infinite;
+      pointer-events: none;
+    }
+    @keyframes waPulse {
+      0% { transform: translate(-50%,-50%) scale(1); opacity: 0.8; }
+      100% { transform: translate(-50%,-50%) scale(2.2); opacity: 0; }
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s cubic-bezier(0.23, 1, 0.32, 1), transform 0.75s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.12s; }
+    .delay-2 { transition-delay: 0.24s; }
+    .delay-3 { transition-delay: 0.36s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .package-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+      .package-card.featured { margin-top: 0; }
+      .proof-grid { grid-template-columns: 1fr 1fr; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .steps-grid::before { display: none; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .ps-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      section { padding: 70px 0; }
+      .hero { padding: 60px 0 70px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-stats { flex-direction: column; gap: 20px; }
+      .stat-item { border: none; padding: 10px 0; }
+      .hero-buttons { flex-direction: column; }
+      .hero-buttons .btn { width: 100%; }
+      .proof-grid { grid-template-columns: 1fr 1fr; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      body { padding-bottom: 160px; }
+      .floating-buttons { left: 12px; right: 12px; }
+      .floating-wa, .floating-dc { justify-content: center; }
+      .nav-btns .btn-ghost { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.75rem; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .floating-wa, .floating-dc { font-size: 0.85rem; padding: 11px 16px; }
+      .container { padding: 0 16px; }
+    }
+  </style>
+
+  <!-- Google tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G0LWHEYHRC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); gtag('config', 'G-G0LWHEYHRC');
+  </script>
 </head>
 <body>
 
-<!-- ── Fixed Background ── -->
-<div class="status-bar"></div>
-<canvas id="bg-canvas"></canvas>
-<div class="bg-grid"></div>
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-<div class="orb orb-3"></div>
-<div class="scanlines"></div>
-<div id="mouse-glow"></div>
-<div class="corner corner-tl"></div>
-<div class="corner corner-tr"></div>
-<div class="corner corner-bl"></div>
-<div class="corner corner-br"></div>
-
-<!-- ── Floating WhatsApp ── -->
-<div class="float-wa-pulse"></div>
-<a class="float-wa" href="https://wa.me/201013381602" target="_blank">
-  <i class="fab fa-whatsapp" style="font-size:1.2rem;"></i>
-  <span>+201013381602</span>
-</a>
-
-<!-- ── Navbar ── -->
-<nav id="navbar">
-  <div class="nav-logo" onclick="goTo('gateway')">⚡ الأسطورة</div>
-  <ul class="nav-links">
-    <li><a onclick="goTo('gateway')" id="nav-gateway">الرئيسية</a></li>
-    <li><a onclick="goTo('accounts')" id="nav-accounts">الحسابات</a></li>
-    <li><a onclick="goTo('spread')" id="nav-spread">الانتشار</a></li>
-    <li><a onclick="goTo('course')" id="nav-course">الكورس</a></li>
-  </ul>
-  <button class="nav-back-btn" id="nav-back" onclick="goTo('gateway')">
-    ← الرئيسية
-  </button>
-</nav>
-
-<!-- ══════════════════════════════════════
-     PAGE 0 — GATEWAY
-══════════════════════════════════════ -->
-<div class="page-view active" id="page-gateway">
-  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:70px 28px 80px;">
-    
-    <header style="text-align:center;margin-bottom:56px;">
-      <div class="gw-logo-wrap">
-        <div class="gw-logo-ring-outer"></div>
-        <div class="gw-logo-ring">
-          <span class="gw-logo-icon">⬡</span>
-        </div>
-      </div>
-      <div class="gw-elite-badge">LEGEND PLATFORM</div>
-      <h1 class="gw-title">الأسطورة</h1>
-      <p class="gw-subtitle">اختر <span style="color:var(--neon-cyan);font-weight:600;">وجهتك</span> وابدأ رحلتك مع المنصة الأسطورية</p>
-    </header>
-
-    <div class="gw-divider"></div>
-
-    <main class="gw-cards">
-
-      <!-- الحسابات -->
-      <div class="gw-card c-accounts" onclick="goTo('accounts')">
-        <div class="gw-card-glow"></div>
-        <div class="gw-icon-wrap">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/><path d="M16 3.5c1.5.5 2.5 2 2.5 3.5s-1 3-2.5 3.5"/></svg>
-        </div>
-        <p class="gw-card-label">TikTok &amp; Instagram</p>
-        <h2 class="gw-card-title">الحسابات</h2>
-        <p class="gw-card-desc">حسابات تيك توك وانستجرام موثوقة وجاهزة — أعمار مختلفة وأسعار تنافسية لا تُضاهى</p>
-        <div class="gw-cta">تصفح الحسابات <span class="cta-arrow">←</span></div>
-      </div>
-
-      <!-- الانتشار -->
-      <div class="gw-card c-spread" onclick="goTo('spread')">
-        <div class="gw-card-glow"></div>
-        <div class="gw-icon-wrap">
-          <svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="2.2"/><circle cx="19" cy="6" r="2.2"/><circle cx="19" cy="18" r="2.2"/><line x1="7.1" y1="11" x2="17" y2="7.2"/><line x1="7.1" y1="13" x2="17" y2="16.8"/></svg>
-        </div>
-        <p class="gw-card-label">Growth Services</p>
-        <h2 class="gw-card-title">الانتشار</h2>
-        <p class="gw-card-desc">فيديوهات احترافية مضمونة الانتشار بدون تسليم حسابك — نمو حقيقي وآمن 100٪</p>
-        <div class="gw-cta">ابدأ الانتشار <span class="cta-arrow">←</span></div>
-      </div>
-
-      <!-- الكورس -->
-      <div class="gw-card c-course" onclick="goTo('course')">
-        <div class="gw-card-glow"></div>
-        <div class="gw-icon-wrap">
-          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="14" rx="3"/><path d="M10 9l5 3-5 3V9z"/><path d="M8 21h8M12 18v3"/></svg>
-        </div>
-        <p class="gw-card-label">Legend Course</p>
-        <h2 class="gw-card-title">الكورس</h2>
-        <p class="gw-card-desc">تعلم تكبير صفحات تيك توك ويوتيوب من الصفر وبيعها بدخل شهري ثابت — كورس عملي 100٪</p>
-        <div class="gw-cta">اشترك الآن <span class="cta-arrow">←</span></div>
-      </div>
-
-    </main>
-
-    <footer style="margin-top:72px;text-align:center;">
-      <div style="width:240px;height:1px;margin:0 auto 22px;background:linear-gradient(90deg,transparent,rgba(0,245,255,0.15),transparent);"></div>
-      <p style="color:var(--text-muted);font-size:.8rem;letter-spacing:.08em;">
-        <span style="font-family:'Orbitron',sans-serif;font-size:.58rem;color:rgba(0,245,255,0.25);">AL-OSTORA</span>
-        &nbsp;·&nbsp; كل ما تحتاجه في مكان واحد &nbsp;·&nbsp;
-        <span style="font-family:'Orbitron',sans-serif;font-size:.58rem;color:rgba(0,245,255,0.25);">2024</span>
-      </p>
-    </footer>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════
-     PAGE 1 — ACCOUNTS
-══════════════════════════════════════ -->
-<div class="page-view" id="page-accounts">
-
-  <!-- Hero -->
-  <div class="acc-hero">
-    <div class="acc-hero-badge">PREMIUM ACCOUNTS MARKETPLACE</div>
-    <h1 class="acc-hero-title">الأسطورة</h1>
-    <p class="acc-hero-sub">AL-OSTORA ELITE ACCOUNTS</p>
-    <p class="acc-hero-desc">منصة <span>حصرية</span> لبيع وشراء حسابات تيك توك وانستجرام عالية الجودة<br>مضمونة 100% · تسليم فوري · دعم على مدار الساعة</p>
-    <div class="acc-hero-btns">
-      <button class="btn-primary" onclick="document.getElementById('acc-grid-section').scrollIntoView({behavior:'smooth'})">🔥 تصفح الحسابات</button>
-      <button class="btn-secondary" onclick="document.getElementById('acc-contact').scrollIntoView({behavior:'smooth'})">💬 تواصل معنا</button>
-    </div>
+  <!-- ── SITE BACKGROUND ── -->
+  <div class="site-bg">
+    <div class="site-bg-grid"></div>
+    <div class="site-bg-orb site-bg-orb-1"></div>
+    <div class="site-bg-orb site-bg-orb-2"></div>
+    <div class="site-bg-orb site-bg-orb-3"></div>
+    <div id="particles"></div>
   </div>
 
-  <!-- Accounts Grid -->
-  <section class="acc-section" id="acc-grid-section">
-    <span class="sec-label">FEATURED ACCOUNTS</span>
-    <h2 class="sec-title">الحسابات المميزة</h2>
-    <div class="neon-div"></div>
-    <p class="sec-sub">اختر حسابك المثالي من مجموعتنا المختارة بعناية</p>
-
-    <div class="accounts-grid">
-
-      <div class="account-card">
-        <div class="ac-header">
-          <div class="ac-avatar"><img src="https://i.postimg.cc/25xgTHz1/692868607-27406187995653565-4669237640125737303-n.jpg" alt="@aabdooadel"></div>
-          <div class="ac-info"><h3>@aabdooadel</h3><div class="ac-cat">📖 قصص وحكايات</div></div>
-        </div>
-        <div class="ac-body">
-          <div class="ac-stats">
-            <div class="stat-box"><span class="stat-box-label">Followers</span><div class="stat-box-val">11.2K</div></div>
-            <div class="stat-box"><span class="stat-box-label">Posts</span><div class="stat-box-val">144</div></div>
-          </div>
-          <div class="ac-platform">📷 حساب انستجرام</div>
-        </div>
-        <div class="ac-footer"><button class="btn-buy" onclick="buyAccount('@aabdooadel')">تواصل للشراء</button></div>
-      </div>
-
-      <div class="account-card">
-        <div class="ac-header">
-          <div class="ac-avatar" style="background:linear-gradient(135deg,var(--neon-purple),var(--neon-pink))"><img src="https://i.postimg.cc/xdPBgs0J/692908230-839658372526018-7857298104393380236-n.jpg" alt="@1pu_uw"></div>
-          <div class="ac-info"><h3>@1pu_uw</h3><div class="ac-cat" style="color:var(--neon-pink)">💃 ترفيه ولايف ستايل</div></div>
-        </div>
-        <div class="ac-body">
-          <div class="ac-stats">
-            <div class="stat-box"><span class="stat-box-label">Followers</span><div class="stat-box-val">458.3K</div></div>
-            <div class="stat-box"><span class="stat-box-label">Likes</span><div class="stat-box-val">2.6M</div></div>
-          </div>
-          <div class="ac-platform">🎵 حساب تيك توك</div>
-        </div>
-        <div class="ac-footer"><button class="btn-buy" style="background:linear-gradient(135deg,var(--neon-purple),var(--neon-pink))" onclick="buyAccount('@1pu_uw')">تواصل للشراء</button></div>
-      </div>
-
-      <div class="account-card">
-        <div class="ac-header">
-          <div class="ac-avatar" style="background:linear-gradient(135deg,#f0b90b,#ff6600)"><img src="https://i.postimg.cc/N0xZbNg6/693164737-1535986051443466-5863304888240965579-n.jpg" alt="@hamoo5812"></div>
-          <div class="ac-info"><h3>@hamoo5812</h3><div class="ac-cat" style="color:#f0b90b">😂 كوميديا</div></div>
-        </div>
-        <div class="ac-body">
-          <div class="ac-stats">
-            <div class="stat-box"><span class="stat-box-label">Followers</span><div class="stat-box-val">92.6K</div></div>
-            <div class="stat-box"><span class="stat-box-label">Likes</span><div class="stat-box-val">593.9K</div></div>
-          </div>
-          <div class="ac-platform">🎵 حساب تيك توك</div>
-        </div>
-        <div class="ac-footer"><button class="btn-buy" style="background:linear-gradient(135deg,#f0b90b,#ff6600)" onclick="buyAccount('@hamoo5812')">تواصل للشراء</button></div>
-      </div>
-
-      <div class="account-card">
-        <div class="ac-header">
-          <div class="ac-avatar" style="background:linear-gradient(135deg,var(--neon-cyan),var(--neon-green))"><img src="https://i.postimg.cc/TPcBQkRt/693840761-1465942485003467-86547182446449756-n.jpg" alt="@bogy_offical1"></div>
-          <div class="ac-info"><h3>@bogy_offical1</h3><div class="ac-cat" style="color:var(--neon-green)">🧠 معلومات وعلم نفس</div></div>
-        </div>
-        <div class="ac-body">
-          <div class="ac-stats">
-            <div class="stat-box"><span class="stat-box-label">Followers</span><div class="stat-box-val">724K</div></div>
-            <div class="stat-box"><span class="stat-box-label">Posts</span><div class="stat-box-val">1,016</div></div>
-          </div>
-          <div class="ac-platform">📷 حساب انستجرام</div>
-        </div>
-        <div class="ac-footer"><button class="btn-buy" style="background:linear-gradient(135deg,var(--neon-cyan),var(--neon-green));color:#000" onclick="buyAccount('@bogy_offical1')">تواصل للشراء</button></div>
-      </div>
-
-      <div class="account-card">
-        <div class="ac-header">
-          <div class="ac-avatar" style="background:linear-gradient(135deg,#ff9a9e,#fecfef)"><img src="https://i.postimg.cc/W3bCyMz4/696262259-1705422137479874-7834361682085501331-n.jpg" alt="@esmasal7"></div>
-          <div class="ac-info"><h3>@esmasal7</h3><div class="ac-cat" style="color:#ff9a9e">👶 أمومة وأطفال</div></div>
-        </div>
-        <div class="ac-body">
-          <div class="ac-stats">
-            <div class="stat-box"><span class="stat-box-label">Followers</span><div class="stat-box-val">24.1K</div></div>
-            <div class="stat-box"><span class="stat-box-label">Likes</span><div class="stat-box-val">186.4K</div></div>
-          </div>
-          <div class="ac-platform">🎵 حساب تيك توك</div>
-        </div>
-        <div class="ac-footer"><button class="btn-buy" style="background:linear-gradient(135deg,#ff9a9e,#fecfef);color:#000" onclick="buyAccount('@esmasal7')">تواصل للشراء</button></div>
-      </div>
-
-      <div class="account-card">
-        <div class="ac-header">
-          <div class="ac-avatar" style="background:linear-gradient(135deg,var(--neon-green),var(--neon-cyan))"><img src="https://i.postimg.cc/qRbSHz6B/696351717-895260696908084-8402000689324297723-n.jpg" alt="@bogy_offical"></div>
-          <div class="ac-info"><h3>@bogy_offical</h3><div class="ac-cat" style="color:var(--neon-green)">💡 معلومات وعلم نفس</div></div>
-        </div>
-        <div class="ac-body">
-          <div class="ac-stats">
-            <div class="stat-box"><span class="stat-box-label">Followers</span><div class="stat-box-val">151.2K</div></div>
-            <div class="stat-box"><span class="stat-box-label">Likes</span><div class="stat-box-val">890.7K</div></div>
-          </div>
-          <div class="ac-platform">🎵 حساب تيك توك</div>
-        </div>
-        <div class="ac-footer"><button class="btn-buy" style="background:linear-gradient(135deg,var(--neon-green),var(--neon-cyan));color:#000" onclick="buyAccount('@bogy_offical')">تواصل للشراء</button></div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Stats -->
-  <div style="padding:0 2rem;max-width:1200px;margin:0 auto 5rem;">
-    <div class="stats-strip">
-      <div class="stat-blk"><span class="stat-num" data-target="1240" data-suffix="+">0</span><div class="stat-lbl">حساب مباع</div></div>
-      <div class="stat-blk"><span class="stat-num" data-target="3800" data-suffix="+">0</span><div class="stat-lbl">عميل راضٍ</div></div>
-      <div class="stat-blk"><span class="stat-num" data-target="4.9" data-suffix="★" data-decimal="true">0</span><div class="stat-lbl">تقييم متوسط</div></div>
-      <div class="stat-blk"><span class="stat-num" data-target="99" data-suffix="%">0</span><div class="stat-lbl">طلبات مكتملة</div></div>
-    </div>
-  </div>
-
-  <!-- Reviews -->
-  <section class="acc-section">
-    <span class="sec-label">TESTIMONIALS</span>
-    <h2 class="sec-title">ماذا يقول عملاؤنا</h2>
-    <div class="neon-div"></div>
-    <div class="reviews-grid">
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">تجربة رائعة جداً! الحساب تم التسليم خلال ساعة واحدة فقط، والدعم كان متجاوباً على مدار الساعة. أنصح الجميع بالتعامل مع الأسطورة.</p>
-        <div class="review-author"><div class="author-av">أم</div><div><div class="author-name">أحمد محمد</div><div class="author-loc">Cairo, Egypt 🇪🇬</div></div></div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">اشتريت حسابين من الأسطورة وكلاهم أصليين ومضمونين. السعر كان عادل والخدمة احترافية. شكراً جزيلاً!</p>
-        <div class="review-author"><div class="author-av" style="background:linear-gradient(135deg,#f0b90b,#ff6600)">سك</div><div><div class="author-name">سارة الكريم</div><div class="author-loc">Riyadh, KSA 🇸🇦</div></div></div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">أفضل موقع لبيع حسابات تيك توك! الحسابات مضمونة 100% وفريق الدعم ممتاز. سأتعامل معهم دائماً.</p>
-        <div class="review-author"><div class="author-av" style="background:linear-gradient(135deg,var(--neon-purple),var(--neon-pink))">خع</div><div><div class="author-name">خالد العتيبي</div><div class="author-loc">Dubai, UAE 🇦🇪</div></div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section class="contact-section" id="acc-contact">
-    <span class="sec-label" style="display:block;text-align:center;">GET IN TOUCH</span>
-    <h2 class="sec-title" style="text-align:center;">تواصل معنا</h2>
-    <div class="neon-div" style="margin-inline:auto;"></div>
-    <p style="text-align:center;color:var(--text-secondary);margin-bottom:0;">نحن هنا على مدار الساعة · 24/7 Support</p>
-    <div class="contact-btns">
-      <a href="https://wa.me/201013381602" class="cbtn cbtn-wa" target="_blank"><i class="fab fa-whatsapp"></i> واتساب +201013381602</a>
-      <a href="https://discord.gg/QKWEu7SBFn" class="cbtn cbtn-dc" target="_blank"><i class="fab fa-discord"></i> سيرفر الديسكورد</a>
-    </div>
-  </section>
-
-  <footer class="page-footer">
-    <div class="page-footer-logo">الأسطورة</div>
-    <p class="page-footer-copy">جميع الحقوق محفوظة © 2025 الأسطورة · AL-OSTORA POWERED BY EXCELLENCE</p>
-  </footer>
-</div>
-
-<!-- ══════════════════════════════════════
-     PAGE 2 — SPREAD
-══════════════════════════════════════ -->
-<div class="page-view" id="page-spread">
-
-  <div class="sprd-hero">
-    <div class="sprd-badge">متاح الآن · نتائج من الأسبوع الأول</div>
-    <h1 class="sprd-title">انتشار آمن<br><span>بدون تسليم أي بيانات</span></h1>
-    <p class="sprd-desc">نجهز لك فيديوهات احترافية مضمونة الانتشار + خطة نشر استراتيجية. متابعون حقيقيون، تفاعل عضوي، وأمان كامل لحسابك.</p>
-    <div class="sprd-feats">
-      <div class="sprd-feat"><div class="sprd-feat-dot"></div><span>لا نطلب الوصول لحسابك أبدًا</span></div>
-      <div class="sprd-feat"><div class="sprd-feat-dot"></div><span>فيديوهات جاهزة للنشر فوريًا</span></div>
-      <div class="sprd-feat"><div class="sprd-feat-dot"></div><span>زيادة المتابعين والتفاعل الحقيقي</span></div>
-      <div class="sprd-feat"><div class="sprd-feat-dot"></div><span>دعم فني متخصص على مدار الساعة</span></div>
-    </div>
-    <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
-      <button class="btn-gold" style="width:auto;padding:.95rem 2.4rem;border-radius:14px;" onclick="document.getElementById('sprd-pricing').scrollIntoView({behavior:'smooth'})">💎 عرض الباقات</button>
-      <a href="https://wa.me/201013381602" class="btn-secondary" target="_blank"><i class="fab fa-whatsapp"></i> استشارة مجانية</a>
-    </div>
-  </div>
-
-  <!-- Packages -->
-  <section class="pg-section center" id="sprd-pricing">
-    <span class="sec-label">عرض خاص لفترة محدودة</span>
-    <h2 class="sec-title">اختر باقتك 🔥</h2>
-    <div class="neon-div" style="margin-inline:auto;background:linear-gradient(90deg,var(--neon-gold),#8b6914);box-shadow:0 0 12px rgba(255,215,0,.4);"></div>
-    <p class="sec-sub">خصم 50% + ضعف عدد الفيديوهات لفترة محدودة</p>
-
-    <div class="pkg-grid">
-
-      <div class="pkg-card" style="margin-top:16px;">
-        <div class="pkg-top-badge red">خصم 50%</div>
-        <img src="https://i.postimg.cc/KcJrvFzs/afraj.jpg" alt="Starter" class="pkg-img">
-        <div class="pkg-name">STARTER</div>
-        <div class="pkg-tagline">البداية المثالية للانتشار</div>
-        <div class="pkg-old">1999 ج.م</div>
-        <div class="pkg-price">999 <span class="pkg-unit">ج.م</span></div>
-        <div class="pkg-divider"></div>
-        <div class="pkg-feats">
-          <div class="pkg-feat-item"><i class="fas fa-check-circle"></i><span>5 فيديوهات احترافية جاهزة</span></div>
-          <div class="pkg-feat-item"><i class="fas fa-check-circle"></i><span>إرشادات النشر والتوقيت الأمثل</span></div>
-          <div class="pkg-feat-item"><i class="fas fa-check-circle"></i><span>هاشتاجات مصممة للانتشار</span></div>
-          <div class="pkg-feat-item"><i class="fas fa-check-circle"></i><span>دعم عبر الواتساب لمدة أسبوع</span></div>
-        </div>
-        <a href="https://wa.me/201013381602?text=مرحبًا، أريد الاشتراك في عرض Starter" class="btn-ghost-sprd" target="_blank">احصل على العرض</a>
-      </div>
-
-      <div class="pkg-card featured">
-        <div class="pkg-top-badge">🔥 الأكثر طلبًا</div>
-        <img src="https://i.postimg.cc/L53DZBHP/alakthr-tlba.png" alt="Growth" class="pkg-img">
-        <div class="pkg-name">GROWTH</div>
-        <div class="pkg-tagline">الأفضل للنتائج السريعة</div>
-        <div class="pkg-old">3499 ج.م</div>
-        <div class="pkg-price">1749 <span class="pkg-unit">ج.م</span></div>
-        <div class="pkg-divider"></div>
-        <div class="pkg-feats">
-          <div class="pkg-feat-item"><i class="fas fa-check-circle"></i><span>9 فيديو احترافي عالي الجودة</span></div>
-          <div class="pkg-feat-item"><i class="fas fa-check-circle"></i><span>تحليل الجمهور المستهدف</span></div>
-          <div class="pkg-feat-item"><i class="fas fa-check-circle"></i><span>استراتيجية نشر متكاملة</span></div>
-          <div class="pkg-feat-item"><i class="fas fa-check-circle"></i><span>دعم لمدة شهر كامل</span></div>
-          <div class="pkg-feat-item"><i class="fas fa-check-circle"></i><span>تعديلات مجانية على الفيديوهات</span></div>
-        </div>
-        <a href="https://wa.me/201013381602?text=مرحبًا، أريد الاشتراك في عرض Growth" class="btn-gold" target="_blank">⚡ ابدأ النمو الآن</a>
-      </div>
-
-      <div class="pkg-card" style="margin-top:16px;">
-        <div class="pkg-top-badge red">عرض خاص</div>
-        <img src="https://i.postimg.cc/L8C8nCfj/ʿly-klay.png" alt="Dominator" class="pkg-img">
-        <div class="pkg-name">DOMINATOR</div>
-        <div class="pkg-tagline">الهيمنة على السوشيال ميديا</div>
-        <div class="pkg-old">5999 ج.م</div>
-        <div class="pkg-price">2999 <span class="pkg-unit">ج.م</span></div>
-        <div class="pkg-divider"></div>
-        <div class="pkg-feats">
-          <div class="pkg-feat-item"><i class="fas fa-check-circle"></i><span>15 فيديو محترف متنوع المحتوى</span></div>
-          <div class="pkg-feat-item"><i class="fas fa-check-circle"></i><span>خطة نشر شهرية كاملة</span></div>
-          <div class="pkg-feat-item"><i class="fas fa-check-circle"></i><span>جلسة استشارية متخصصة</span></div>
-          <div class="pkg-feat-item"><i class="fas fa-check-circle"></i><span>دعم مباشر على مدار الساعة</span></div>
-          <div class="pkg-feat-item"><i class="fas fa-check-circle"></i><span>تحليل أداء وتقارير شهرية</span></div>
-        </div>
-        <a href="https://wa.me/201013381602?text=مرحبًا، أريد الاشتراك في عرض Dominator" class="btn-ghost-sprd" target="_blank">👑 احصل على العرض الآن</a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Steps -->
-  <section class="pg-section center">
-    <span class="sec-label">كيفية العمل</span>
-    <h2 class="sec-title">أربع خطوات للانتشار</h2>
-    <div class="neon-div" style="margin-inline:auto;background:linear-gradient(90deg,var(--neon-gold),#8b6914);box-shadow:0 0 12px rgba(255,215,0,.4);"></div>
-    <div class="steps-grid">
-      <div class="step-card"><div class="step-num">01</div><div class="step-icon-big">📋</div><div class="step-title">اختر الباقة</div><p class="step-desc">اختر الباقة المناسبة لميزانيتك وأهدافك</p></div>
-      <div class="step-card"><div class="step-num">02</div><div class="step-icon-big">🎬</div><div class="step-title">استلم الفيديوهات</div><p class="step-desc">تصلك الفيديوهات جاهزة خلال 24-48 ساعة</p></div>
-      <div class="step-card"><div class="step-num">03</div><div class="step-icon-big">📤</div><div class="step-title">انشر بنفسك</div><p class="step-desc">نرشدك للتوقيت والهاشتاجات الأمثل للنشر</p></div>
-      <div class="step-card"><div class="step-num">04</div><div class="step-icon-big">📈</div><div class="step-title">شاهد النتائج</div><p class="step-desc">زيادة حقيقية في المتابعين والتفاعل</p></div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section class="contact-section">
-    <h2 class="sec-title" style="text-align:center;">انطلاقك يبدأ اليوم</h2>
-    <div class="contact-btns">
-      <a href="https://wa.me/201013381602" class="cbtn cbtn-wa" target="_blank"><i class="fab fa-whatsapp"></i> استشارة مجانية</a>
-      <a href="https://discord.gg/QKWEu7SBFn" class="cbtn cbtn-dc" target="_blank"><i class="fab fa-discord"></i> سيرفر الديسكورد</a>
-    </div>
-  </section>
-
-  <footer class="page-footer">
-    <div class="page-footer-logo">الأسطورة</div>
-    <p class="page-footer-copy">© 2024 الأسطورة — Combo Reach · جميع الحقوق محفوظة</p>
-  </footer>
-</div>
-
-<!-- ══════════════════════════════════════
-     PAGE 3 — COURSE
-══════════════════════════════════════ -->
-<div class="page-view" id="page-course">
-
-  <div class="crs-hero">
-    <div class="crs-badge">🔥 كورس عملي 100%</div>
-    <h1 class="crs-title"><span class="crs-grad">ابدأ مشروعك الرقمي</span><br>تكبير وبيع صفحات السوشيال ميديا</h1>
-    <p class="crs-desc">تعلم كيف تكبّر صفحات تيك توك ويوتيوب من الصفر وتبيعها كل شهر بدخل ثابت.</p>
-    <div class="crs-warning">⚠️ <span><strong>الكورس الحالي يعمل على الكمبيوتر</strong> — نسخة الموبايل قريبًا.</span></div>
-    <button class="btn-purple" style="width:auto;padding:.95rem 2.4rem;border-radius:14px;" onclick="document.getElementById('crs-pricing').scrollIntoView({behavior:'smooth'})">اطلب عبر الواتساب →</button>
-  </div>
-
-  <!-- What you learn -->
-  <section class="pg-section">
-    <div style="max-width:520px;margin:0 auto;">
-      <div class="learn-box">
-        <h3>ماذا ستتعلم؟</h3>
-        <div class="learn-item"><div class="learn-item-icon">🎯</div><span>اختيار <strong>نوع المحتوى</strong> الصحيح.</span></div>
-        <div class="learn-item"><div class="learn-item-icon">🎬</div><span>صناعة فيديوهات قصيرة جذابة.</span></div>
-        <div class="learn-item"><div class="learn-item-icon">📈</div><span>أسرار تكبير الحسابات بسرعة.</span></div>
-        <div class="learn-item"><div class="learn-item-icon">💰</div><span>تجهيز الحساب للبيع والتعامل مع العملاء.</span></div>
-        <div class="learn-item"><div class="learn-item-icon">🛡️</div><span>حماية الحساب من الإغلاق أو السرقة.</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Features -->
-  <section class="pg-section center">
-    <span class="sec-label">FEATURES</span>
-    <h2 class="sec-title">مميزات الكورس</h2>
-    <div class="neon-div" style="margin-inline:auto;background:linear-gradient(90deg,#a78bfa,#f472b6);box-shadow:0 0 12px rgba(167,139,250,.5);"></div>
-    <div class="feat-grid">
-      <div class="feat-card"><div class="feat-icon-wrap">🎓</div><h3>شرح عملي</h3><p style="color:var(--text-secondary);">خطوات واضحة مطبّقة على صفحات حقيقية.</p></div>
-      <div class="feat-card"><div class="feat-icon-wrap">🖥️</div><h3>يعتمد على الكمبيوتر</h3><p style="color:var(--text-secondary);">نسخة الهاتف سيتم إصدارها قريبًا.</p></div>
-      <div class="feat-card"><div class="feat-icon-wrap">🔄</div><h3>تحديثات مستمرة</h3><p style="color:var(--text-secondary);">تحديثات شاملة حسب تغييرات المنصات.</p></div>
-    </div>
-  </section>
-
-  <!-- Curriculum -->
-  <section class="pg-section center">
-    <span class="sec-label">CURRICULUM</span>
-    <h2 class="sec-title">محتويات الكورس</h2>
-    <div class="neon-div" style="margin-inline:auto;background:linear-gradient(90deg,#a78bfa,#f472b6);box-shadow:0 0 12px rgba(167,139,250,.5);"></div>
-    <div class="curr-grid">
-      <div class="curr-card"><div class="curr-num">01</div><h3>تثبيت البرامج المطلوبة</h3><p>شرح البرامج الأساسية · التثبيت + الإعدادات الصحيحة · تحسين أداء الجهاز للمونتاج.</p></div>
-      <div class="curr-card"><div class="curr-num">02</div><h3>إيجاد فكرة فيديو قوية</h3><p>اختيار نوع المحتوى المناسب · استخراج أفكار من التريندات · تحليل المنافسين.</p></div>
-      <div class="curr-card"><div class="curr-num">03</div><h3>مصادر اللقطات</h3><p>مواقع تحميل عالية الجودة · استخراج اللقطات بدقة · تقليل مشاكل حقوق النشر.</p></div>
-      <div class="curr-card"><div class="curr-num">04</div><h3>تنفيذ الأديت الاحترافي</h3><p>قص وترتيب المشاهد · الانتقالات + النصوص + التأثيرات · تصدير الفيديو.</p></div>
-      <div class="curr-card" style="grid-column:1/-1;max-width:520px;margin-inline:auto;width:100%;"><div class="curr-num">05</div><h3>رفع الفيديو + أفضل الهاشتاجات</h3><p>ضبط المقاس والجودة لكل منصة · كتابة Caption يشد · أفضل هاشتاجات للتيك توك + اليوتيوب · أفضل أوقات النشر.</p></div>
-    </div>
-  </section>
-
-  <!-- Pricing -->
-  <section class="pg-section center" id="crs-pricing">
-    <span class="sec-label">PRICING</span>
-    <h2 class="sec-title">الباقات المتاحة</h2>
-    <div class="neon-div" style="margin-inline:auto;background:linear-gradient(90deg,#a78bfa,#f472b6);box-shadow:0 0 12px rgba(167,139,250,.5);"></div>
-    <div class="crs-pkg-grid">
-
-      <div class="crs-pkg">
-        <img src="https://i.postimg.cc/zBm03RJH/albaqt-alasasyty.png" alt="الأساسية">
-        <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:6px;">الباقة الأساسية</h3>
-        <div class="crs-price">1000 ج.م</div>
-        <ul class="crs-feat-list">
-          <li class="yes">✔ كل دروس الكورس</li>
-          <li class="yes">✔ ملفات مساعدة</li>
-          <li>✖ بدون دعم شخصي</li>
-        </ul>
-        <a href="https://wa.me/201013381602?text=عايز اشتري الباقة الأساسية" class="btn-outline-crs" target="_blank">اطلب الآن</a>
-      </div>
-
-      <div class="crs-pkg featured-crs">
-        <div class="crs-pkg-badge">⭐ الأكثر طلبًا</div>
-        <img src="https://i.postimg.cc/JhSkQxCd/albaqt-almmyzt.jpg" alt="المميزة">
-        <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:6px;">الباقة المميزة</h3>
-        <div class="crs-price">1500 ج.م</div>
-        <ul class="crs-feat-list">
-          <li class="yes">✔ كل محتوى الكورس</li>
-          <li class="yes">✔ دعم شهر كامل</li>
-          <li class="yes">✔ مراجعة صفحات + خطة تطوير</li>
-        </ul>
-        <a href="https://wa.me/201013381602?text=عايز اشتري الباقة المميزة" class="btn-purple" target="_blank">اطلب الآن</a>
-      </div>
-
-      <div class="crs-pkg vip-crs">
-        <div class="crs-pkg-badge gold">👑 VIP</div>
-        <img src="https://i.postimg.cc/7PVjj2GJ/albaqt-alasasyt.jpg" alt="VIP">
-        <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:6px;">الباقة VIP</h3>
-        <div class="crs-price">2500 ج.م</div>
-        <div class="crs-orig">3500 ج.م</div>
-        <ul class="crs-feat-list">
-          <li class="yes">✔ كل مميزات المميزة</li>
-          <li class="yes">✔ دعم شخصي 3 أشهر</li>
-          <li class="yes">✔ تدريب مباشر (3 جلسات)</li>
-          <li class="yes">✔ مراجعة أسبوعية للحسابات</li>
-          <li class="yes">✔ مساعدة في أول عملية بيع</li>
-        </ul>
-        <a href="https://wa.me/201013381602?text=عايز اشتري الباقة VIP" class="btn-vip" target="_blank">اطلب الآن</a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Discord -->
-  <section class="pg-section">
-    <div class="discord-box">
-      <h2 style="font-size:1.7rem;font-weight:900;margin-bottom:10px;">انضم لمجتمعنا على ديسكورد</h2>
-      <p style="color:var(--text-secondary);max-width:550px;margin:0 auto;line-height:1.9;font-size:.97rem;">احصل على دعم مباشر، شارك تجربتك، وكن أول من يعرف بالتحديثات الجديدة</p>
-      <a href="https://discord.gg/9NyrkcHMkw" class="btn-discord-big" target="_blank">
-        <i class="fab fa-discord" style="font-size:1.3rem;"></i> انضم لسيرفر الديسكورد
+  <!-- ── FLOATING BUTTONS ── -->
+  <div class="floating-buttons">
+    <div class="floating-wa-wrap">
+      <div class="wa-pulse-ring"></div>
+      <a href="https://wa.me/201013381602" class="floating-wa" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span class="wa-num">+201013381602</span>
       </a>
     </div>
+    <a href="https://discord.gg/QKWEu7SBFn" class="floating-dc" target="_blank">
+      <i class="fab fa-discord"></i>
+      <span class="dc-text">انضم للديسكورد</span>
+    </a>
+  </div>
+
+  <!-- ── HEADER ── -->
+  <header id="header">
+    <div class="container nav">
+      <div class="logo">
+        <div class="logo-icon"><i class="fas fa-rocket"></i></div>
+        <div class="logo-text">
+          <div class="name">الأسطورة</div>
+          <div class="sub">Combo Reach</div>
+        </div>
+      </div>
+      <div class="nav-btns">
+        <a href="https://discord.gg/QKWEu7SBFn" class="btn btn-ghost" style="padding:10px 20px;font-size:0.88rem;" target="_blank">
+          <i class="fab fa-discord"></i> ديسكورد
+        </a>
+        <a href="#pricing" class="btn btn-gold" style="padding:10px 24px;font-size:0.9rem;">
+          <i class="fas fa-gem"></i> عرض الباقات
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+    </div>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content fade-in">
+          <div class="hero-eyebrow">
+            <div class="hero-eyebrow-dot"></div>
+            <span class="hero-eyebrow-text">متاح الآن · نتائج من الأسبوع الأول</span>
+          </div>
+          <h1>انتشار آمن<br><span class="text-gold">بدون تسليم أي بيانات</span></h1>
+          <p class="hero-desc">نجهز لك فيديوهات احترافية مضمونة الانتشار + خطة نشر استراتيجية. متابعون حقيقيون، تفاعل عضوي، وأمان كامل لحسابك.</p>
+          <div class="hero-features">
+            <div class="hero-feat"><div class="hero-feat-dot"></div><span>لا نطلب الوصول لحسابك أبدًا</span></div>
+            <div class="hero-feat"><div class="hero-feat-dot"></div><span>فيديوهات جاهزة للنشر فوريًا</span></div>
+            <div class="hero-feat"><div class="hero-feat-dot"></div><span>زيادة المتابعين والتفاعل الحقيقي</span></div>
+            <div class="hero-feat"><div class="hero-feat-dot"></div><span>دعم فني متخصص على مدار الساعة</span></div>
+          </div>
+          <div class="hero-buttons">
+            <a href="#pricing" class="btn btn-gold"><i class="fas fa-gem"></i> عرض الباقات</a>
+            <a href="https://wa.me/201013381602" class="btn btn-ghost"><i class="fab fa-whatsapp"></i> استشارة مجانية</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-item"><div class="stat-num">+500</div><div class="stat-label">عميل راضي</div></div>
+            <div class="stat-item"><div class="stat-num">10K+</div><div class="stat-label">فيديو منشور</div></div>
+            <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">أمان كامل</div></div>
+          </div>
+        </div>
+
+        <div class="fade-in delay-1">
+          <div class="hero-panel">
+            <div class="panel-icon"><i class="fas fa-lock"></i></div>
+            <div class="panel-title">أمان <span class="text-gold">100%</span></div>
+            <p class="panel-desc">نحن نؤمن بخصوصيتك — لا نطلب حسابات عملائنا أبدًا</p>
+            <div class="panel-badges">
+              <div class="panel-badge"><i class="fas fa-shield-alt"></i><span>خصوصية تامة وحماية كاملة</span></div>
+              <div class="panel-badge"><i class="fas fa-bolt"></i><span>نتائج مرئية من الأسبوع الأول</span></div>
+              <div class="panel-badge"><i class="fas fa-users"></i><span>متابعون حقيقيون وتفاعل عضوي</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <footer class="page-footer">
-    <div class="page-footer-logo">الأسطورة</div>
-    <p class="page-footer-copy">© 2023 كورس الأسطورة — جميع الحقوق محفوظة · للدعم: 01013381602</p>
+  <!-- ── PROBLEM / SOLUTION ── -->
+  <section class="ps-section">
+    <div class="container">
+      <div class="section-title fade-in">
+        <div class="section-label"><i class="fas fa-arrows-left-right"></i> المشكلة والحل</div>
+        <h2>ما الذي يميزنا؟</h2>
+      </div>
+      <div class="ps-grid">
+        <div class="card ps-card problem fade-in">
+          <div class="ps-header">
+            <div class="ps-icon-wrap"><i class="fas fa-times"></i></div>
+            <h3 style="font-size:1.25rem;">ما تعاني منه الآن</h3>
+          </div>
+          <ul class="ps-list">
+            <li><i class="fas fa-times-circle"></i> مخاطر تسليم الحساب لجهات غير موثوقة</li>
+            <li><i class="fas fa-times-circle"></i> فيديوهات ضعيفة لا تصل للجمهور المستهدف</li>
+            <li><i class="fas fa-times-circle"></i> فقدان الوقت في استراتيجيات غير مجدية</li>
+            <li><i class="fas fa-times-circle"></i> انعدام الخصوصية والأمان الرقمي</li>
+            <li><i class="fas fa-times-circle"></i> نتائج بطيئة ومتابعون وهميون</li>
+          </ul>
+        </div>
+        <div class="card ps-card solution fade-in delay-1">
+          <div class="ps-header">
+            <div class="ps-icon-wrap"><i class="fas fa-check"></i></div>
+            <h3 style="font-size:1.25rem;">الحل مع كومبو الانتشار</h3>
+          </div>
+          <ul class="ps-list">
+            <li><i class="fas fa-check-circle"></i> لا نطلب حسابك أبدًا — أنت تتحكم بالكامل</li>
+            <li><i class="fas fa-check-circle"></i> فيديوهات محترفة مصممة للانتشار</li>
+            <li><i class="fas fa-check-circle"></i> خطة نشر استراتيجية مدروسة</li>
+            <li><i class="fas fa-check-circle"></i> خصوصية 100% وأمان كامل لبياناتك</li>
+            <li><i class="fas fa-check-circle"></i> نتائج حقيقية ومرئية من الأسبوع الأول</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PACKAGES ── -->
+  <section id="pricing" class="packages">
+    <div class="container">
+      <div class="section-title fade-in">
+        <div class="section-label"><i class="fas fa-fire"></i> عرض خاص لفترة محدودة</div>
+        <h2>اختر باقتك <span class="text-gold">🔥</span></h2>
+        <p style="text-align:center;max-width:600px;margin:0 auto;">خصم 50% + ضعف عدد الفيديوهات لفترة محدودة</p>
+      </div>
+      <div class="package-grid">
+
+        <div class="package-card fade-in">
+          <div class="pkg-badge red">خصم 50%</div>
+          <div class="card">
+            <img src="https://i.postimg.cc/KcJrvFzs/afraj.jpg" alt="Starter" class="pkg-img">
+            <div class="pkg-header">
+              <div class="pkg-name">STARTER</div>
+              <div class="pkg-tagline">البداية المثالية للانتشار</div>
+              <div class="pkg-price-old">1999 ج.م</div>
+              <div class="pkg-price-new">999 <span class="pkg-price-unit">ج.م</span></div>
+            </div>
+            <div class="pkg-divider"></div>
+            <div class="pkg-features">
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>5 فيديوهات احترافية جاهزة</span></div>
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>إرشادات النشر والتوقيت الأمثل</span></div>
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>هاشتاجات مصممة للانتشار</span></div>
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>دعم عبر الواتساب لمدة أسبوع</span></div>
+            </div>
+            <a href="https://wa.me/201013381602?text=مرحبًا، أريد الاشتراك في عرض Starter" class="btn btn-ghost btn-block"><i class="fab fa-whatsapp"></i> احصل على العرض</a>
+          </div>
+        </div>
+
+        <div class="package-card featured fade-in delay-1">
+          <div class="pkg-badge">🔥 الأكثر طلبًا</div>
+          <div class="card">
+            <img src="https://i.postimg.cc/L53DZBHP/alakthr-tlba.png" alt="Growth" class="pkg-img">
+            <div class="pkg-header">
+              <div class="pkg-name">GROWTH</div>
+              <div class="pkg-tagline">الأفضل للنتائج السريعة</div>
+              <div class="pkg-price-old">3499 ج.م</div>
+              <div class="pkg-price-new">1749 <span class="pkg-price-unit">ج.م</span></div>
+            </div>
+            <div class="pkg-divider"></div>
+            <div class="pkg-features">
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>9 فيديو احترافي عالي الجودة</span></div>
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>تحليل الجمهور المستهدف</span></div>
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>استراتيجية نشر متكاملة</span></div>
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>دعم لمدة شهر كامل</span></div>
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>تعديلات مجانية على الفيديوهات</span></div>
+            </div>
+            <a href="https://wa.me/201013381602?text=مرحبًا، أريد الاشتراك في عرض Growth" class="btn btn-gold btn-block"><i class="fas fa-bolt"></i> ابدأ النمو الآن</a>
+          </div>
+        </div>
+
+        <div class="package-card fade-in delay-2">
+          <div class="pkg-badge red">عرض خاص</div>
+          <div class="card">
+            <img src="https://i.postimg.cc/L8C8nCfj/ʿly-klay.png" alt="Dominator" class="pkg-img">
+            <div class="pkg-header">
+              <div class="pkg-name">DOMINATOR</div>
+              <div class="pkg-tagline">الهيمنة على السوشيال ميديا</div>
+              <div class="pkg-price-old">5999 ج.م</div>
+              <div class="pkg-price-new">2999 <span class="pkg-price-unit">ج.م</span></div>
+            </div>
+            <div class="pkg-divider"></div>
+            <div class="pkg-features">
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>15 فيديو محترف متنوع المحتوى</span></div>
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>خطة نشر شهرية كاملة</span></div>
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>جلسة استشارية متخصصة</span></div>
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>دعم مباشر على مدار الساعة</span></div>
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>تحليل أداء وتقارير شهرية</span></div>
+              <div class="pkg-feat"><i class="fas fa-check-circle"></i><span>أولوية في الخدمة والدعم</span></div>
+            </div>
+            <a href="https://wa.me/201013381602?text=مرحبًا، أريد الاشتراك في عرض Dominator" class="btn btn-ghost btn-block"><i class="fas fa-crown"></i> احصل على العرض الآن</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SOCIAL PROOF ── -->
+  <section class="social-proof">
+    <div class="container">
+      <div class="section-title fade-in">
+        <div class="section-label"><i class="fas fa-star"></i> إثبات اجتماعي</div>
+        <h2>لماذا يثق بنا <span class="text-gold">المئات</span></h2>
+      </div>
+      <div class="proof-grid">
+        <div class="card proof-card fade-in">
+          <div class="proof-icon-wrap"><i class="fas fa-user-shield"></i></div>
+          <div class="proof-num">100%</div>
+          <div class="proof-title">أمان كامل</div>
+          <p class="proof-desc">لا نطلب حسابات عملائنا أبدًا</p>
+        </div>
+        <div class="card proof-card fade-in delay-1">
+          <div class="proof-icon-wrap"><i class="fas fa-video"></i></div>
+          <div class="proof-num">10K+</div>
+          <div class="proof-title">فيديو منشور</div>
+          <p class="proof-desc">فيديوهات حققت انتشارًا واسعًا</p>
+        </div>
+        <div class="card proof-card fade-in delay-2">
+          <div class="proof-icon-wrap"><i class="fas fa-smile"></i></div>
+          <div class="proof-num">98%</div>
+          <div class="proof-title">رضا العملاء</div>
+          <p class="proof-desc">عملاء سعداء بنتائجنا</p>
+        </div>
+        <div class="card proof-card fade-in delay-3">
+          <div class="proof-icon-wrap"><i class="fas fa-headset"></i></div>
+          <div class="proof-num">24/7</div>
+          <div class="proof-title">دعم فني</div>
+          <p class="proof-desc">دعم متاح على مدار الساعة</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ── -->
+  <section class="how-it-works">
+    <div class="container">
+      <div class="section-title fade-in">
+        <div class="section-label"><i class="fas fa-list-ol"></i> كيفية العمل</div>
+        <h2>أربع خطوات <span class="text-gold">للانتشار</span></h2>
+      </div>
+      <div class="steps-grid">
+        <div class="card step-card fade-in">
+          <div class="step-num">01</div>
+          <div class="step-icon"><i class="fas fa-clipboard-check"></i></div>
+          <div class="step-title">اختر الباقة</div>
+          <p class="step-desc">اختر الباقة المناسبة لميزانيتك وأهدافك</p>
+        </div>
+        <div class="card step-card fade-in delay-1">
+          <div class="step-num">02</div>
+          <div class="step-icon"><i class="fas fa-video"></i></div>
+          <div class="step-title">استلم الفيديوهات</div>
+          <p class="step-desc">تصلك الفيديوهات جاهزة خلال 24-48 ساعة</p>
+        </div>
+        <div class="card step-card fade-in delay-2">
+          <div class="step-num">03</div>
+          <div class="step-icon"><i class="fas fa-upload"></i></div>
+          <div class="step-title">انشر بنفسك</div>
+          <p class="step-desc">نرشدك للتوقيت والهاشتاجات الأمثل للنشر</p>
+        </div>
+        <div class="card step-card fade-in delay-3">
+          <div class="step-num">04</div>
+          <div class="step-icon"><i class="fas fa-chart-line"></i></div>
+          <div class="step-title">شاهد النتائج</div>
+          <p class="step-desc">زيادة حقيقية في المتابعين والتفاعل</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="faq">
+    <div class="container">
+      <div class="section-title fade-in">
+        <div class="section-label"><i class="fas fa-question"></i> الأسئلة الشائعة</div>
+        <h2>أسئلة <span class="text-gold">وأجوبة</span></h2>
+      </div>
+      <div class="faq-container">
+        <div class="faq-item active">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>هل تحتاجون للوصول إلى حسابي؟</span>
+            <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+          </div>
+          <div class="faq-a">لا، نحن لا نطلب أي بيانات دخول لحسابك. أنت تستلم الفيديوهات وتنشرها بنفسك بالكامل. أمان حسابك هو أولويتنا الأولى.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>كم من الوقت تستغرق تسليم الفيديوهات؟</span>
+            <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+          </div>
+          <div class="faq-a">نسلم الفيديوهات خلال 24 إلى 48 ساعة من بدء العمل، حسب الباقة المختارة وعدد الفيديوهات المطلوبة.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>هل المتابعون الذين سأحصل عليهم حقيقيون؟</span>
+            <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+          </div>
+          <div class="faq-a">نعم، الفيديوهات المحترفة التي نصممها تجذب متابعين حقيقيين مهتمين بمحتواك. لا نستخدم أي أدوات أو طرق مصطنعة.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>ما هي منصات التواصل الاجتماعي التي تدعمونها؟</span>
+            <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+          </div>
+          <div class="faq-a">نتخصص في تيك توك ويوتيوب شورتس، مع دعم إضافي لإنستغرام ريلز. الفيديوهات مصممة لتحقيق أعلى انتشار على هذه المنصات.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>هل يمكنني طلب تعديلات على الفيديوهات؟</span>
+            <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+          </div>
+          <div class="faq-a">نعم، باقتا Growth وDominator تتضمنان تعديلات مجانية. باقة Starter تتضمن تعديلًا واحدًا مجانيًا بعد التسليم.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FINAL CTA ── -->
+  <section class="final-cta">
+    <div class="cta-glow"></div>
+    <div class="container cta-inner">
+      <div class="section-label" style="margin:0 auto 2rem;display:inline-flex;"><i class="fas fa-rocket"></i> ابدأ الآن</div>
+      <h2 class="cta-h">جاهز للانطلاق؟<br><span class="text-gold">انتشارك يبدأ اليوم</span></h2>
+      <p class="cta-sub">لا تضيع وقتك في طرق غير مجدية. انضم لمئات العملاء الراضين وابدأ رحلتك نحو الانتشار الحقيقي الآن.</p>
+      <div class="cta-btns">
+        <a href="#pricing" class="btn btn-gold"><i class="fas fa-gem"></i> اختر باقتك الآن</a>
+        <a href="https://wa.me/201013381602" class="btn btn-wa"><i class="fab fa-whatsapp"></i> استشارة مجانية على الواتساب</a>
+        <a href="https://discord.gg/QKWEu7SBFn" class="btn btn-discord" target="_blank"><i class="fab fa-discord"></i> انضم لسيرفر الديسكورد</a>
+      </div>
+      <div class="guarantee">
+        <i class="fas fa-shield-alt"></i>
+        <span>ضمان الجودة الكاملة · لا نطلب بيانات حسابك أبدًا</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo-wrap">
+            <div class="logo">
+              <div class="logo-icon"><i class="fas fa-rocket"></i></div>
+              <div class="logo-text">
+                <div class="name">الأسطورة</div>
+                <div class="sub">Combo Reach</div>
+              </div>
+            </div>
+          </div>
+          <p class="footer-desc">خدمة احترافية لتجهيز فيديوهات الانتشار على تيك توك ويوتيوب بأمان تام وبدون تسليم أي حسابات.</p>
+          <div class="footer-contacts">
+            <a href="https://wa.me/201013381602" class="contact-link">
+              <i class="fab fa-whatsapp"></i><span>+201013381602</span>
+            </a>
+            <a href="https://discord.gg/QKWEu7SBFn" class="contact-link" target="_blank">
+              <i class="fab fa-discord discord-icon"></i><span>سيرفر الديسكورد</span>
+            </a>
+          </div>
+          <div class="socials" style="margin-top:1rem;">
+            <a href="https://wa.me/201013381602" class="social-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://discord.gg/QKWEu7SBFn" class="social-btn discord-btn" target="_blank"><i class="fab fa-discord"></i></a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">الباقات</div>
+          <ul class="footer-list">
+            <li>باقة Starter — 999 ج.م</li>
+            <li>باقة Growth — 1749 ج.م</li>
+            <li>باقة Dominator — 2999 ج.م</li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">روابط سريعة</div>
+          <ul class="footer-list">
+            <li><a href="#pricing" style="color:var(--muted);">الأسعار والباقات</a></li>
+            <li><a href="https://wa.me/201013381602" style="color:var(--muted);">تواصل معنا</a></li>
+            <li><a href="https://discord.gg/QKWEu7SBFn" target="_blank" style="color:var(--muted);">سيرفر الديسكورد</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 الأسطورة — Combo Reach. جميع الحقوق محفوظة.</span>
+        <span>صُنع بـ ❤ لنجاحك الرقمي</span>
+      </div>
+    </div>
   </footer>
-</div>
 
-<!-- ══════════════════════════════════════
-     JAVASCRIPT
-══════════════════════════════════════ -->
-<script>
-/* ── Navigation System ── */
-let currentPage = 'gateway';
-const pages = ['gateway','accounts','spread','course'];
+  <script>
+    // ── Navbar scroll ──
+    const hdr = document.getElementById('header');
+    window.addEventListener('scroll', () => hdr.classList.toggle('scrolled', window.scrollY > 50));
 
-function goTo(pageId) {
-  if (pageId === currentPage) return;
-
-  const fromEl = document.getElementById('page-' + currentPage);
-  const toEl   = document.getElementById('page-' + pageId);
-
-  // Fade out current
-  fromEl.style.opacity = '0';
-  fromEl.style.transform = 'translateY(-16px)';
-  fromEl.style.transition = 'opacity .35s ease, transform .35s ease';
-
-  setTimeout(() => {
-    fromEl.style.display = 'none';
-    fromEl.style.opacity = '';
-    fromEl.style.transform = '';
-
-    // Show + fade in new
-    toEl.style.display = 'block';
-    toEl.style.opacity = '0';
-    toEl.style.transform = 'translateY(24px)';
-    toEl.style.transition = 'opacity .5s var(--ease-expo), transform .5s var(--ease-expo)';
-
-    // scroll to top
-    window.scrollTo({top:0,behavior:'instant'});
-
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        toEl.style.opacity = '1';
-        toEl.style.transform = 'translateY(0)';
-      });
-    });
-
-    currentPage = pageId;
-    updateNav();
-
-    // Trigger counters if going to accounts
-    if (pageId === 'accounts') triggerCounters();
-
-  }, 320);
-}
-
-function updateNav() {
-  // active nav link
-  pages.forEach(p => {
-    const el = document.getElementById('nav-' + p);
-    if (el) el.classList.toggle('active', p === currentPage);
-  });
-
-  // show back button on sub-pages
-  const backBtn = document.getElementById('nav-back');
-  backBtn.classList.toggle('visible', currentPage !== 'gateway');
-}
-
-/* ── Navbar scroll ── */
-window.addEventListener('scroll', () => {
-  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
-}, {passive:true});
-
-/* ── Mouse Glow ── */
-const glow = document.getElementById('mouse-glow');
-let mx = window.innerWidth/2, my = window.innerHeight/2, gx = mx, gy = my;
-document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-(function track() { gx += (mx-gx)*.08; gy += (my-gy)*.08; glow.style.left=gx+'px'; glow.style.top=gy+'px'; requestAnimationFrame(track); })();
-
-/* ── Particle Canvas ── */
-(function(){
-  const canvas = document.getElementById('bg-canvas');
-  const ctx = canvas.getContext('2d');
-  let W, H, pts = [];
-  const COLS = ['#00f5ff','#0080ff','#7b2fff','#ff006e','#00ff88','#ffd700','#fff'];
-  function resize(){ W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight; }
-  function mk(){ const a=Math.random()*Math.PI*2,s=.08+Math.random()*.28; return {x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+.2,vx:Math.cos(a)*s,vy:Math.sin(a)*s,c:COLS[Math.floor(Math.random()*COLS.length)],al:Math.random()*.5+.08,tp:Math.random()*Math.PI*2,ts:.003+Math.random()*.009}; }
-  function init(){ pts=[]; for(let i=0;i<130;i++) pts.push(mk()); }
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    pts.forEach(p=>{
-      p.tp+=p.ts; const a=p.al*(0.5+0.5*Math.sin(p.tp));
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle=p.c; ctx.globalAlpha=a; ctx.fill();
-      const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*8); g.addColorStop(0,p.c); g.addColorStop(1,'transparent');
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.r*8,0,Math.PI*2); ctx.fillStyle=g; ctx.globalAlpha=a*.22; ctx.fill();
-      ctx.globalAlpha=1; p.x+=p.vx; p.y+=p.vy;
-      if(p.x<-15) p.x=W+15; if(p.x>W+15) p.x=-15;
-      if(p.y<-15) p.y=H+15; if(p.y>H+15) p.y=-15;
-    });
-    ctx.lineWidth=.35;
-    for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++){
-      const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
-      if(d<110){ ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y); ctx.strokeStyle=`rgba(0,245,255,${.055*(1-d/110)})`; ctx.stroke(); }
+    // ── Particles ──
+    const ptContainer = document.getElementById('particles');
+    const ptCount = window.innerWidth < 600 ? 18 : 36;
+    const ptColors = ['rgba(201,168,76,0.55)', 'rgba(245,230,160,0.45)', 'rgba(88,101,242,0.4)', 'rgba(201,168,76,0.35)'];
+    for (let i = 0; i < ptCount; i++) {
+      const p = document.createElement('div');
+      p.className = 'pt';
+      const size = 1 + Math.random() * 2.5;
+      p.style.cssText = `
+        left:${Math.random()*100}%;
+        width:${size}px; height:${size}px;
+        background:${ptColors[Math.floor(Math.random()*ptColors.length)]};
+        animation-duration:${10+Math.random()*16}s;
+        animation-delay:${-Math.random()*24}s;
+        opacity:${0.3+Math.random()*0.5};
+      `;
+      ptContainer.appendChild(p);
     }
-    requestAnimationFrame(draw);
-  }
-  window.addEventListener('resize',()=>{resize();init();},{passive:true});
-  resize(); init(); draw();
-})();
 
-/* ── Counters ── */
-function animateCounter(el) {
-  const target = parseFloat(el.getAttribute('data-target'));
-  const suffix = el.getAttribute('data-suffix') || '';
-  const isDec  = el.getAttribute('data-decimal') === 'true';
-  const dur    = 2000, start = performance.now();
-  (function update(now) {
-    const p = Math.min((now-start)/dur,1), ease = 1-Math.pow(1-p,4), cur = target*ease;
-    el.textContent = (isDec ? cur.toFixed(1) : Math.floor(cur).toLocaleString('ar-EG')) + suffix;
-    if(p<1) requestAnimationFrame(update);
-    else el.textContent = (isDec ? target.toFixed(1) : target.toLocaleString('ar-EG')) + suffix;
-  })(start);
-}
-function triggerCounters() {
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting){ animateCounter(e.target); obs.unobserve(e.target); } });
-  },{threshold:.5});
-  document.querySelectorAll('.stat-num').forEach(el => obs.observe(el));
-}
+    // ── Scroll reveal ──
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-in').forEach(el => revealObs.observe(el));
 
-/* ── Buy button → WhatsApp ── */
-function buyAccount(name) {
-  const msg = encodeURIComponent(`مرحباً، أريد الاستفسار عن شراء الحساب:\n${name}`);
-  window.open(`https://wa.me/201013381602?text=${msg}`, '_blank');
-}
-
-/* ── Init nav ── */
-updateNav();
-</script>
+    // ── FAQ ──
+    function toggleFaq(el) {
+      const item = el.closest('.faq-item');
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+      if (!isActive) item.classList.add('active');
+    }
+  </script>
 </body>
 </html>
