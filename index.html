@@ -64,7 +64,6 @@ img{max-width:100%;display:block;}
 }
 @keyframes gridDrift{from{background-position:0 0;}to{background-position:72px 72px;}}
 
-/* Orbs — desktop only */
 .orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(100px);animation:orbFloat ease-in-out infinite;}
 .orb-1{width:700px;height:700px;top:-250px;right:-200px;background:radial-gradient(circle,rgba(0,245,255,0.09),transparent 70%);animation-duration:22s;}
 .orb-2{width:600px;height:600px;bottom:-180px;left:-180px;background:radial-gradient(circle,rgba(123,47,255,0.10),transparent 70%);animation-duration:28s;animation-delay:-12s;}
@@ -156,7 +155,6 @@ img{max-width:100%;display:block;}
 .gw-divider{width:240px;height:1px;margin:0 auto 60px;background:linear-gradient(90deg,transparent,var(--neon-cyan),var(--neon-purple),transparent);position:relative;}
 .gw-cards{display:grid;grid-template-columns:repeat(3,minmax(0,380px));gap:28px;justify-content:center;width:100%;max-width:1220px;}
 
-/* Gateway card */
 .gw-card{
   position:relative;background:var(--dark-card);border:1px solid var(--glass-border);
   border-radius:26px;padding:48px 36px 42px;
@@ -328,7 +326,7 @@ img{max-width:100%;display:block;}
 .feat-card{background:rgba(10,15,35,.85);border:1px solid rgba(167,139,250,.15);border-radius:20px;padding:30px 26px;text-align:center;transition:all .35s var(--ease-spring);position:relative;overflow:hidden;}
 .feat-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--neon-purple),transparent);transform:scaleX(0);transition:transform .35s;}
 .feat-card:hover{transform:translateY(-6px);border-color:rgba(167,139,250,.3);box-shadow:0 0 20px rgba(167,139,250,.1);}
-.feat-card:hover::before{transform:scaleX(1);}l
+.feat-card:hover::before{transform:scaleX(1);}
 .feat-icon-wrap{width:64px;height:64px;border-radius:18px;background:linear-gradient(135deg,rgba(124,58,237,.18),rgba(219,39,119,.09));border:1px solid rgba(167,139,250,.18);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 18px;transition:all .35s;}
 .feat-card:hover .feat-icon-wrap{background:linear-gradient(135deg,rgba(124,58,237,.3),rgba(219,39,119,.18));box-shadow:0 0 15px rgba(167,139,250,.2);transform:scale(1.08) rotate(4deg);}
 .feat-card h3{font-size:1.1rem;font-weight:700;margin-bottom:10px;}
@@ -390,134 +388,54 @@ img{max-width:100%;display:block;}
 @keyframes waPulse{0%{transform:scale(1);opacity:.6;}70%{transform:scale(2);opacity:0;}100%{transform:scale(2);opacity:0;}}
 
 /* ═══════════════════════════════════════════════════════
-   MOBILE OPTIMIZATIONS — reduce heavy GPU effects
+   MOBILE OPTIMIZATIONS
 ═══════════════════════════════════════════════════════ */
 @media (max-width: 900px) {
-  /* Hide canvas particles and orbs entirely */
   #bg-canvas { display: none; }
   .orb { display: none; }
   .scanlines { display: none; }
   #mouse-glow { display: none; }
   .corner { display: none; }
-
-  /* Simplify grid background — static, no animation */
-  .bg-grid {
-    animation: none;
-    background-size: 56px 56px;
-    opacity: 0.6;
-    mask-image: none;
-  }
-
-  /* Stop status bar animation, keep color */
-  .status-bar {
-    animation: none;
-    background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan), var(--neon-purple));
-    background-size: 100% 100%;
-    opacity: .55;
-  }
-
-  /* Nav — remove backdrop-filter */
-  #navbar {
-    backdrop-filter: none;
-    background: rgba(2,4,8,0.97);
-    height: 56px;
-    padding: 0 1.2rem;
-  }
+  .bg-grid { animation: none; background-size: 56px 56px; opacity: 0.6; mask-image: none; }
+  .status-bar { animation: none; background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan), var(--neon-purple)); background-size: 100% 100%; opacity: .55; }
+  #navbar { backdrop-filter: none; background: rgba(2,4,8,0.97); height: 56px; padding: 0 1.2rem; }
   #navbar .nav-links { display: none; }
-
-  /* Page transitions — lighter */
-  .page-view {
-    transition: opacity .3s ease, transform .3s ease;
-  }
-
-  /* Gateway */
+  .page-view { transition: opacity .3s ease, transform .3s ease; }
   #page-gateway { padding: 50px 16px 70px; }
   .gw-title { font-size: 3rem; }
   .gw-logo-ring { box-shadow: 0 0 18px rgba(0,245,255,0.12); }
   .gw-logo-ring-outer { animation: none; border-color: rgba(0,245,255,0.15); }
   .gw-cards { grid-template-columns: 1fr; max-width: 420px; gap: 16px; }
-
-  /* Cards — remove backdrop-filter, reduce shadows */
-  .gw-card {
-    backdrop-filter: none;
-    background: rgba(6,14,28,0.97);
-    animation-delay: 0s !important;
-  }
+  .gw-card { backdrop-filter: none; background: rgba(6,14,28,0.97); animation-delay: 0s !important; }
   .gw-card:nth-child(1){ animation-delay: .2s !important; }
   .gw-card:nth-child(2){ animation-delay: .35s !important; }
   .gw-card:nth-child(3){ animation-delay: .5s !important; }
   .gw-card-glow { display: none; }
-  .gw-card:hover {
-    transform: translateY(-6px) scale(1.01);
-    box-shadow: 0 12px 35px rgba(0,0,0,.4), 0 0 0 1px color-mix(in srgb,var(--c-accent,var(--neon-cyan)) 20%,transparent);
-  }
-
-  /* Icon — stop float animation */
+  .gw-card:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 12px 35px rgba(0,0,0,.4), 0 0 0 1px color-mix(in srgb,var(--c-accent,var(--neon-cyan)) 20%,transparent); }
   .gw-icon-wrap { animation: none; }
   .gw-card:hover .gw-icon-wrap { box-shadow: 0 0 16px color-mix(in srgb,var(--c-accent,var(--neon-cyan)) 30%,transparent); }
-
-  /* Hero sections */
-  .acc-hero, .sprd-hero, .crs-hero {
-    min-height: auto;
-    padding: 6rem 1.2rem 3.5rem;
-  }
+  .acc-hero, .sprd-hero, .crs-hero { min-height: auto; padding: 6rem 1.2rem 3.5rem; }
   .acc-hero-title { filter: none; }
-
-  /* Remove backdrop-filter from cards */
-  .account-card {
-    backdrop-filter: none;
-    background: rgba(9,18,30,0.98);
-  }
-  .account-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(0,0,0,.4), 0 0 0 1px rgba(0,212,255,.2);
-  }
-
-  /* Stats strip */
-  .stats-strip {
-    backdrop-filter: none;
-    background: rgba(9,18,30,0.98);
-    padding: 2rem 1.4rem;
-    margin: 0 0 3.5rem;
-  }
-
-  /* Review cards */
-  .review-card {
-    backdrop-filter: none;
-    background: rgba(9,18,30,0.98);
-  }
-
-  /* Package cards */
-  .pkg-card, .step-card, .feat-card, .curr-card, .crs-pkg {
-    backdrop-filter: none;
-  }
+  .account-card { backdrop-filter: none; background: rgba(9,18,30,0.98); }
+  .account-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,.4), 0 0 0 1px rgba(0,212,255,.2); }
+  .stats-strip { backdrop-filter: none; background: rgba(9,18,30,0.98); padding: 2rem 1.4rem; margin: 0 0 3.5rem; }
+  .review-card { backdrop-filter: none; background: rgba(9,18,30,0.98); }
+  .pkg-card, .step-card, .feat-card, .curr-card, .crs-pkg { backdrop-filter: none; }
   .pkg-card { background: rgba(12,14,26,0.98); }
   .pkg-card.featured { box-shadow: 0 0 0 1px rgba(201,168,76,.2), 0 20px 40px rgba(0,0,0,.45); }
   .step-card { background: rgba(12,14,26,0.98); }
   .feat-card, .curr-card, .crs-pkg { background: rgba(10,16,38,0.98); }
-  .learn-box {
-    backdrop-filter: none;
-    background: rgba(15,22,55,0.98);
-    box-shadow: 0 15px 35px rgba(0,0,0,.3);
-  }
+  .learn-box { backdrop-filter: none; background: rgba(15,22,55,0.98); box-shadow: 0 15px 35px rgba(0,0,0,.3); }
   .discord-box { padding: 30px 16px; backdrop-filter: none; }
-
-  /* Footer */
   .page-footer { backdrop-filter: none; }
-
-  /* Reduce glow on buttons */
   .btn-primary { box-shadow: 0 0 12px rgba(0,212,255,.18); }
   .btn-buy { box-shadow: 0 0 8px rgba(0,212,255,.15); }
   .btn-gold { box-shadow: 0 0 0 1px rgba(201,168,76,.3), 0 4px 16px rgba(201,168,76,.16); }
   .float-wa { box-shadow: 0 4px 16px rgba(37,211,102,.3); }
   .float-wa-pulse { animation: none; display: none; }
-
-  /* Sections padding */
   .acc-section { padding: 3rem 1.2rem; }
   .pg-section { padding: 3rem 1.2rem; }
   .contact-section { padding: 3rem 1.2rem; }
-
-  /* Grids */
   .acc-hero-btns { flex-direction: column; align-items: stretch; }
   .sprd-feats { max-width: 100%; }
   .pkg-grid, .steps-grid, .feat-grid, .curr-grid, .crs-pkg-grid { grid-template-columns: 1fr; }
@@ -525,12 +443,9 @@ img{max-width:100%;display:block;}
   .reviews-grid { grid-template-columns: 1fr; }
   .float-wa { left: 12px; bottom: 16px; padding: 10px 14px; font-size: .82rem; }
   body { padding-bottom: 72px; }
-
-  /* Reduce neon-div glow */
   .neon-div { box-shadow: 0 0 4px rgba(0,245,255,.25); }
 }
 
-/* Extra small devices */
 @media (max-width: 480px) {
   .gw-card { padding: 28px 18px 24px; }
   .gw-card-title { font-size: 1.6rem; }
@@ -542,16 +457,10 @@ img{max-width:100%;display:block;}
   .stat-num { font-size: clamp(1.6rem, 6vw, 2.4rem); }
 }
 
-/* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.15ms !important;
-  }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.15ms !important; }
 }
 
-/* Desktop — keep backdrop-filter but optimized */
 @media (min-width: 901px) {
   #navbar { backdrop-filter: blur(20px) saturate(150%); }
   .gw-card { backdrop-filter: blur(20px); }
@@ -562,43 +471,21 @@ img{max-width:100%;display:block;}
   .feat-card, .curr-card, .crs-pkg { backdrop-filter: blur(10px); }
   .learn-box { backdrop-filter: blur(12px); }
   .page-footer { backdrop-filter: blur(16px); }
-
-  /* Desktop float animations restored */
   .gw-icon-wrap { animation: iconFloat 5s ease-in-out infinite; }
   .gw-card:nth-child(2) .gw-icon-wrap { animation-delay: -1.6s; }
   .gw-card:nth-child(3) .gw-icon-wrap { animation-delay: -3.2s; }
   @keyframes iconFloat { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
   .gw-card:hover .gw-icon-wrap { animation-play-state: paused; }
-
-  /* Desktop logo pulse */
   .gw-logo-ring { animation: logoPulse 4s ease-in-out infinite; }
-  @keyframes logoPulse {
-    0%,100%{box-shadow:0 0 30px rgba(0,245,255,.15),inset 0 0 20px rgba(0,245,255,.04);}
-    50%{box-shadow:0 0 55px rgba(0,245,255,.35),inset 0 0 40px rgba(0,245,255,.08);}
-  }
-
-  /* Desktop title shimmer */
+  @keyframes logoPulse { 0%,100%{box-shadow:0 0 30px rgba(0,245,255,.15),inset 0 0 20px rgba(0,245,255,.04);} 50%{box-shadow:0 0 55px rgba(0,245,255,.35),inset 0 0 40px rgba(0,245,255,.08);} }
   .gw-title { animation: titleShimmer 6s ease infinite alternate; background-size: 200% 200%; }
   @keyframes titleShimmer { 0%{background-position:0% 50%;} 100%{background-position:100% 50%;} }
-
-  /* Desktop hero shimmer */
   .acc-hero-title { animation: shimmer 5s ease-in-out infinite alternate; }
-  @keyframes shimmer {
-    0%{filter:drop-shadow(0 0 15px rgba(0,245,255,.4));}
-    50%{filter:drop-shadow(0 0 35px rgba(123,47,255,.55));}
-    100%{filter:drop-shadow(0 0 25px rgba(0,255,136,.4));}
-  }
-
-  /* Desktop course gradient shift */
+  @keyframes shimmer { 0%{filter:drop-shadow(0 0 15px rgba(0,245,255,.4));} 50%{filter:drop-shadow(0 0 35px rgba(123,47,255,.55));} 100%{filter:drop-shadow(0 0 25px rgba(0,255,136,.4));} }
   .crs-grad { background-size: 200% 200%; animation: gradShift 4s ease infinite; }
   @keyframes gradShift { 0%,100%{background-position:0% 50%;} 50%{background-position:100% 50%;} }
-
-  /* Desktop badge glow */
   .crs-badge { animation: pglow 3s ease-in-out infinite; }
-  @keyframes pglow {
-    0%,100%{box-shadow:0 0 0 0 rgba(124,58,237,.25);}
-    50%{box-shadow:0 0 0 7px rgba(124,58,237,0);}
-  }
+  @keyframes pglow { 0%,100%{box-shadow:0 0 0 0 rgba(124,58,237,.25);} 50%{box-shadow:0 0 0 7px rgba(124,58,237,0);} }
 }
 </style>
    <!-- Google tag (gtag.js) -->
@@ -607,13 +494,11 @@ img{max-width:100%;display:block;}
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-G0LWHEYHRC');
 </script>
 </head>
 <body>
 
-<!-- ── Fixed Background ── -->
 <div class="status-bar"></div>
 <canvas id="bg-canvas"></canvas>
 <div class="bg-grid"></div>
@@ -627,14 +512,12 @@ img{max-width:100%;display:block;}
 <div class="corner corner-bl"></div>
 <div class="corner corner-br"></div>
 
-<!-- ── Floating WhatsApp ── -->
 <div class="float-wa-pulse"></div>
 <a class="float-wa" href="https://wa.me/201013381602" target="_blank">
   <i class="fab fa-whatsapp" style="font-size:1.2rem;"></i>
   <span>+201013381602</span>
 </a>
 
-<!-- ── Navbar ── -->
 <nav id="navbar">
   <div class="nav-logo" onclick="goTo('gateway')">⚡ الأسطورة</div>
   <ul class="nav-links">
@@ -643,34 +526,23 @@ img{max-width:100%;display:block;}
     <li><a onclick="goTo('spread')" id="nav-spread">الانتشار</a></li>
     <li><a onclick="goTo('course')" id="nav-course">الكورس</a></li>
   </ul>
-  <button class="nav-back-btn" id="nav-back" onclick="goTo('gateway')">
-    ← الرئيسية
-  </button>
+  <button class="nav-back-btn" id="nav-back" onclick="goTo('gateway')">← الرئيسية</button>
 </nav>
 
-<!-- ══════════════════════════════════════
-     PAGE 0 — GATEWAY
-══════════════════════════════════════ -->
+<!-- PAGE 0 — GATEWAY -->
 <div class="page-view active" id="page-gateway">
   <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:70px 28px 80px;">
-    
     <header style="text-align:center;margin-bottom:56px;">
       <div class="gw-logo-wrap">
         <div class="gw-logo-ring-outer"></div>
-        <div class="gw-logo-ring">
-          <span class="gw-logo-icon">⬡</span>
-        </div>
+        <div class="gw-logo-ring"><span class="gw-logo-icon">⬡</span></div>
       </div>
       <div class="gw-elite-badge">LEGEND PLATFORM</div>
       <h1 class="gw-title">الأسطورة</h1>
       <p class="gw-subtitle">اختر <span style="color:var(--neon-cyan);font-weight:600;">وجهتك</span> وابدأ رحلتك مع المنصة الأسطورية</p>
     </header>
-
     <div class="gw-divider"></div>
-
     <main class="gw-cards">
-
-      <!-- الحسابات -->
       <div class="gw-card c-accounts" onclick="goTo('accounts')">
         <div class="gw-card-glow"></div>
         <div class="gw-icon-wrap">
@@ -681,8 +553,6 @@ img{max-width:100%;display:block;}
         <p class="gw-card-desc">حسابات تيك توك وانستجرام موثوقة وجاهزة — أعمار مختلفة وأسعار تنافسية لا تُضاهى</p>
         <div class="gw-cta">تصفح الحسابات <span class="cta-arrow">←</span></div>
       </div>
-
-      <!-- الانتشار -->
       <div class="gw-card c-spread" onclick="goTo('spread')">
         <div class="gw-card-glow"></div>
         <div class="gw-icon-wrap">
@@ -693,8 +563,6 @@ img{max-width:100%;display:block;}
         <p class="gw-card-desc">فيديوهات احترافية مضمونة الانتشار بدون تسليم حسابك — نمو حقيقي وآمن 100٪</p>
         <div class="gw-cta">ابدأ الانتشار <span class="cta-arrow">←</span></div>
       </div>
-
-      <!-- الكورس -->
       <div class="gw-card c-course" onclick="goTo('course')">
         <div class="gw-card-glow"></div>
         <div class="gw-icon-wrap">
@@ -705,9 +573,7 @@ img{max-width:100%;display:block;}
         <p class="gw-card-desc">تعلم تكبير صفحات تيك توك ويوتيوب من الصفر وبيعها بدخل شهري ثابت — كورس عملي 100٪</p>
         <div class="gw-cta">اشترك الآن <span class="cta-arrow">←</span></div>
       </div>
-
     </main>
-
     <footer style="margin-top:72px;text-align:center;">
       <div style="width:240px;height:1px;margin:0 auto 22px;background:linear-gradient(90deg,transparent,rgba(0,245,255,0.12),transparent);"></div>
       <p style="color:var(--text-muted);font-size:.8rem;letter-spacing:.08em;">
@@ -719,11 +585,8 @@ img{max-width:100%;display:block;}
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     PAGE 1 — ACCOUNTS
-══════════════════════════════════════ -->
+<!-- PAGE 1 — ACCOUNTS -->
 <div class="page-view" id="page-accounts">
-
   <div class="acc-hero">
     <div class="acc-hero-badge">PREMIUM ACCOUNTS MARKETPLACE</div>
     <h1 class="acc-hero-title">الأسطورة</h1>
@@ -743,6 +606,7 @@ img{max-width:100%;display:block;}
 
     <div class="accounts-grid">
 
+      <!-- ORIGINAL 6 ACCOUNTS -->
       <div class="account-card">
         <div class="ac-header">
           <div class="ac-avatar"><img src="https://i.postimg.cc/3wQD9Nk4/696482141-2066114400948063-2961393500966252861-n.jpg" alt="@tahfizak"></div>
@@ -833,6 +697,173 @@ img{max-width:100%;display:block;}
         <div class="ac-footer"><button class="btn-buy" style="background:linear-gradient(135deg,var(--neon-green),var(--neon-cyan));color:#000" onclick="buyAccount('@bogy_offical')">تواصل للشراء</button></div>
       </div>
 
+      <!-- ══ 11 NEW ACCOUNTS FROM SCREENSHOTS ══ -->
+
+      <div class="account-card">
+        <div class="ac-header">
+          <div class="ac-avatar"><img src="https://i.postimg.cc/WbGCQDQN/1007882b-5094-4c83-99ee-899f86249af1.jpg" alt="@hamo_hamo60"></div>
+          <div class="ac-info"><h3>@hamo_hamo60</h3><div class="ac-cat">🕌 آيات قرآنية</div></div>
+        </div>
+        <div class="ac-body">
+          <div class="ac-stats">
+            <div class="stat-box"><span class="stat-box-label">Followers</span><div class="stat-box-val">4.4K</div></div>
+            <div class="stat-box"><span class="stat-box-label">Likes</span><div class="stat-box-val">61.7K</div></div>
+          </div>
+          <div class="ac-platform">🎵 حساب تيك توك</div>
+        </div>
+        <div class="ac-footer"><button class="btn-buy" style="background:linear-gradient(135deg,#1a7f4b,#0d5c35)" onclick="buyAccount('@hamo_hamo60')">تواصل للشراء</button></div>
+      </div>
+
+      <div class="account-card">
+        <div class="ac-header">
+          <div class="ac-avatar" style="background:linear-gradient(135deg,#ff6b35,#f7c59f)"><img src="https://i.postimg.cc/yYmtwJwY/0addb7ae-9870-4244-b180-75e4d687ac28.jpg" alt="@fans.essam.sasaa01"></div>
+          <div class="ac-info"><h3>@fans.essam.sasaa01</h3><div class="ac-cat" style="color:#ff6b35">🎭 ترفيه</div></div>
+        </div>
+        <div class="ac-body">
+          <div class="ac-stats">
+            <div class="stat-box"><span class="stat-box-label">Followers</span><div class="stat-box-val">13.3K</div></div>
+            <div class="stat-box"><span class="stat-box-label">Likes</span><div class="stat-box-val">71.6K</div></div>
+          </div>
+          <div class="ac-platform">🎵 حساب تيك توك</div>
+        </div>
+        <div class="ac-footer"><button class="btn-buy" style="background:linear-gradient(135deg,#ff6b35,#f7c59f);color:#000" onclick="buyAccount('@fans.essam.sasaa01')">تواصل للشراء</button></div>
+      </div>
+
+      <div class="account-card">
+        <div class="ac-header">
+          <div class="ac-avatar" style="background:linear-gradient(135deg,#374151,#1f2937)"><img src="https://i.postimg.cc/nc4g6s6z/0f54e7d5-2fde-470a-b12e-9dd8b10f2c19.jpg" alt="@drmagdy.nazih"></div>
+          <div class="ac-info"><h3>@drmagdy.nazih</h3><div class="ac-cat" style="color:#60a5fa">🧠 معلومات ونصائح</div></div>
+        </div>
+        <div class="ac-body">
+          <div class="ac-stats">
+            <div class="stat-box"><span class="stat-box-label">Followers</span><div class="stat-box-val">198K</div></div>
+            <div class="stat-box"><span class="stat-box-label">Likes</span><div class="stat-box-val">840.1K</div></div>
+          </div>
+          <div class="ac-platform">🎵 حساب تيك توك</div>
+        </div>
+        <div class="ac-footer"><button class="btn-buy" style="background:linear-gradient(135deg,#374151,#60a5fa)" onclick="buyAccount('@drmagdy.nazih')">تواصل للشراء</button></div>
+      </div>
+
+      <div class="account-card">
+        <div class="ac-header">
+          <div class="ac-avatar" style="background:linear-gradient(135deg,#78350f,#d97706)"><img src="https://i.postimg.cc/Yq6ZJ4J0/3db62293-7e37-43e8-bdf6-f8322f149277.jpg" alt="@user7774815752096"></div>
+          <div class="ac-info"><h3>@user7774815752096</h3><div class="ac-cat" style="color:#d97706">🕌 ارح سمعك - ديني</div></div>
+        </div>
+        <div class="ac-body">
+          <div class="ac-stats">
+            <div class="stat-box"><span class="stat-box-label">Followers</span><div class="stat-box-val">242.4K</div></div>
+            <div class="stat-box"><span class="stat-box-label">Likes</span><div class="stat-box-val">2.8M</div></div>
+          </div>
+          <div class="ac-platform">🎵 حساب تيك توك</div>
+        </div>
+        <div class="ac-footer"><button class="btn-buy" style="background:linear-gradient(135deg,#78350f,#d97706)" onclick="buyAccount('@user7774815752096')">تواصل للشراء</button></div>
+      </div>
+
+      <div class="account-card">
+        <div class="ac-header">
+          <div class="ac-avatar" style="background:linear-gradient(135deg,#dc2626,#f87171)"><img src="https://i.postimg.cc/ZK821910/9bb756f0-8a00-4af7-8c02-da0541216d08.jpg" alt="@fans.abo.adel"></div>
+          <div class="ac-info"><h3>@fans.abo.adel</h3><div class="ac-cat" style="color:#f87171">🎬 ابو عادل - ترفيه</div></div>
+        </div>
+        <div class="ac-body">
+          <div class="ac-stats">
+            <div class="stat-box"><span class="stat-box-label">Followers</span><div class="stat-box-val">4K</div></div>
+            <div class="stat-box"><span class="stat-box-label">Likes</span><div class="stat-box-val">5.8K</div></div>
+          </div>
+          <div class="ac-platform">🎵 حساب تيك توك</div>
+        </div>
+        <div class="ac-footer"><button class="btn-buy" style="background:linear-gradient(135deg,#dc2626,#f87171)" onclick="buyAccount('@fans.abo.adel')">تواصل للشراء</button></div>
+      </div>
+
+      <div class="account-card">
+        <div class="ac-header">
+          <div class="ac-avatar" style="background:linear-gradient(135deg,#7c2d12,#c2410c)"><img src="https://i.postimg.cc/GhFVZBZ4/65e83956-96ca-4a6d-a398-8ee9a5818953.jpg" alt="@touh_9"></div>
+          <div class="ac-info"><h3>@touh_9</h3><div class="ac-cat" style="color:#fb923c">🍁 ارح قلبك - ديني</div></div>
+        </div>
+        <div class="ac-body">
+          <div class="ac-stats">
+            <div class="stat-box"><span class="stat-box-label">Followers</span><div class="stat-box-val">1.8M</div></div>
+            <div class="stat-box"><span class="stat-box-label">Likes</span><div class="stat-box-val">23.1M</div></div>
+          </div>
+          <div class="ac-platform">🎵 حساب تيك توك</div>
+        </div>
+        <div class="ac-footer"><button class="btn-buy" style="background:linear-gradient(135deg,#7c2d12,#c2410c)" onclick="buyAccount('@touh_9')">تواصل للشراء</button></div>
+      </div>
+
+      <div class="account-card">
+        <div class="ac-header">
+          <div class="ac-avatar" style="background:linear-gradient(135deg,#064e3b,#10b981)"><img src="https://i.postimg.cc/vZGkMYs1/73feaf71-99bf-45fb-a9cc-c9fd2e0fe37e.jpg" alt="@80_ro_10"></div>
+          <div class="ac-info"><h3>@80_ro_10</h3><div class="ac-cat" style="color:#10b981">⚽ KAKA - كرة القدم</div></div>
+        </div>
+        <div class="ac-body">
+          <div class="ac-stats">
+            <div class="stat-box"><span class="stat-box-label">Followers</span><div class="stat-box-val">35.4K</div></div>
+            <div class="stat-box"><span class="stat-box-label">Likes</span><div class="stat-box-val">425.5K</div></div>
+          </div>
+          <div class="ac-platform">🎵 حساب تيك توك</div>
+        </div>
+        <div class="ac-footer"><button class="btn-buy" style="background:linear-gradient(135deg,#064e3b,#10b981)" onclick="buyAccount('@80_ro_10')">تواصل للشراء</button></div>
+      </div>
+
+      <div class="account-card">
+        <div class="ac-header">
+          <div class="ac-avatar" style="background:linear-gradient(135deg,#831843,#db2777)"><img src="https://i.postimg.cc/Vkzp1f8J/75e88cbd-49e6-400c-84f0-62879abc0197.jpg" alt="@dbqlkcles9q"></div>
+          <div class="ac-info"><h3>@dbqlkcles9q</h3><div class="ac-cat" style="color:#db2777">💡 نصائح رضوى</div></div>
+        </div>
+        <div class="ac-body">
+          <div class="ac-stats">
+            <div class="stat-box"><span class="stat-box-label">Followers</span><div class="stat-box-val">30K</div></div>
+            <div class="stat-box"><span class="stat-box-label">Likes</span><div class="stat-box-val">100.6K</div></div>
+          </div>
+          <div class="ac-platform">🎵 حساب تيك توك</div>
+        </div>
+        <div class="ac-footer"><button class="btn-buy" style="background:linear-gradient(135deg,#831843,#db2777)" onclick="buyAccount('@dbqlkcles9q')">تواصل للشراء</button></div>
+      </div>
+
+      <div class="account-card">
+        <div class="ac-header">
+          <div class="ac-avatar" style="background:linear-gradient(135deg,#1e3a5f,#3b82f6)"><img src="https://i.postimg.cc/K8mwFG2t/8185b6dc-ec07-48f9-a2aa-c812e87c9fa5.jpg" alt="@mohamed.elsheikh128"></div>
+          <div class="ac-info"><h3>@mohamed.elsheikh128</h3><div class="ac-cat" style="color:#3b82f6">🎧 مصمم شبرا</div></div>
+        </div>
+        <div class="ac-body">
+          <div class="ac-stats">
+            <div class="stat-box"><span class="stat-box-label">Followers</span><div class="stat-box-val">14.7K</div></div>
+            <div class="stat-box"><span class="stat-box-label">Likes</span><div class="stat-box-val">56.3K</div></div>
+          </div>
+          <div class="ac-platform">🎵 حساب تيك توك</div>
+        </div>
+        <div class="ac-footer"><button class="btn-buy" style="background:linear-gradient(135deg,#1e3a5f,#3b82f6)" onclick="buyAccount('@mohamed.elsheikh128')">تواصل للشراء</button></div>
+      </div>
+
+      <div class="account-card">
+        <div class="ac-header">
+          <div class="ac-avatar" style="background:linear-gradient(135deg,#312e81,#6d28d9)"><img src="https://i.postimg.cc/W1sCjNvF/183ff868-6556-4a93-a9a2-c02c6e8c2fc8.jpg" alt="@hala.saamier"></div>
+          <div class="ac-info"><h3>@hala.saamier</h3><div class="ac-cat" style="color:#a78bfa">🧠 د. هالة سمير - علم نفس</div></div>
+        </div>
+        <div class="ac-body">
+          <div class="ac-stats">
+            <div class="stat-box"><span class="stat-box-label">Followers</span><div class="stat-box-val">418.3K</div></div>
+            <div class="stat-box"><span class="stat-box-label">Likes</span><div class="stat-box-val">3.2M</div></div>
+          </div>
+          <div class="ac-platform">🎵 حساب تيك توك</div>
+        </div>
+        <div class="ac-footer"><button class="btn-buy" style="background:linear-gradient(135deg,#312e81,#6d28d9)" onclick="buyAccount('@hala.saamier')">تواصل للشراء</button></div>
+      </div>
+
+      <div class="account-card">
+        <div class="ac-header">
+          <div class="ac-avatar" style="background:linear-gradient(135deg,#1c1917,#57534e)"><img src="https://i.postimg.cc/mgTJRLs1/931d162e-3979-45ed-88ce-3dc0bfc9a55f.jpg" alt="@ullbnciyd72"></div>
+          <div class="ac-info"><h3>@ullbnciyd72</h3><div class="ac-cat" style="color:#a8a29e">🎭 حماده هلال</div></div>
+        </div>
+        <div class="ac-body">
+          <div class="ac-stats">
+            <div class="stat-box"><span class="stat-box-label">Followers</span><div class="stat-box-val">1.3K</div></div>
+            <div class="stat-box"><span class="stat-box-label">Likes</span><div class="stat-box-val">9.5K</div></div>
+          </div>
+          <div class="ac-platform">🎵 حساب تيك توك · جديد</div>
+        </div>
+        <div class="ac-footer"><button class="btn-buy" style="background:linear-gradient(135deg,#1c1917,#57534e)" onclick="buyAccount('@ullbnciyd72')">تواصل للشراء</button></div>
+      </div>
+
     </div>
   </section>
 
@@ -885,11 +916,8 @@ img{max-width:100%;display:block;}
   </footer>
 </div>
 
-<!-- ══════════════════════════════════════
-     PAGE 2 — SPREAD
-══════════════════════════════════════ -->
+<!-- PAGE 2 — SPREAD -->
 <div class="page-view" id="page-spread">
-
   <div class="sprd-hero">
     <div class="sprd-badge">متاح الآن · نتائج من الأسبوع الأول</div>
     <h1 class="sprd-title">انتشار آمن<br><span>بدون تسليم أي بيانات</span></h1>
@@ -911,9 +939,7 @@ img{max-width:100%;display:block;}
     <h2 class="sec-title">اختر باقتك 🔥</h2>
     <div class="neon-div" style="margin-inline:auto;background:linear-gradient(90deg,var(--neon-gold),#8b6914);box-shadow:0 0 8px rgba(255,215,0,.3);"></div>
     <p class="sec-sub">خصم 50% + ضعف عدد الفيديوهات لفترة محدودة</p>
-
     <div class="pkg-grid">
-
       <div class="pkg-card" style="margin-top:16px;">
         <div class="pkg-top-badge red">خصم 50%</div>
         <img src="https://i.postimg.cc/KcJrvFzs/afraj.jpg" alt="Starter" class="pkg-img">
@@ -930,7 +956,6 @@ img{max-width:100%;display:block;}
         </div>
         <a href="https://wa.me/201013381602?text=مرحبًا، أريد الاشتراك في عرض Starter" class="btn-ghost-sprd" target="_blank">احصل على العرض</a>
       </div>
-
       <div class="pkg-card featured">
         <div class="pkg-top-badge">🔥 الأكثر طلبًا</div>
         <img src="https://i.postimg.cc/L53DZBHP/alakthr-tlba.png" alt="Growth" class="pkg-img">
@@ -948,7 +973,6 @@ img{max-width:100%;display:block;}
         </div>
         <a href="https://wa.me/201013381602?text=مرحبًا، أريد الاشتراك في عرض Growth" class="btn-gold" target="_blank">⚡ ابدأ النمو الآن</a>
       </div>
-
       <div class="pkg-card" style="margin-top:16px;">
         <div class="pkg-top-badge red">عرض خاص</div>
         <img src="https://i.postimg.cc/L8C8nCfj/ʿly-klay.png" alt="Dominator" class="pkg-img">
@@ -966,7 +990,6 @@ img{max-width:100%;display:block;}
         </div>
         <a href="https://wa.me/201013381602?text=مرحبًا، أريد الاشتراك في عرض Dominator" class="btn-ghost-sprd" target="_blank">👑 احصل على العرض الآن</a>
       </div>
-
     </div>
   </section>
 
@@ -996,11 +1019,8 @@ img{max-width:100%;display:block;}
   </footer>
 </div>
 
-<!-- ══════════════════════════════════════
-     PAGE 3 — COURSE
-══════════════════════════════════════ -->
+<!-- PAGE 3 — COURSE -->
 <div class="page-view" id="page-course">
-
   <div class="crs-hero">
     <div class="crs-badge">🔥 كورس عملي 100%</div>
     <h1 class="crs-title"><span class="crs-grad">ابدأ مشروعك الرقمي</span><br>تكبير وبيع صفحات السوشيال ميديا</h1>
@@ -1051,7 +1071,6 @@ img{max-width:100%;display:block;}
     <h2 class="sec-title">الباقات المتاحة</h2>
     <div class="neon-div" style="margin-inline:auto;background:linear-gradient(90deg,#a78bfa,#f472b6);box-shadow:0 0 8px rgba(167,139,250,.4);"></div>
     <div class="crs-pkg-grid">
-
       <div class="crs-pkg">
         <img src="https://i.postimg.cc/zBm03RJH/albaqt-alasasyty.png" alt="الأساسية">
         <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:6px;">الباقة الأساسية</h3>
@@ -1063,7 +1082,6 @@ img{max-width:100%;display:block;}
         </ul>
         <a href="https://wa.me/201013381602?text=عايز اشتري الباقة الأساسية" class="btn-outline-crs" target="_blank">اطلب الآن</a>
       </div>
-
       <div class="crs-pkg featured-crs">
         <div class="crs-pkg-badge">⭐ الأكثر طلبًا</div>
         <img src="https://i.postimg.cc/JhSkQxCd/albaqt-almmyzt.jpg" alt="المميزة">
@@ -1076,7 +1094,6 @@ img{max-width:100%;display:block;}
         </ul>
         <a href="https://wa.me/201013381602?text=عايز اشتري الباقة المميزة" class="btn-purple" target="_blank">اطلب الآن</a>
       </div>
-
       <div class="crs-pkg vip-crs">
         <div class="crs-pkg-badge gold">👑 VIP</div>
         <img src="https://i.postimg.cc/7PVjj2GJ/albaqt-alasasyt.jpg" alt="VIP">
@@ -1092,7 +1109,6 @@ img{max-width:100%;display:block;}
         </ul>
         <a href="https://wa.me/201013381602?text=عايز اشتري الباقة VIP" class="btn-vip" target="_blank">اطلب الآن</a>
       </div>
-
     </div>
   </section>
 
@@ -1112,14 +1128,9 @@ img{max-width:100%;display:block;}
   </footer>
 </div>
 
-<!-- ══════════════════════════════════════
-     JAVASCRIPT — Mobile-aware
-══════════════════════════════════════ -->
 <script>
-/* ── Device detection ── */
 const isMobile = window.innerWidth <= 900 || ('ontouchstart' in window);
 
-/* ── Navigation System ── */
 let currentPage = 'gateway';
 const pages = ['gateway','accounts','spread','course'];
 
@@ -1166,12 +1177,10 @@ function updateNav() {
   document.getElementById('nav-back').classList.toggle('visible', currentPage !== 'gateway');
 }
 
-/* ── Navbar scroll ── */
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
 }, {passive:true});
 
-/* ── Mouse Glow — desktop only ── */
 if (!isMobile) {
   const glow = document.getElementById('mouse-glow');
   let mx = window.innerWidth/2, my = window.innerHeight/2, gx = mx, gy = my;
@@ -1183,7 +1192,6 @@ if (!isMobile) {
   })();
 }
 
-/* ── Particle Canvas — desktop only ── */
 if (!isMobile) {
   (function(){
     const canvas = document.getElementById('bg-canvas');
@@ -1202,7 +1210,6 @@ if (!isMobile) {
         if(p.x<-10) p.x=W+10; if(p.x>W+10) p.x=-10;
         if(p.y<-10) p.y=H+10; if(p.y>H+10) p.y=-10;
       });
-      // connections - only when not too many
       ctx.lineWidth=.3;
       for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++){
         const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
@@ -1215,7 +1222,6 @@ if (!isMobile) {
   })();
 }
 
-/* ── Counters ── */
 function animateCounter(el) {
   const target = parseFloat(el.getAttribute('data-target'));
   const suffix = el.getAttribute('data-suffix') || '';
@@ -1237,13 +1243,11 @@ function triggerCounters() {
   document.querySelectorAll('.stat-num').forEach(el => obs.observe(el));
 }
 
-/* ── Buy button → WhatsApp ── */
 function buyAccount(name) {
   const msg = encodeURIComponent(`مرحباً، أريد الاستفسار عن شراء الحساب:\n${name}`);
   window.open(`https://wa.me/201013381602?text=${msg}`, '_blank');
 }
 
-/* ── Init ── */
 updateNav();
 </script>
 </body>
