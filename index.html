@@ -867,7 +867,7 @@ img{max-width:100%;display:block;}
           <div class="sprd-feat-item"><div class="sprd-feat-dot"></div><span>دعم فني متخصص على مدار الساعة</span></div>
         </div>
         <div class="sprd-btns">
-          <a href="#sprd-pricing" class="btn-sprd-gold"><i class="fas fa-gem"></i> عرض الباقات</a>
+          <a href="#sprd-pricing" onclick="event.preventDefault();document.getElementById('sprd-pricing').scrollIntoView({behavior:'smooth',block:'start'});" class="btn-sprd-gold"><i class="fas fa-gem"></i> عرض الباقات</a>
           <a href="https://wa.me/201013381602" class="btn-sprd-ghost" target="_blank"><i class="fab fa-whatsapp"></i> استشارة مجانية</a>
         </div>
         <div class="sprd-hero-stats">
@@ -1065,7 +1065,7 @@ img{max-width:100%;display:block;}
       <h2 class="sprd-cta-h">جاهز للانطلاق؟<br><span class="sprd-text-gold">انتشارك يبدأ اليوم</span></h2>
       <p class="sprd-cta-sub">لا تضيع وقتك في طرق غير مجدية. انضم لمئات العملاء الراضين وابدأ رحلتك نحو الانتشار الحقيقي الآن.</p>
       <div class="sprd-cta-btns">
-        <a href="#sprd-pricing" class="btn-sprd-gold"><i class="fas fa-gem"></i> اختر باقتك الآن</a>
+        <a href="#sprd-pricing" onclick="event.preventDefault();document.getElementById('sprd-pricing').scrollIntoView({behavior:'smooth',block:'start'});" class="btn-sprd-gold"><i class="fas fa-gem"></i> اختر باقتك الآن</a>
         <a href="https://wa.me/201013381602" class="btn-sprd-wa" target="_blank"><i class="fab fa-whatsapp"></i> استشارة مجانية على الواتساب</a>
         <a href="https://discord.gg/QKWEu7SBFn" class="btn-sprd-dc" target="_blank"><i class="fab fa-discord"></i> انضم لسيرفر الديسكورد</a>
       </div>
@@ -1190,37 +1190,97 @@ img{max-width:100%;display:block;}
 
 <script>
 const isMobile = window.innerWidth <= 900 || ('ontouchstart' in window);
-let currentPage = 'gateway';
 const pages = ['gateway','accounts','spread','course'];
 
-function goTo(pageId) {
+function pageFromHash() {
+  const hash = window.location.hash.replace(/^#/, '').toLowerCase();
+  return pages.includes(hash) ? hash : 'gateway';
+}
+
+let currentPage = pageFromHash();
+
+function setPageImmediate(pageId) {
+  pages.forEach(p => {
+    const el = document.getElementById('page-' + p);
+    if (!el) return;
+    const isActive = p === pageId;
+    el.classList.toggle('active', isActive);
+    el.style.display = isActive ? (p === 'gateway' ? 'flex' : 'block') : 'none';
+    el.style.opacity = '';
+    el.style.transform = '';
+    el.style.transition = '';
+  });
+  currentPage = pageId;
+  updateNav();
+}
+
+function animateTo(pageId) {
   if (pageId === currentPage) return;
+
   const fromEl = document.getElementById('page-' + currentPage);
   const toEl   = document.getElementById('page-' + pageId);
+  if (!fromEl || !toEl) return;
+
   const dur = isMobile ? 220 : 320;
   fromEl.style.opacity = '0';
   fromEl.style.transform = 'translateY(-12px)';
   fromEl.style.transition = `opacity ${dur}ms ease, transform ${dur}ms ease`;
+
   setTimeout(() => {
     fromEl.style.display = 'none';
+    fromEl.classList.remove('active');
     fromEl.style.opacity = '';
     fromEl.style.transform = '';
+    fromEl.style.transition = '';
+
+    toEl.classList.add('active');
     toEl.style.display = 'block';
     toEl.style.opacity = '0';
     toEl.style.transform = 'translateY(18px)';
     toEl.style.transition = `opacity ${dur+80}ms var(--ease-expo), transform ${dur+80}ms var(--ease-expo)`;
+
     window.scrollTo({top:0,behavior:'instant'});
+
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         toEl.style.opacity = '1';
         toEl.style.transform = 'translateY(0)';
       });
     });
+
     currentPage = pageId;
     updateNav();
     if (pageId === 'accounts') triggerCounters();
   }, dur);
 }
+
+function goTo(pageId, addHistory = true) {
+  if (!pages.includes(pageId)) return;
+
+  const targetHash = pageId === 'gateway' ? '' : '#' + pageId;
+
+  if (addHistory && window.location.hash !== targetHash) {
+    history.pushState({page: pageId}, '', window.location.pathname + window.location.search + targetHash);
+  }
+
+  if (pageId !== currentPage) {
+    animateTo(pageId);
+  }
+}
+
+function syncPageFromUrl() {
+  const pageId = pageFromHash();
+  if (pageId !== currentPage) {
+    animateTo(pageId);
+  }
+}
+
+// Back / Forward buttons update the visible page without leaving the site.
+window.addEventListener('popstate', syncPageFromUrl);
+window.addEventListener('hashchange', syncPageFromUrl);
+
+// Open the correct page when the site is loaded directly from a shared URL.
+setPageImmediate(currentPage);
 
 function updateNav() {
   pages.forEach(p => {
